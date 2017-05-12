@@ -7,5 +7,6 @@
 	</head>
 	<body>
 		<h1 class="red-text">Hello, World!</h1>
+		<a href="/novo_restaurante.php">Adicionar novo restaurante</a>
 	</body>
 </html>
