@@ -3,10 +3,16 @@ Repositório de desenvolvimento do produto da cadeira de Projeto de Sistemas (20
 
 # Getting Started
 
+- Para clonar o repositório:
+```
 $ git clone https://github.com/cschallenberger/qual-vai-ser.git
-
+```
+- Entrar na pasta do projeto:
+```
 $ cd qual-vai-ser
-
+```
+Rodar o servidor na porta 8000
+```
 $ php -S localhost:8000
-
-Acessar localhost:8000 no browser
+```
+Acessar a URL localhost:8000 no browser
