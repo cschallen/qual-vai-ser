@@ -8,7 +8,7 @@
 	<body>
 
 		<?php
-		$con = pg_connect("qual-vai-ser");
+		$con = new PDO("pgsql:host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
 
 		if (!$con) {
   		echo "An error occurred.\n";
