@@ -7,7 +7,8 @@ class Estabelecimento {
   private $cnpj;
   private $nome;
   private $idDono;
-
+  private $cardapio;
+  
   public function __construct($descricao, $rua, $cep, $cnpj, $nome) {
     $this->idEstabelecimento = NULL;
     $this->descricao = $descricao;
@@ -45,7 +46,10 @@ class Estabelecimento {
   function getId_dono() {
     return $this->id_dono;
   }
-
+  
+  function getCardapio() {
+    return $this->cardapio;
+  }
 
   function setIdEstabelecimento($idEstabelecimento) {
     $this->idEstabelecimento = $idEstabelecimento;
@@ -75,7 +79,9 @@ class Estabelecimento {
     $this->idDono = $idDono;
   }
 
-
+  function setCardapio($cardapio) {
+    $this->cardapio = $cardapio;
+  }
 
 
 }
