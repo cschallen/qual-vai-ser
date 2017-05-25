@@ -10,11 +10,11 @@ class EstabelecimentoDAO{
 
 	public function obter($id){   //obtém uma linha da tabela e retorna um obj equivalente. Retorna só um pois id não se repete
 		$establecimento = NULL; //se não encontrar o livro, pelo menos retorna o null
-		$comando = "SELECT  nome, descricao, rua, cep, cnpj
+		$comando = "SELECT  nome, descricao, rua, cep, cnpj, cardapio
 		FROM estabelecimento
 		WHERE idEstabelecimento = $id";
 		foreach ($this->con->query($comando) as $linha) {     //metodo query retorna um resultset e pega uma linha de cada vez e guarda uma linha em um array
-			$estabelecimento = new Estabelecimento($linha['nome'], $linha['descricao'], $linha['rua'], $linha['cep'], $linha['cnpj']);
+			$estabelecimento = new Estabelecimento($linha['nome'], $linha['descricao'], $linha['rua'], $linha['cep'], $linha['cnpj'], $linha['cardapio']);
 			$estabelecimento->setIdEstabelecimento($id);
 		}
 
@@ -26,11 +26,11 @@ class EstabelecimentoDAO{
 	public function obterTodos(){
 		$estabelecimentos = array();
 
-		$comando = "SELECT idEstabelecimento, nome, descricao, rua, cep, cnpj
+		$comando = "SELECT idEstabelecimento, nome, descricao, rua, cep, cnpj, cardapio
 		FROM estabelecimento";
 
 		foreach ($this->con->query($comando) as $linha){
-			$estabelecimento = new Estabelecimento($linha['nome'], $linha['descricao'], $linha['rua'], $linha['cep'], $linha['cnpj']);
+			$estabelecimento = new Estabelecimento($linha['nome'], $linha['descricao'], $linha['rua'], $linha['cep'], $linha['cnpj'], $linha['cardapio']);
 			$estabelecimento->setIdEstabelecimento($linha['idEstabelecimento']);
 			$estabelecimento[] = $estabelecimento;
 		}
@@ -54,13 +54,14 @@ class EstabelecimentoDAO{
 			$cnpj = $obj->getCnpj();
 			$cnpj = $obj->getCep();
 			$nome = $obj->getNome();
+			$cardapio = $obj->getCardapio();
 
 			if($idEstabelecimento == NULL){ //se o id do estabelecimento retornando vier nulo, faz o insert se nao update
-				$comando = "INSERT INTO Estabelecimento(Nome, Descricao, Rua, Cep, Cnpj) VALUES ('$nome','$descricao','$rua','$cep','$cnpj')";
+				$comando = "INSERT INTO Estabelecimento(Nome, Descricao, Rua, Cep, Cnpj, Cardapio) VALUES ('$nome','$descricao','$rua','$cep','$cnpj', '$cardapio')";
 			} else {
 				$comando = "UPDATE Livro
-				SET Titulo = '$titulo', Paginas = $paginas, Edicao = $edicao
-				WHERE idLivro = $idLivro";
+				SET Nome = '$nome', Descricao = $descricao, rua = $rua, Cep = $cep, cnpj = $cnpj, Cardapio = $cardapio
+				WHERE idEstabelecimento = $idEstabelecimento";
 			}
 			return $this->con->exec($comando); //nao pode trocar id, se trocar ele se perde
 		}
