@@ -1,3 +1,6 @@
+<head>
+    <meta charset="utf-8">
+</head>
 <!--  CRIAR DEPOIS O CARDAPIO JUNTO COM O RESTAURANTE -->
 
 

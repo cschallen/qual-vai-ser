@@ -1,87 +1,88 @@
 <?php
 class Estabelecimento {
-  private $idEstabelecimento;
-  private $descricao;
-  private $rua;
-  private $cep;
-  private $cnpj;
-  private $nome;
-  private $idDono;
-  private $cardapio;
-  
-  public function __construct($descricao, $rua, $cep, $cnpj, $nome) {
-    $this->idEstabelecimento = NULL;
-    $this->descricao = $descricao;
-    $this->rua = $rua;
-    $this->cep = $cep;
-    $this->cnpj = $cnpj;
-    $this->nome = $nome;
-    $this->idDono = NULL;
-  }
+    
+    private $idEstabelecimento;
+    private $descricao;
+    private $rua;
+    private $cep;
+    private $cnpj;
+    private $nome;
+    private $idDono;
+    private $cardapio;
 
-  function getIdEstabelecimento() {
-    return $this->idEstabelecimento;
-  }
+    public function __construct($descricao, $rua, $cep, $cnpj, $nome, $cardapio) {
+        $this->idEstabelecimento = NULL;
+        $this->descricao = $descricao;
+        $this->rua = $rua;
+        $this->cep = $cep;
+        $this->cnpj = $cnpj;
+        $this->nome = $nome;
+        $this->idDono = NULL;
+        $this->cardapio = $cardapio;
+    }
 
-  function getDescricao() {
-    return $this->descricao;
-  }
+    function getIdEstabelecimento() {
+        return $this->idEstabelecimento;
+    }
 
-  function getRua() {
-    return $this->rua;
-  }
+    function getDescricao() {
+        return $this->descricao;
+    }
 
-  function getCep() {
-    return $this->cep;
-  }
+    function getRua() {
+        return $this->rua;
+    }
 
-  function getCnpj() {
-    return $this->cnpj;
-  }
+    function getCep() {
+        return $this->cep;
+    }
 
-  function getNome() {
-    return $this->nome;
-  }
+    function getCnpj() {
+        return $this->cnpj;
+    }
 
-  function getId_dono() {
-    return $this->id_dono;
-  }
-  
-  function getCardapio() {
-    return $this->cardapio;
-  }
+    function getNome() {
+        return $this->nome;
+    }
 
-  function setIdEstabelecimento($idEstabelecimento) {
-    $this->idEstabelecimento = $idEstabelecimento;
-  }
+    function getId_dono() {
+        return $this->id_dono;
+    }
 
-  function setDescricao($descricao) {
-    $this->descricao = $descricao;
-  }
+    function getCardapio() {
+        return $this->cardapio;
+    }
 
-  function setRua($rua) {
-    $this->rua = $rua;
-  }
+    function setIdEstabelecimento($idEstabelecimento) {
+        $this->idEstabelecimento = $idEstabelecimento;
+    }
 
-  function setCep($cep) {
-    $this->cep = $cep;
-  }
+    function setDescricao($descricao) {
+        $this->descricao = $descricao;
+    }
 
-  function setCnpj($cnpj) {
-    $this->cnpj = $cnpj;
-  }
+    function setRua($rua) {
+        $this->rua = $rua;
+    }
 
-  function setNome($nome) {
-    $this->nome = $nome;
-  }
+    function setCep($cep) {
+        $this->cep = $cep;
+    }
 
-  function setIdDono($idDono) {
-    $this->idDono = $idDono;
-  }
+    function setCnpj($cnpj) {
+        $this->cnpj = $cnpj;
+    }
 
-  function setCardapio($cardapio) {
-    $this->cardapio = $cardapio;
-  }
+    function setNome($nome) {
+        $this->nome = $nome;
+    }
 
+    function setIdDono($idDono) {
+        $this->idDono = $idDono;
+    }
+
+    function setCardapio($cardapio) {
+        $this->cardapio = $cardapio;
+    }
 
 }

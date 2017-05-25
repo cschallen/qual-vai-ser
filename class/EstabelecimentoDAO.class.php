@@ -32,7 +32,7 @@ class EstabelecimentoDAO{
 		foreach ($this->con->query($comando) as $linha){
 			$estabelecimento = new Estabelecimento($linha['nome'], $linha['descricao'], $linha['rua'], $linha['cep'], $linha['cnpj'], $linha['cardapio']);
 			$estabelecimento->setIdEstabelecimento($linha['idEstabelecimento']);
-			$estabelecimento[] = $estabelecimento;
+			$estabelecimentos[] = $estabelecimento;
 		}
 
 		return $estabelecimentos;
