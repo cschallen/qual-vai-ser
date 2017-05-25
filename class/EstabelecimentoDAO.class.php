@@ -52,7 +52,7 @@ class EstabelecimentoDAO{
 			$descricao = $obj->getDescricao();
 			$rua = $obj->getRua();
 			$cnpj = $obj->getCnpj();
-			$cnpj = $obj->getCep();
+			$cep = $obj->getCep();
 			$nome = $obj->getNome();
 			$cardapio = $obj->getCardapio();
 
