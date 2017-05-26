@@ -9,7 +9,7 @@
 
 <div class="center">
     <div class="container">
-        <h3>Cadastre seu restaurante:</h3>
+        <p class="title-form">Cadastre seu restaurante:</p>
         <form action="novo_restaurante.php" method="post" class="form">
             <div class="form-div">
                 <div class="form-inputs">
@@ -41,7 +41,7 @@
             </div>
 
             <div class="form-button">
-                <button class="button" type="submit" name="button">Cadastrar</button>
+                <button type="submit" class="button" name="button">Cadastrar</button>
             </div>
         </form>
 
