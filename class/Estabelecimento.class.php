@@ -1,23 +1,21 @@
 <?php
 class Estabelecimento {
-    
+
     private $idEstabelecimento;
     private $descricao;
     private $rua;
     private $cep;
     private $cnpj;
     private $nome;
-    private $idDono;
     private $cardapio;
 
-    public function __construct($descricao, $rua, $cep, $cnpj, $nome, $cardapio) {
-        $this->idEstabelecimento = NULL;
+    public function __construct($idEstabelecimento, $descricao, $rua, $cep, $cnpj, $nome, $cardapio) {
+        $this->idEstabelecimento = $idEstabelecimento;
         $this->descricao = $descricao;
         $this->rua = $rua;
         $this->cep = $cep;
         $this->cnpj = $cnpj;
         $this->nome = $nome;
-        $this->idDono = NULL;
         $this->cardapio = $cardapio;
     }
 
@@ -43,10 +41,6 @@ class Estabelecimento {
 
     function getNome() {
         return $this->nome;
-    }
-
-    function getId_dono() {
-        return $this->id_dono;
     }
 
     function getCardapio() {
@@ -75,10 +69,6 @@ class Estabelecimento {
 
     function setNome($nome) {
         $this->nome = $nome;
-    }
-
-    function setIdDono($idDono) {
-        $this->idDono = $idDono;
     }
 
     function setCardapio($cardapio) {
