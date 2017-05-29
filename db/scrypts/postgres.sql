@@ -6,47 +6,17 @@ Create table Estabelecimento
 	cep character varying(15) NOT NULL,
 	cnpj character varying(25) NOT NULL UNIQUE,
 	nome character varying(100) NOT NULL,
-	id_dono Integer NOT NULL,
+	cardapio character varying(100) NOT NULL,
 
- 	CONSTRAINT Estabelecimento_pkey primary key (id_estabelecimento),
-	CONSTRAINT Estabelecimento_id_dono_fkey FOREIGN KEY (id_dono)
-	REFERENCES Dono_Estabelecimento (id_dono)
+ 	CONSTRAINT Estabelecimento_pkey primary key (id_estabelecimento)
 )
 WITH (
   OIDS=FALSE
 );
 
-Create table Dono_Estabelecimento
-(
-	id_dono serial NOT NULL,
-	nome character varying(100) NOT NULL,
-	cpf character varying(100) NOT NULL UNIQUE,
-	email character varying(100) NOT NULL UNIQUE,
-	CONSTRAINT Dono_Estabelecimentopkey primary key (id_dono)
-)
-WITH (
-	OIDS=FALSE
-);
-
-Create table Cardapio
-(
-	id_cardapio serial NOT NULL UNIQUE,
-	dia_semana character varying(100) NOT NULL,
-	cardapio character varying(200) NOT NULL,
-	id_estabelecimento Integer NOT NULL,
-
-	CONSTRAINT Cardapio_pkey PRIMARY KEY (id_cardapio),
-	CONSTRAINT cardapio_id_estabelecimento_fkey FOREIGN KEY(id_estabelecimento)
-	REFERENCES Estabelecimento (id_estabelecimento)
-)
-WITH (
-	OIDS=FALSE
-);
-
 Create table Avaliacao
 (
 	id_avaliacao serial NOT NULL,
-	descricao character varying(200),
 	nota integer NOT NULL,
 	id_estabelecimento integer NOT NULL,
 
@@ -57,3 +27,39 @@ Create table Avaliacao
 WITH (
   OIDS=FALSE
 );
+
+-- inserts
+
+INSERT INTO Estabelecimento (descricao, rua, cep, cnpj, nome, cardapio)
+VALUES ('sempre bem animado esse lugar', 'rua dos manos', '875645', '777777', 'bar do tonhao', 'muita bebida e coisas');
+
+INSERT INTO Estabelecimento (descricao, rua, cep, cnpj, nome, cardapio)
+VALUES ('meu lugar é muito legal', 'rua dos caras', '91120564', '465789123', 'bar do zé', 'muita comida e muita coisa');
+
+
+INSERT INTO Avaliacao (nota, id_estabelecimento)
+VALUES (5, 1);
+INSERT INTO Avaliacao (nota, id_estabelecimento)
+VALUES (3, 1);
+INSERT INTO Avaliacao (nota, id_estabelecimento)
+VALUES (5, 1);
+INSERT INTO Avaliacao (nota, id_estabelecimento)
+VALUES (3, 1);
+INSERT INTO Avaliacao (nota, id_estabelecimento)
+VALUES (4, 1);
+INSERT INTO Avaliacao (nota, id_estabelecimento)
+VALUES (1, 1);
+INSERT INTO Avaliacao (nota, id_estabelecimento)
+VALUES (2, 2);
+INSERT INTO Avaliacao (nota, id_estabelecimento)
+VALUES (3, 2);
+INSERT INTO Avaliacao (nota, id_estabelecimento)
+VALUES (3, 2);
+INSERT INTO Avaliacao (nota, id_estabelecimento)
+VALUES (5, 2);
+INSERT INTO Avaliacao (nota, id_estabelecimento)
+VALUES (5, 2);
+INSERT INTO Avaliacao (nota, id_estabelecimento)
+VALUES (5, 2);
+INSERT INTO Avaliacao (nota, id_estabelecimento)
+VALUES (4, 2);

@@ -68,6 +68,7 @@ if (!$con) {
     echo "An error occurred.\n";
     exit;
 }
+
 ?>
 
 
@@ -78,7 +79,8 @@ $descricao = $_POST['descricao'];
 $rua = $_POST['rua'];
 $cep = $_POST['cep'];
 $cnpj = $_POST['cnpj'];
+$cardapio = $_POST['cardapio'];
 
-$stmt = $con->prepare('INSERT INTO Estabelecimento(descricao, rua, cep, cnpj, nome, id_dono) VALUES(:descricao, :rua, :cep, :cnpj, :nome, :id_dono)');
-$stmt->execute(array(':nome' => $nome, ':descricao' => $descricao, ':rua' => $rua, ':cep' => $cep, ':cnpj' => $cnpj, ':id_dono' => 1));
+$stmt = $con->prepare('INSERT INTO Estabelecimento(descricao, rua, cep, cnpj, nome, cardapio) VALUES(:descricao, :rua, :cep, :cnpj, :nome, :cardapio)');
+$stmt->execute(array(':nome' => $nome, ':descricao' => $descricao, ':rua' => $rua, ':cep' => $cep, ':cnpj' => $cnpj, ':cardapio' => $cardapio));
 ?>
