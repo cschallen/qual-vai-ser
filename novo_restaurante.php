@@ -2,7 +2,6 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="/stylesheets/novo_restaurante.css">
 </head>
-<!--  CRIAR DEPOIS O CARDAPIO JUNTO COM O RESTAURANTE -->
 
 <div class="header">
     <a href="/index.php">Voltar</a>
@@ -25,7 +24,6 @@
                         <input type="text" name="rua" placeholder="Ex: Av. Ipiranga, 6681">
                     </div>
                 </div>
-
 
                 <div class="form-div">
                     <div class="form-inputs">
@@ -54,24 +52,13 @@
             <div class="form-button">
                 <button type="submit" class="button" name="button">Cadastrar</button>
             </div>
-
         </form>
-
     </div>
-
-
 </div>
-
-
-
 
 <div class="footer">
 
 </div>
-
-
-
-
 
 <?php
 $con = new PDO("pgsql:host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
@@ -80,11 +67,6 @@ if (!$con) {
     echo "An error occurred.\n";
     exit;
 }
-
-?>
-
-
-<?php
 
 $nome = $_POST['nome'];
 $descricao = $_POST['descricao'];
