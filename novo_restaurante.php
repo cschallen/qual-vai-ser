@@ -15,13 +15,13 @@
 
                 <div class="form-div">
                     <div class="form-inputs">
-                        <label for="nome"> Nome: </label>
-                        <input type="text" name="nome" placeholder="Ex: Bar do Zé">
+                        <label for="nome" class="item"> Nome: </label>
+                        <label for="rua" class="item">Endereço: </label>
                     </div>
 
                     <div class="form-inputs">
-                        <label for="rua">Endereço: </label>
-                        <input type="text" name="rua" placeholder="Ex: Av. Ipiranga, 6681">
+                        <input type="text" name="nome" placeholder="Ex: Bar do Zé" class="item">
+                        <input type="text" name="rua" placeholder="Ex: Av. Ipiranga, 6681" class="item">
                     </div>
                 </div>
 

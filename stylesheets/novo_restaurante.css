@@ -80,10 +80,10 @@ body {
 }
 
 .form-div {
-  width: 40%;
+  width: 50%;
   height: 25%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
 }
@@ -117,4 +117,21 @@ body {
 
 .form-div-menu {
   background-color: blue;
+}
+
+.form-inputs {
+    min-height: 15vh;
+    max-height: 15vh;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.item {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 }
