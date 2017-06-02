@@ -7,7 +7,7 @@ class Avaliacao {
     private $idEstabelecimento;
 
     public function __construct($idAvaliacao, $nota, $idEstabelecimento) {
-        $this->idAvaliacao = $idAvaliacao;
+        $this->idCardapio = NULL;
         $this->nota = $nota;
         $this->idEstabelecimento = $idEstabelecimento;
     }
