@@ -43,10 +43,11 @@
             </div>
         </nav>
 
-         <div id="top" class="starter_container bg">
-            <div class="follow_container">
-                <div class="col-md-6 col-md-offset-3">
+         <div id="top" class="starter_container3 bg">
+            <div class="follow_container2">
+                <div class="col-md-4 col-md-offset-3">
                     <h2 style="color:white">LOGIN</h2>
+                    <hr>
                     <form name="contatoForm">
 			        <input class="form-control" type="text" name="usuario" placeholder="Usuário" ng-required="true"/>
                     <br>

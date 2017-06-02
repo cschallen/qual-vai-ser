@@ -44,22 +44,29 @@
         </div>
     </nav>
 
-    <div id="top" class="starter_container bg">            
+    <div id="top" class="starter_container2 bg">            
         <div class="follow-container">
             <div class="col-md-6 col-md-offset-3">               
                 <form name="contatoForm" style="padding-top:120px">
-                     <h2 style="color:white">CADASTRO</h2>
-                    <input type="text" name="nome" id="nome" required="required" class="form-control" placeholder="Nome do estabelecimento" />
+                     <h2 style="color:white">CADASTRO DE ESTABELECIMENTO</h2>
+                    <hr>
+                    <label> Nome: </label>
+                    <input type="text" name="nome" id="nome" required="required" class="form-control" />
                     <br>
-                    <input type="text" name="endereco" id="endereco" required="required" class="form-control" placeholder="Endereço" />
+                    <label>Endereço:</label>
+                    <input type="text" name="endereco" id="endereco" required="required" class="form-control"/>
                     <br>
-                    <input type="text" name="cep" id="cep" required="required" class="form-control" placeholder="CEP" />
+                    <label>CEP:</label>
+                    <input type="text" name="cep" id="cep" required="required" class="form-control"/>
                     <br>
-                    <input type="text" name="cnpj" id="cnpj" required="required" class="form-control" placeholder="CNPJ" />
+                    <label>CNPJ:</label>
+                    <input type="text" name="cnpj" id="cnpj" required="required" class="form-control"  />
                     <br>
-                    <textarea rows="10" cols="60" name="descricao" id="descricao" required="required" class="form-control" placeholder="Descrição"></textarea>
+                    <label>Descrição:</label>
+                    <textarea rows="6" cols="60" name="descricao" id="descricao" required="required" class="form-control" ></textarea>
                     <br>
-                    <textarea rows="10" cols="60" type="text" name="cardapio" id="cardapio" required="required" class="form-control" placeholder="Cardápio"></textarea>            
+                    <label>Cardápio:</label>
+                    <textarea rows="6" cols="60" type="text" name="cardapio" id="cardapio" required="required" class="form-control" ></textarea>            
                 </form>   
                 <hr>
                 <button type="submit" id="submit" name="submit" class="text-center form-btn form-btn">CADASTRAR</button>                 
@@ -74,4 +81,23 @@
     <script type="text/javascript" src="js/main.js" ></script>
 
 </body>
+
+<?php
+include "Estabelecimento.class.php";
+include "EstabelecimentoDAO.class.php";
+
+$ob  = new Estabelecimento();
+$nome = $_POST['nome'];
+$descricao = $_POST['descricao'];
+$rua = $_POST['rua'];
+$cep = $_POST['cep'];
+$cnpj = $_POST['cnpj'];
+$cardapio = $_POST['cardapio'];
+
+$stmt = $con->prepare($ob->salvar($descricao, $rua, $cep, $cnpj, $nome, $cardapio));
+
+?>
+
+
+
 </html>
