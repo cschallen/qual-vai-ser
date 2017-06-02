@@ -36,11 +36,11 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav main-nav  clear navbar-right ">
-                            <li><a class="navactive color_animation" href="index.html">INÍCIO</a></li>
-                            <li><a class="color_animation" href="index.html#about">SOBRE NÓS</a></li>
+                            <li><a class="navactive color_animation" href="index.php">INÍCIO</a></li>
+                            <li><a class="color_animation" href="index.php#about">SOBRE NÓS</a></li>
                             <li><a class="color_animation" href="locais.php">LOCAIS</a></li>
                             <li><a class="color_animation" href="cadastro.php">CADASTRE SEU ESTABELECIMENTO</a></li>
-                            <li><a class="color_animation" href="login.php">LOGIN OU CADASTRO</a></li>
+                            <li><a class="color_animation" href="login.php">LOGIN</a></li>
                          
                         </ul>
                     </div><!-- /.navbar-collapse -->

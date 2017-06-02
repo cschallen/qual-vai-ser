@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
     <head>
         <meta charset="UTF-8">
         <title>Cadastro</title>
@@ -14,13 +13,10 @@
         <link rel="stylesheet" href="css/jquery-ui.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="css/font-awesome.min.css" rel="stylesheet">
-        <link rel="icon" href="favicon-1.ico" type="image/x-icon">
-
-        
+        <link rel="icon" href="favicon-1.ico" type="image/x-icon">     
     </head>
 
     <body>
-
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container">
                 <div class="row">
@@ -36,13 +32,14 @@
 
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav main-nav  clear navbar-right ">
-                            <li><a class="navactive color_animation" href="index.html">INÍCIO</a></li>
-                            <li><a class="color_animation" href="index.html#about">SOBRE NÓS</a></li>
+                            <li><a class="navactive color_animation" href="index.php">INÍCIO</a></li>
+                            <li><a class="color_animation" href="index.php#about">SOBRE NÓS</a></li>
                             <li><a class="color_animation" href="locais.php">LOCAIS</a></li>
                             <li><a class="color_animation" href="cadastro.php">CADASTRE SEU ESTABELECIMENTO</a></li>
-                           <li><a class="color_animation" href="login.php">LOGIN OU CADASTRO</a></li>                         
+                           <li><a class="color_animation" href="login.php">LOGIN</a></li>                         
                         </ul>
                     </div>
+                </div>
             </div>
         </nav>
 
@@ -50,14 +47,13 @@
             <div class="follow_container">
                 <div class="col-md-6 col-md-offset-3">
                     <h2 style="color:white">LOGIN</h2>
-                        <form name="contatoForm">
-			<input class="form-control" type="text" name="usuario" placeholder="Usuário" ng-required="true"/>
-             <br>
-			<input class="form-control" type="password" name="senha" placeholder="Senha" ng-required="true" />
-		</form>   
-        <hr>
-       <button type="submit" class="text-center form-btn btn-success btn-block form-btn">ACESSAR</button> 
-               
+                    <form name="contatoForm">
+			        <input class="form-control" type="text" name="usuario" placeholder="Usuário" ng-required="true"/>
+                    <br>
+			        <input class="form-control" type="password" name="senha" placeholder="Senha" ng-required="true" />
+		            </form>   
+                    <hr>
+                    <button type="submit" class="text-center form-btn btn-success btn-block form-btn">ACESSAR</button> 
                 </div>
             </div>
         </div>
