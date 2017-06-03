@@ -48,7 +48,8 @@
     <div id="top" class="starter_container2 bg">
         <div class="follow-container">
             <div class="col-md-6 col-md-offset-3">
-                <form name="contatoForm" style="padding-top:120px">
+
+                <form name="contatoForm" style="padding-top:120px" action="cadastro.php" method="post">
                     <h2 style="color:white">CADASTRO DE ESTABELECIMENTO</h2>
                     <hr>
                     <label style="color: white; margin-right: 2px;">*</label>
@@ -96,18 +97,22 @@
 </body>
 
 <?php
-include "Estabelecimento.class.php";
-include "EstabelecimentoDAO.class.php";
+require_once "class/Estabelecimento.class.php";
+require_once "class/EstabelecimentoDAO.class.php";
 
-$ob  = new Estabelecimento();
+$con = new Conexao();
+$con = $con->obterConexao();
+$obDAO  = new EstabelecimentoDAO();
 $nome = $_POST['nome'];
 $descricao = $_POST['descricao'];
-$rua = $_POST['rua'];
+$endereco = $_POST['endereco'];
 $cep = $_POST['cep'];
 $cnpj = $_POST['cnpj'];
 $cardapio = $_POST['cardapio'];
+$ob = new Estabelecimento($descricao, $endereco, $cep, $cnpj, $nome, $cardapio);
 
-$stmt = $con->prepare($ob->salvar($descricao, $rua, $cep, $cnpj, $nome, $cardapio));
+$stmt = $con->prepare($obDAO->salvar($ob));
+// $stmt->execute();
 
 ?>
 

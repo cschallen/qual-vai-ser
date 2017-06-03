@@ -1,6 +1,7 @@
 <?php
-require "Conexao.class.php";
-require "Estabelecimento.class.php";
+require_once "Conexao.class.php";
+require_once "Estabelecimento.class.php";
+
 class EstabelecimentoDAO{
 	private $con;
 
@@ -8,19 +9,19 @@ class EstabelecimentoDAO{
 		$this->con = Conexao::obterConexao();
 	}
 
-	public function obter($id){ 
-		$establecimento = NULL; 
+	public function obter($id){
+		$establecimento = NULL;
 		$comando = "SELECT  nome, descricao, rua, cep, cnpj, cardapio
 		FROM estabelecimento
 		WHERE idEstabelecimento = $id";
-		foreach ($this->con->query($comando) as $linha) {    
+		foreach ($this->con->query($comando) as $linha) {
 			$estabelecimento = new Estabelecimento($linha['nome'], $linha['descricao'], $linha['rua'], $linha['cep'], $linha['cnpj'], $linha['cardapio']);
 			$estabelecimento->setIdEstabelecimento($id);
 		}
 
 		return $estabelecimento;
 	}
-	
+
 	public function obterTodos(){
 		$estabelecimentos = array();
 
@@ -42,7 +43,7 @@ class EstabelecimentoDAO{
 	}
 
 	public function salvar($obj){
-		if($obj instanceof Estabelecimento){ 
+		if($obj instanceof Estabelecimento){
 			$idEstabelecimento = $obj->getIdEstabelecimento();
 			$descricao = $obj->getDescricao();
 			$rua = $obj->getRua();
@@ -51,7 +52,7 @@ class EstabelecimentoDAO{
 			$nome = $obj->getNome();
 			$cardapio = $obj->getCardapio();
 
-			if($idEstabelecimento == NULL){ /
+			if($idEstabelecimento == NULL){
 				$comando = "INSERT INTO Estabelecimento(Nome, Descricao, Rua, Cep, Cnpj, Cardapio) VALUES ('$nome','$descricao','$rua','$cep','$cnpj', '$cardapio')";
 			} else {
 				$comando = "UPDATE Estabelecimento

@@ -9,8 +9,8 @@ class Estabelecimento {
     private $nome;
     private $cardapio;
 
-    public function __construct($idEstabelecimento, $descricao, $rua, $cep, $cnpj, $nome, $cardapio) {
-        $this->idEstabelecimento = $idEstabelecimento;
+    public function __construct($descricao, $rua, $cep, $cnpj, $nome, $cardapio) {
+        // $this->idEstabelecimento = $idEstabelecimento;
         $this->descricao = $descricao;
         $this->rua = $rua;
         $this->cep = $cep;
@@ -76,3 +76,4 @@ class Estabelecimento {
     }
 
 }
+?>
