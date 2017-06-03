@@ -80,7 +80,7 @@
                     <label>Cardápio:</label>
                     <span style="color: white" ng-show=" contatoForm.cardapio.$touched &&  contatoForm.cardapio.$invalid">Campo obrigatorio.</span>
                     <textarea rows="6" cols="60" type="text" name="cardapio" id="cardapio" ng-model="cardapio" class="form-control" required></textarea>
-                    <button ng-disabled="contatoForm.nome.$invalid || contatoForm.endereco.$invalid || contatoForm.cep.$invalid || contatoForm.cnpj.$invalid || contatoForm.descricao.$invalid || contatoForm.cardapio.$invalid" type="submit" id="submit" name="submit" class="text-center form-btn form-btn">CADASTRAR</button>
+                    <button ng-disabled="contatoForm.nome.$invalid || contatoForm.endereco.$invalid || contatoForm.cep.$invalid || contatoForm.cnpj.$invalid || contatoForm.descricao.$invalid || contatoForm.cardapio.$invalid" type="submit" id="submit" name="submit" class="text-center form-btn">CADASTRAR</button>
                 </form>
                 <hr>
             </div>
