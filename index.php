@@ -37,13 +37,13 @@
                         <li><a class="color_animation" href="index.php#about">SOBRE NÓS</a></li>
                         <li><a class="color_animation" href="locais.php">LOCAIS</a></li>
                         <li><a class="color_animation" href="cadastro.php">CADASTRE SEU ESTABELECIMENTO</a></li>
-                        <li><a class="color_animation" href="login.php">LOGIN</a></li>                        
+                        <li><a class="color_animation" href="login.php">LOGIN</a></li>
                     </ul>
-                </div>                
+                </div>
             </div>
         </div>
     </nav>
-        
+
     <div id="top" class="starter_container bg">
         <div class="follow_container">
             <div class="col-md-6 col-md-offset-3">
@@ -76,13 +76,13 @@
         </div>
     </section>
 
-    
+
 
     <!-- ============ Social Section  ============= -->
-    
+
     <section class="social_connect">
-        <div class="text-content container"> 
-            
+        <div class="text-content container">
+
         </div>
     </section>
 
@@ -92,7 +92,7 @@
 
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"> </script>
     <script type="text/javascript" src="js/bootstrap.min.js" ></script>
-    <script type="text/javascript" src="js/jquery-1.10.2.js"></script>     
+    <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
     <script type="text/javascript" src="js/jquery.mixitup.min.js" ></script>
     <script type="text/javascript" src="js/main.js" ></script>
 

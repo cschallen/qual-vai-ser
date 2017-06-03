@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Cadastro</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/main.css" media="screen" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
@@ -17,7 +18,7 @@
     <link rel="icon" href="favicon-1.ico" type="image/x-icon">
 </head>
 
-<body>
+<body ng-app="">
 
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
@@ -37,46 +38,58 @@
                         <li><a class="color_animation" href="index.php#about">SOBRE NÓS</a></li>
                         <li><a class="color_animation" href="locais.php">LOCAIS</a></li>
                         <li><a class="color_animation" href="cadastro.php">CADASTRE SEU ESTABELECIMENTO</a></li>
-                        <li><a class="color_animation" href="login.php">LOGIN</a></li>                         
+                        <li><a class="color_animation" href="login.php">LOGIN</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </nav>
 
-    <div id="top" class="starter_container2 bg">            
+    <div id="top" class="starter_container2 bg">
         <div class="follow-container">
-            <div class="col-md-6 col-md-offset-3">               
+            <div class="col-md-6 col-md-offset-3">
                 <form name="contatoForm" style="padding-top:120px">
-                     <h2 style="color:white">CADASTRO DE ESTABELECIMENTO</h2>
+                    <h2 style="color:white">CADASTRO DE ESTABELECIMENTO</h2>
                     <hr>
+                    <label style="color: white; margin-right: 2px;">*</label>
                     <label> Nome: </label>
-                    <input type="text" name="nome" id="nome" required="required" class="form-control" />
+                    <span style="color: white" ng-show=" contatoForm.nome.$touched &&  contatoForm.nome.$invalid">Campo obrigatorio.</span>
+                    <input type="text" name="nome" id="nome" ng-model="nome" class="form-control" required>
                     <br>
+                    <label style="color: white; margin-right: 2px;">*</label>
                     <label>Endereço:</label>
-                    <input type="text" name="endereco" id="endereco" required="required" class="form-control"/>
+                    <span style="color: white" ng-show=" contatoForm.endereco.$touched &&  contatoForm.endereco.$invalid">Campo obrigatorio.</span>
+                    <input type="text" name="endereco" id="endereco" ng-model="endereco" class="form-control" required>
                     <br>
+                    <label style="color: white; margin-right: 2px;">*</label>
                     <label>CEP:</label>
-                    <input type="text" name="cep" id="cep" required="required" class="form-control"/>
+                    <span style="color: white" ng-show=" contatoForm.cep.$touched &&  contatoForm.cep.$invalid">Campo obrigatorio.</span>
+                    <input type="text" name="cep" id="cep" ng-model="cep" class="form-control" required>
                     <br>
+                    <label style="color: white; margin-right: 2px;">*</label>
                     <label>CNPJ:</label>
-                    <input type="text" name="cnpj" id="cnpj" required="required" class="form-control"  />
+                    <span style="color: white" ng-show=" contatoForm.cnpj.$touched &&  contatoForm.cnpj.$invalid">Campo obrigatorio.</span>
+                    <input type="text" name="cnpj" id="cnpj" ng-model="required" class="form-control" required>
                     <br>
+                    <label style="color: white; margin-right: 2px;">*</label>
                     <label>Descrição:</label>
-                    <textarea rows="6" cols="60" name="descricao" id="descricao" required="required" class="form-control" ></textarea>
+                    <span style="color: white" ng-show=" contatoForm.descricao.$touched &&  contatoForm.descricao.$invalid">Campo obrigatorio.</span>
+                    <textarea rows="6" cols="60" name="descricao" id="descricao" ng-model="descricao" class="form-control" required></textarea>
                     <br>
+                    <label style="color: white; margin-right: 2px;">*</label>
                     <label>Cardápio:</label>
-                    <textarea rows="6" cols="60" type="text" name="cardapio" id="cardapio" required="required" class="form-control" ></textarea>            
-                </form>   
+                    <span style="color: white" ng-show=" contatoForm.cardapio.$touched &&  contatoForm.cardapio.$invalid">Campo obrigatorio.</span>
+                    <textarea rows="6" cols="60" type="text" name="cardapio" id="cardapio" ng-model="cardapio" class="form-control" required></textarea>
+                    <button ng-disabled="contatoForm.nome.$invalid || contatoForm.endereco.$invalid || contatoForm.cep.$invalid || contatoForm.cnpj.$invalid || contatoForm.descricao.$invalid || contatoForm.cardapio.$invalid" type="submit" id="submit" name="submit" class="text-center form-btn form-btn">CADASTRAR</button>
+                </form>
                 <hr>
-                <button type="submit" id="submit" name="submit" class="text-center form-btn form-btn">CADASTRAR</button>                 
             </div>
         </div>
     </div>
-        
+
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"> </script>
     <script type="text/javascript" src="js/bootstrap.min.js" ></script>
-    <script type="text/javascript" src="js/jquery-1.10.2.js"></script>     
+    <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
     <script type="text/javascript" src="js/jquery.mixitup.min.js" ></script>
     <script type="text/javascript" src="js/main.js" ></script>
 
