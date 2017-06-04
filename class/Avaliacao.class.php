@@ -1,15 +1,13 @@
 <?php
-require "Estabelecimento.class.php";
-
 class Avaliacao {
     private $idAvaliacao;
     private $nota;
-    private $idEstabelecimento;
+    private $estabelecimento;
 
-    public function __construct($idAvaliacao, $nota, $idEstabelecimento) {
+    public function __construct($nota, $estabelecimento) {
         $this->idAvaliacao = NULL;
         $this->nota = $nota;
-        $this->idEstabelecimento = $idEstabelecimento;
+        $this->estabelecimento = $estabelecimento;
     }
     function getIdAvaliacao() {
         return $this->idAvaliacao;
@@ -19,8 +17,8 @@ class Avaliacao {
         return $this->nota;
     }
 
-    function getIdEstabelecimento() {
-        return $this->idEstabelecimento;
+    function getEstabelecimento() {
+        return $this->estabelecimento;
     }
 
     function setIdAvaliacao($idAvaliacao) {
@@ -31,7 +29,7 @@ class Avaliacao {
         $this->nota = $nota;
     }
 
-    function setIdEstabelecimento($idEstabelecimento) {
-        $this->idEstabelecimento = $idEstabelecimento;
+    function setEstabelecimento($estabelecimento) {
+        $this->estabelecimento = $estabelecimento;
     }
 }
