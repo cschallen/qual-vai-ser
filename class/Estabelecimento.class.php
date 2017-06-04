@@ -10,7 +10,7 @@ class Estabelecimento {
     private $cardapio;
 
     public function __construct($descricao, $rua, $cep, $cnpj, $nome, $cardapio) {
-        // $this->idEstabelecimento = $idEstabelecimento;
+        $this->idEstabelecimento = NULL;
         $this->descricao = $descricao;
         $this->rua = $rua;
         $this->cep = $cep;
