@@ -15,6 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link rel="icon" href="favicon-1.ico" type="image/x-icon">
+	<link id="favicon" rel="shortcut icon" href="images/icone.png" type="image/png" />
 </head>
 
 <body>
