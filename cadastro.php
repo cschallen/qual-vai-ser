@@ -47,43 +47,49 @@
 
     <div id="top" class="starter_container2 bg">
         <div class="follow-container">
-            <div class="col-md-6 col-md-offset-3">
+            <div class="col-md-11 col-md-offset-1">
 
                 <form name="contatoForm" style="padding-top:120px" action="cadastro.php" method="post">
                     <h2 style="color:white">CADASTRO DE ESTABELECIMENTO</h2>
                     <hr>
-                    <label style="color: white; margin-right: 2px;">*</label>
-                    <label> Nome: </label>
-                    <span style="color: white" ng-show=" contatoForm.nome.$touched &&  contatoForm.nome.$invalid">Campo obrigatorio.</span>
-                    <input type="text" name="nome" id="nome" ng-model="nome" class="form-control" required>
-                    <br>
-                    <label style="color: white; margin-right: 2px;">*</label>
-                    <label>Endereço:</label>
-                    <span style="color: white" ng-show=" contatoForm.endereco.$touched &&  contatoForm.endereco.$invalid">Campo obrigatorio.</span>
-                    <input type="text" name="endereco" id="endereco" ng-model="endereco" class="form-control" required>
-                    <br>
-                    <label style="color: white; margin-right: 2px;">*</label>
-                    <label>CEP:</label>
-                    <span style="color: white" ng-show=" contatoForm.cep.$touched &&  contatoForm.cep.$invalid">Campo obrigatorio.</span>
-                    <input type="text" name="cep" id="cep" ng-model="cep" class="form-control" required>
-                    <br>
-                    <label style="color: white; margin-right: 2px;">*</label>
-                    <label>CNPJ:</label>
-                    <span style="color: white" ng-show=" contatoForm.cnpj.$touched &&  contatoForm.cnpj.$invalid">Campo obrigatorio.</span>
-                    <input type="text" name="cnpj" id="cnpj" ng-model="required" class="form-control" required>
-                    <br>
-                    <label style="color: white; margin-right: 2px;">*</label>
-                    <label>Descrição:</label>
-                    <span style="color: white" ng-show=" contatoForm.descricao.$touched &&  contatoForm.descricao.$invalid">Campo obrigatorio.</span>
-                    <textarea rows="6" cols="60" name="descricao" id="descricao" ng-model="descricao" class="form-control" required></textarea>
-                    <br>
-                    <label style="color: white; margin-right: 2px;">*</label>
-                    <label>Cardápio:</label>
-                    <span style="color: white" ng-show=" contatoForm.cardapio.$touched &&  contatoForm.cardapio.$invalid">Campo obrigatorio.</span>
-                    <textarea rows="6" cols="60" type="text" name="cardapio" id="cardapio" ng-model="cardapio" class="form-control" required></textarea>
-                    <button ng-disabled="contatoForm.nome.$invalid || contatoForm.endereco.$invalid || contatoForm.cep.$invalid || contatoForm.cnpj.$invalid || contatoForm.descricao.$invalid || contatoForm.cardapio.$invalid" type="submit" id="submit" name="submit" class="text-center form-btn">CADASTRAR</button>
-                </form>
-                <hr>
+					<div class="row">
+						<div class="col-md-5" >
+							<label style="color: white; margin-right: 2px;">*</label>
+							<label> Nome: </label>
+							<span style="color: white" ng-show=" contatoForm.nome.$touched &&  contatoForm.nome.$invalid">Campo obrigatorio.</span>
+							<input type="text" name="nome" id="nome" ng-model="nome" class="form-control" required>
+							<br>
+							<label style="color: white; margin-right: 2px;">*</label>
+							<label>Endereço:</label>
+							<span style="color: white" ng-show=" contatoForm.endereco.$touched &&  contatoForm.endereco.$invalid">Campo obrigatorio.</span>
+							<input type="text" name="endereco" id="endereco" ng-model="endereco" class="form-control" required>
+							<br>							
+							<label style="color: white; margin-right: 2px;">*</label>
+							<label>CEP:</label>
+							<span style="color: white" ng-show=" contatoForm.cep.$touched &&  contatoForm.cep.$invalid">Campo obrigatorio.</span>
+							<input type="text" name="cep" id="cep" ng-model="cep" class="form-control" required>
+							<br>
+							<label style="color: white; margin-right: 2px;">*</label>
+							<label>CNPJ:</label>
+							<span style="color: white" ng-show=" contatoForm.cnpj.$touched &&  contatoForm.cnpj.$invalid">Campo obrigatorio.</span>
+							<input type="text" name="cnpj" id="cnpj" ng-model="required" class="form-control" required>
+							<br>
+						</div>									
+						<div class="col-md-6">
+							<label style="color: white; margin-right: 2px;">*</label>
+							<label>Descrição:</label>
+							<span style="color: white" ng-show=" contatoForm.descricao.$touched &&  contatoForm.descricao.$invalid">Campo obrigatorio.</span>
+							<textarea rows="4" cols="60" name="descricao" id="descricao" ng-model="descricao" class="form-control" required></textarea>
+							<br>
+							<label style="color: white; margin-right: 2px;">*</label>
+							<label>Cardápio:</label>
+							<span style="color: white" ng-show=" contatoForm.cardapio.$touched &&  contatoForm.cardapio.$invalid">Campo obrigatorio.</span>
+							<textarea rows="4" cols="60" type="text" name="cardapio" id="cardapio" ng-model="cardapio" class="form-control" required></textarea>
+							<hr>
+							<button ng-disabled="contatoForm.nome.$invalid || contatoForm.endereco.$invalid || contatoForm.cep.$invalid || contatoForm.cnpj.$invalid || contatoForm.descricao.$invalid || contatoForm.cardapio.$invalid" type="submit" id="submit" name="submit" class="text-center btn-block form-btn">CADASTRAR</button>
+						</div>
+					</div>
+                </form>               
             </div>
         </div>
     </div>
@@ -112,7 +118,13 @@ $cardapio = $_POST['cardapio'];
 $ob = new Estabelecimento($descricao, $endereco, $cep, $cnpj, $nome, $cardapio);
 
 $stmt = $con->prepare($obDAO->salvar($ob));
-// $stmt->execute();
+
+if($stmt){
+	echo "Cadastro realizado com sucesso";
+}
+else{
+	echo "Erro ao cadastrar";
+}
 
 ?>
 
