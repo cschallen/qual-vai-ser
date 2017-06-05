@@ -64,11 +64,11 @@
              echo '<div class="jumbotron">';
              echo '<div class = "container">';
              echo "<h1 class = 'nomeEstabelecimento'> " . $estabelecimento->getNome() . "</h1>";
-             echo "<p>descricao: " . $estabelecimento->getDescricao() . "</p>";
-             echo "<p>rua: " . $estabelecimento->getRua() . "</p>";
-             echo "<p>cep: " . $estabelecimento->getCep() . "</p>";
-             echo "<p>cnpj: " . $estabelecimento->getCnpj() . "</p>";
-             echo "<p>cardapio: " . $estabelecimento->getCardapio() . "</p>";
+             echo "<p>Descricao: " . $estabelecimento->getDescricao() . "</p>";
+             echo "<p>Rua: " . $estabelecimento->getRua() . "</p>";
+             echo "<p>CEP: " . $estabelecimento->getCep() . "</p>";
+             echo "<p>CNPJ: " . $estabelecimento->getCnpj() . "</p>";
+             echo "<p>Cardápio: " . $estabelecimento->getCardapio() . "</p>";
              echo '</div>';
              echo "</div>";
            }
