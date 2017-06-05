@@ -131,7 +131,8 @@ $endereco = $_POST['endereco'];
 $cep = $_POST['cep'];
 $cnpj = $_POST['cnpj'];
 $cardapio = $_POST['cardapio'];
-$ob = new Estabelecimento($descricao, $endereco, $cep, $cnpj, $nome, $cardapio);
+
+$ob = new Estabelecimento($nome, $descricao, $endereco, $cep, $cnpj, $cardapio);
 
 $stmt = $con->prepare($obDAO->salvar($ob));
 

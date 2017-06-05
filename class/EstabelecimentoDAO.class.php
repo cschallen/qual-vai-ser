@@ -46,7 +46,7 @@ class EstabelecimentoDAO{
 	}
 
 	public function excluir($id){
-		$comando = "DELETE FROM Estabelecimento WHERE idEstabelecimento = $id";
+		$comando = "DELETE FROM Estabelecimento WHERE id_estabelecimento = $id";
 		return $this->con->exec($comando);
 	}
 
