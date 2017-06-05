@@ -13,8 +13,13 @@ class EstabelecimentoDAO{
 		$establecimento = NULL;
 		$comando = "SELECT  nome, descricao, rua, cep, cnpj, cardapio
 		FROM estabelecimento
-		WHERE idEstabelecimento = $id";
-		foreach ($this->con->query($comando) as $linha) {
+		WHERE id_estabelecimento = $id";
+
+		//fazendo a conexao manualmente, n consegui arrumar isso
+		$conn = pg_connect("host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
+		$sql = pg_query($conn, $comando);
+
+		while( $linha = pg_fetch_array($sql) ) {
 			$estabelecimento = new Estabelecimento($linha['nome'], $linha['descricao'], $linha['rua'], $linha['cep'], $linha['cnpj'], $linha['cardapio']);
 			$estabelecimento->setIdEstabelecimento($id);
 		}
@@ -25,15 +30,18 @@ class EstabelecimentoDAO{
 	public function obterTodos(){
 		$estabelecimentos = array();
 
-		$comando = "SELECT idEstabelecimento, nome, descricao, rua, cep, cnpj, cardapio
-		FROM estabelecimento";
+		$comando = "SELECT id_estabelecimento, nome, descricao, rua, cep, cnpj, cardapio
+		FROM Estabelecimento";
 
-		foreach ($this->con->query($comando) as $linha){
+		//fazendo a conexao manualmente, n consegui arrumar isso
+		$conn = pg_connect("host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
+		$sql = pg_query($conn, $comando);
+
+		while( $linha = pg_fetch_array($sql) ) {
 			$estabelecimento = new Estabelecimento($linha['nome'], $linha['descricao'], $linha['rua'], $linha['cep'], $linha['cnpj'], $linha['cardapio']);
-			$estabelecimento->setIdEstabelecimento($linha['idEstabelecimento']);
+			$estabelecimento->setIdEstabelecimento($linha['id_estabelecimento']);
 			$estabelecimentos[] = $estabelecimento;
 		}
-
 		return $estabelecimentos;
 	}
 
@@ -57,7 +65,7 @@ class EstabelecimentoDAO{
 			} else {
 				$comando = "UPDATE Estabelecimento
 				SET Nome = '$nome', Descricao = $descricao, rua = $rua, Cep = $cep, cnpj = $cnpj, Cardapio = $cardapio
-				WHERE idEstabelecimento = $idEstabelecimento";
+				WHERE id_estabelecimento = $idEstabelecimento";
 			}
 			return $this->con->exec($comando);
 		}
