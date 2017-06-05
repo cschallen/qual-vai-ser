@@ -5,6 +5,7 @@
         <meta charset="UTF-8">
         <title>Locais</title>
         <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/locais.css">
         <link rel="stylesheet" href="css/main.css" media="screen" type="text/css">
         <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css'>
@@ -41,45 +42,46 @@
                             <li><a class="color_animation" href="locais.php">LOCAIS</a></li>
                             <li><a class="color_animation" href="cadastro.php">CADASTRE SEU ESTABELECIMENTO</a></li>
                             <li><a class="color_animation" href="login.php">LOGIN</a></li>
-                         
+
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </div>
             </div><!-- /.container-fluid -->
         </nav>
-         
-        <?php
-	$busca = $_GET['busca'];
-	$conn = pg_connect("host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
-	$sql = "SELECT nome, rua , cep FROM estabelecimento WHERE nome ILIKE '$busca' ORDER BY nome ASC";
-	$res = pg_query($conn, $sql);
-	if (pg_num_rows($res) > 0) {
-		$row = pg_fetch_array($res);
-		echo "Teste1";
-		echo "<br />Nome: ".$row["nome"]."<br />Rua: ".$row["rua"]."<br />Cep: ".$row["cep"];
-	} else if ($conn) {
-		$sql = "SELECT nome, rua, cep FROM estabelecimento ORDER BY nome ASC";
-		$res = pg_query($conn, $sql);
-		if(pg_num_rows($res) > 0) {
-			while($row = pg_fetch_array($res)) {
-				echo "<br />Nome: ".$row["nome"]."<br />Rua: ".$row["rua"]."<br />Cep: ".$row["cep"];
-			}
-		} else {
-			echo "Nenhum registro encontrado no banco de dados!!";
-		}
-		pg_close($conn);
-	} else {
-		echo "Falha na conexão com o PostgreSQL!!";
-	}
-	?>
 
-       
+        <?php
+        require_once "class/Estabelecimento.class.php";
+        require_once "class/EstabelecimentoDAO.class.php";
+        require_once "class/AvaliacaoDAO.class.php";
+
+        $estabelecimentoDAO = new EstabelecimentoDAO();
+        $avaliacaoDAO = new AvaliacaoDAO();
+
+
+           $todosEstabelecimentos = $estabelecimentoDAO->obterTodos();
+           foreach ($todosEstabelecimentos as $estabelecimento) {
+             //  echo "id: " . $estabelecimento->getIdEstabelecimento();
+             echo '<div class="jumbotron">';
+             echo '<div class = "container">';
+             echo "<h1 class = 'nomeEstabelecimento'> " . $estabelecimento->getNome() . "</h1>";
+             echo "<p>descricao: " . $estabelecimento->getDescricao() . "</p>";
+             echo "<p>rua: " . $estabelecimento->getRua() . "</p>";
+             echo "<p>cep: " . $estabelecimento->getCep() . "</p>";
+             echo "<p>cnpj: " . $estabelecimento->getCnpj() . "</p>";
+             echo "<p>cardapio: " . $estabelecimento->getCardapio() . "</p>";
+             echo '</div>';
+             echo "</div>";
+           }
+           ?>
+
+
+
 
         <!-- ============ Social Section  ============= -->
-      
+
         <section class="social_connect">
-            <div class="text-content container"> 
-                
+            <div class="text-content container">
+
             </div>
         </section>
 
@@ -89,7 +91,7 @@
 
         <script type="text/javascript" src="js/jquery-1.10.2.min.js"> </script>
         <script type="text/javascript" src="js/bootstrap.min.js" ></script>
-        <script type="text/javascript" src="js/jquery-1.10.2.js"></script>     
+        <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
         <script type="text/javascript" src="js/jquery.mixitup.min.js" ></script>
         <script type="text/javascript" src="js/main.js" ></script>
 
