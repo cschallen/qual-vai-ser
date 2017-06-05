@@ -23,5 +23,5 @@ Acessar a URL localhost:8000 no browser
 - Para executar os testes, rode no terminal:
 
 ```
-$ phpunit test/class/NomeDoArquivo.php
+$ make tests
 ```
