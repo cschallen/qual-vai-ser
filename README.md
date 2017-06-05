@@ -13,7 +13,7 @@ $ cd qual-vai-ser
 ```
 Rodar o servidor na porta 8000
 ```
-$ php -S localhost:8000
+$ make run
 ```
 Acessar a URL localhost:8000 no browser
 
@@ -23,5 +23,5 @@ Acessar a URL localhost:8000 no browser
 - Para executar os testes, rode no terminal:
 
 ```
-$ phpunit test/class/NomeDaClasse.php
+$ phpunit test/class/NomeDoArquivo.php
 ```
