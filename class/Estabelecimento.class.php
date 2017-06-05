@@ -9,7 +9,7 @@ class Estabelecimento {
     private $nome;
     private $cardapio;
 
-    public function __construct($descricao, $rua, $cep, $cnpj, $nome, $cardapio) {
+    public function __construct($nome, $descricao, $rua, $cep, $cnpj, $cardapio) {
         $this->idEstabelecimento = NULL;
         $this->descricao = $descricao;
         $this->rua = $rua;
