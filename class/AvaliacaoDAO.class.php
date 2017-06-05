@@ -10,23 +10,27 @@ class AvaliacaoDAO{
         $this->con = Conexao::obterConexao();
     }
 
-    public function obterEstabelecimentos($estabelecimento){  
+    public function obterNota($estabelecimento){
         $colecao = array();
-        $comando = "SELECT  idAvaliacao, nota
+        $comando = "SELECT  id_avaliacao, nota, id_estabelecimento
         FROM Avaliacao
-        WHERE idEstabelecimento = $estabelecimento";
-        
+        WHERE id_estabelecimento = $estabelecimento";
+
         $estabelecimentoDAO = new EstabelecimentoDAO();
 
-				foreach ($this->con->query($comando) as $linha){ 
-						$estabObj = $EstabelecimentoDAO->obter($estabelecimento);
+        $conn = pg_connect("host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
+    		$sql = pg_query($conn, $comando);
 
-                        $obj = new Avaliacao($nota, $estabelecimento); 
-						$obj->setIdAvaliacao($linha['idavaliacao']);
-						$colecao[] = $obj;
-				}				
-		return $colecao;
+				while( $linha = pg_fetch_array($sql) ) {
+            $avaliacao = new Avaliacao($linha['nota'], $linha['id_estabelecimento']);
+						$avaliacao->setIdAvaliacao($linha['id_avaliacao']);
+						$notas[] = $avaliacao;
+				}
+
+		return $notas;
 
     }
 
 }
+
+?>
