@@ -1,4 +1,6 @@
 <?php
+include_once "Avaliacao.class.php";
+include_once "AvaliacaoDAO.class.php";
 class Estabelecimento {
 
     private $idEstabelecimento;
@@ -17,6 +19,16 @@ class Estabelecimento {
         $this->cnpj = $cnpj;
         $this->nome = $nome;
         $this->cardapio = $cardapio;
+    }
+
+    function ObterNotaMedia($id) {
+        $avaliacaoDAO = new AvaliacaoDAO();
+        $array = $avaliacaoDAO->obterNota($id);
+        foreach ($array as $nota) {
+          $notas  = $notas + $nota->getNota();
+        }
+        $notaMedia = $notas/count($array);
+        return $notaMedia;
     }
 
     function getIdEstabelecimento() {
