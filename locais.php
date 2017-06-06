@@ -22,33 +22,6 @@
 
     <body>
 
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-            <div class="container">
-                <div class="row">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="#">Qual vai ser?</a>
-                    </div>
-
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav main-nav  clear navbar-right ">
-                            <li><a class="navactive color_animation" href="index.php">INÍCIO</a></li>
-                            <li><a class="color_animation" href="index.php#about">SOBRE NÓS</a></li>
-                            <li><a class="color_animation" href="locais.php">LOCAIS</a></li>
-                            <li><a class="color_animation" href="cadastro.php">CADASTRE SEU ESTABELECIMENTO</a></li>
-                            <li><a class="color_animation" href="login.php">LOGIN</a></li>
-                        </ul>
-                    </div><!-- /.navbar-collapse -->
-                </div>
-            </div><!-- /.container-fluid -->
-        </nav>
         <?php include('header.php'); ?>
         <?php
         require_once "class/Estabelecimento.class.php";
@@ -65,31 +38,22 @@
              echo '<div class="jumbotron">';
              echo '<div class = "container">';
              echo "<h1 class = 'nomeEstabelecimento'> " . $estabelecimento->getNome() . "</h1>";
-             echo "<p>descricao: " . $estabelecimento->getDescricao() . "</p>";
-             echo "<p>rua: " . $estabelecimento->getRua() . "</p>";
-             echo "<p>cep: " . $estabelecimento->getCep() . "</p>";
-             echo "<p>cnpj: " . $estabelecimento->getCnpj() . "</p>";
-             echo "<p>cardapio: " . $estabelecimento->getCardapio() . "</p>";
-             echo "<p>Avaliacao Média: " . $estabelecimento->ObterNotaMedia($estabelecimento->getIdEstabelecimento()) . "/5</p>";
+             echo "<p>Descricao: " . $estabelecimento->getDescricao() . "</p>";
+             echo "<p>Endereço: " . $estabelecimento->getRua() . "</p>";
+             echo "<p>CEP: " . $estabelecimento->getCep() . "</p>";
+             echo "<p>CNPJ: " . $estabelecimento->getCnpj() . "</p>";
+             echo "<p>Cardápio: " . $estabelecimento->getCardapio() . "</p>";
+             echo "<p>Avaliação média: " . $estabelecimento->ObterNotaMedia($estabelecimento->getIdEstabelecimento()) . "/5</p>";
              echo '</div>';
              echo "</div>";
         }
        ?>
-
-
-
-
-        <!-- ============ Social Section  ============= -->
 
         <section class="social_connect">
             <div class="text-content container">
 
             </div>
         </section>
-
-
-        <!-- ============ Footer Section  ============= -->
-
 
         <script type="text/javascript" src="js/jquery-1.10.2.min.js"> </script>
         <script type="text/javascript" src="js/bootstrap.min.js" ></script>
