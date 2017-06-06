@@ -108,16 +108,17 @@ $cep = $_POST['cep'];
 $cnpj = $_POST['cnpj'];
 $cardapio = $_POST['cardapio'];
 
-$ob = new Estabelecimento($nome, $descricao, $endereco, $cep, $cnpj, $cardapio);
-
-$stmt = $con->prepare($obDAO->salvar($ob));
-
-if($stmt){
-    echo "Cadastro realizado com sucesso";
+try{
+    $ob = new Estabelecimento($nome, $descricao, $endereco, $cep, $cnpj, $cardapio);
+    $stmt = $con->prepare($obDAO->salvar($ob));
+    $html = ShowDialog("Sucesso", "Cadastro realizado com sucesso.", "cadastro.php");
+    echo $html;
 }
-else{
-    echo "Erro ao cadastrar";
+catch(\Exception $e){
+    $errorMessage = $e->getMessage();
 }
+
+
 
 ?>
 
