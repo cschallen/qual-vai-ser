@@ -16,12 +16,40 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="css/font-awesome.min.css" rel="stylesheet">
         <link rel="icon" href="favicon-1.ico" type="image/x-icon">
+        <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
+        <link href="css/star-rating.css" media="all" rel="stylesheet" type="text/css" />
     </head>
 
     <body>
 
-        <?php include('header.php'); ?>
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="row">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">Qual vai ser?</a>
+                    </div>
 
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav main-nav  clear navbar-right ">
+                            <li><a class="navactive color_animation" href="index.php">INÍCIO</a></li>
+                            <li><a class="color_animation" href="index.php#about">SOBRE NÓS</a></li>
+                            <li><a class="color_animation" href="locais.php">LOCAIS</a></li>
+                            <li><a class="color_animation" href="cadastro.php">CADASTRE SEU ESTABELECIMENTO</a></li>
+                            <li><a class="color_animation" href="login.php">LOGIN</a></li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div>
+            </div><!-- /.container-fluid -->
+        </nav>
+        <?php include('header.php'); ?>
         <?php
         require_once "class/Estabelecimento.class.php";
         require_once "class/EstabelecimentoDAO.class.php";
@@ -31,21 +59,22 @@
         $avaliacaoDAO = new AvaliacaoDAO();
 
 
-           $todosEstabelecimentos = $estabelecimentoDAO->obterTodos();
-           foreach ($todosEstabelecimentos as $estabelecimento) {
+        $todosEstabelecimentos = $estabelecimentoDAO->obterTodos();
+        foreach ($todosEstabelecimentos as $estabelecimento) {
              //  echo "id: " . $estabelecimento->getIdEstabelecimento();
              echo '<div class="jumbotron">';
              echo '<div class = "container">';
              echo "<h1 class = 'nomeEstabelecimento'> " . $estabelecimento->getNome() . "</h1>";
-             echo "<p>Descricao: " . $estabelecimento->getDescricao() . "</p>";
-             echo "<p>Rua: " . $estabelecimento->getRua() . "</p>";
-             echo "<p>CEP: " . $estabelecimento->getCep() . "</p>";
-             echo "<p>CNPJ: " . $estabelecimento->getCnpj() . "</p>";
-             echo "<p>Cardápio: " . $estabelecimento->getCardapio() . "</p>";
+             echo "<p>descricao: " . $estabelecimento->getDescricao() . "</p>";
+             echo "<p>rua: " . $estabelecimento->getRua() . "</p>";
+             echo "<p>cep: " . $estabelecimento->getCep() . "</p>";
+             echo "<p>cnpj: " . $estabelecimento->getCnpj() . "</p>";
+             echo "<p>cardapio: " . $estabelecimento->getCardapio() . "</p>";
+             echo "<p>Avaliacao Média: " . $estabelecimento->ObterNotaMedia($estabelecimento->getIdEstabelecimento()) . "/5</p>";
              echo '</div>';
              echo "</div>";
-           }
-           ?>
+        }
+       ?>
 
 
 
