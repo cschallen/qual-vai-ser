@@ -34,7 +34,7 @@
     })(jQuery);
 
     </script>
-    
+
     <?php include('header.php'); ?>
 
     <div id="top" class="starter_container2 bg">
@@ -98,26 +98,46 @@
 require_once "class/Estabelecimento.class.php";
 require_once "class/EstabelecimentoDAO.class.php";
 
-$con = new Conexao();
-$con = $con->obterConexao();
-$obDAO  = new EstabelecimentoDAO();
-$nome = $_POST['nome'];
-$descricao = $_POST['descricao'];
-$endereco = $_POST['endereco'];
-$cep = $_POST['cep'];
-$cnpj = $_POST['cnpj'];
-$cardapio = $_POST['cardapio'];
 
-try{
-    $ob = new Estabelecimento($nome, $descricao, $endereco, $cep, $cnpj, $cardapio);
-    $stmt = $con->prepare($obDAO->salvar($ob));
-    $html = ShowDialog("Sucesso", "Cadastro realizado com sucesso.", "cadastro.php");
-    echo $html;
-}
-catch(\Exception $e){
-    $errorMessage = $e->getMessage();
+function conectarComBanco(){
+    $con = new Conexao();
+    $con = $con->obterConexao();
 }
 
+function criarObjtEstabelecimento(){
+    $nome = $_POST['nome'];
+    $descricao = $_POST['descricao'];
+    $endereco = $_POST['endereco'];
+    $cep = $_POST['cep'];
+    $cnpj = $_POST['cnpj'];
+    $cardapio = $_POST['cardapio'];
+    $objt = new Estabelecimento($nome, $descricao, $endereco, $cep, $cnpj, $cardapio);
+
+    return $objt;
+}
+
+function salvarNoBanco($objt){
+    $obDAO  = new EstabelecimentoDAO();
+    $stmt = $con->prepare($obDAO->salvar($objt));
+}
+
+function cadastrarEstabelecimento(){
+    conectarComBanco();
+    $objt = criarObjtEstabelecimento();
+    salvarNoBanco($objt);
+}
+
+cadastrarEstabelecimento();
+
+// try{
+//     cadastrarEstabelecimento();
+// }
+// catch(\Exception $e){
+//     $errorMessage = $e->getMessage();
+// }
+// finally{
+//     echo $message;
+// }
 
 
 ?>
