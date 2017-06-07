@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>Cadastro</title>
+    <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/main.css" media="screen" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
@@ -16,27 +20,46 @@
     <link rel="icon" href="favicon-1.ico" type="image/x-icon">
 </head>
 
-<body>
+<body ng-app="">
 
+
+    <script>
+
+    (function( $ ) {
+        $(document).ready(function () {
+
+            $('#cep').mask('00000-000');
+            $('#cpf').mask('000.000.000-00');
+        });
+    })(jQuery);
+
+    </script>
+    
     <?php include('header.php'); ?>
 
-    <div id="top" class="starter_container3 bg">
-        <div class="follow_container2">
-            <div class="col-md-4 col-md-offset-3">
-                <h2 style="color:white">LOGIN</h2>
-                <hr>
-                <form name="contatoForm" action="senha.php" method="post">
-                    <input class="form-control" type="text" name="usuario" placeholder="Usuário" ng-required="true"/>
-                    <br>
-                    <input class="form-control" type="password" name="senha" placeholder="Senha" ng-required="true" />
-                    <hr>
-                    <button type="submit" class="text-center form-btn btn-success btn-block form-btn">ACESSAR</button>
-                </form>
-                
-                <br>
-                <hr>
-               <p style="background-color: white;border-radius:5px">Ainda não é cadastrado? <a href="cadastroDono.php">Clique aqui</a></p>
-            </div>
+    <div id="top" class="starter_container2 bg">
+        <div class="follow-container">
+            <div class="col-md-11 col-md-offset-3">
+
+<?php session_start(); ?>
+
+
+
+    
+<?php if(isset($_SESSION['validacao'])): ?>
+
+<?php $idDono = $_GET['idDono']; ?>
+
+<h4>Área de dono de estabelecimento</h4>
+
+
+<?php else:?>
+<h3>Acesso Negado. Faca login para acessar esta pagina.</h3>
+<a href="login.php"> Login</a>
+
+<?php endif; ?>
+
+  </div>
         </div>
     </div>
 
