@@ -34,14 +34,12 @@
 
         $todosEstabelecimentos = $estabelecimentoDAO->obterTodos();
         foreach ($todosEstabelecimentos as $estabelecimento) {
-             //  echo "id: " . $estabelecimento->getIdEstabelecimento();
              echo '<div class="jumbotron">';
              echo '<div class = "container">';
+            //  echo "<p class = 'descEstabelecimento'> " . $estabelecimento->getIdEstabelecimento();
              echo "<h1 class = 'nomeEstabelecimento'> " . $estabelecimento->getNome() . "</h1>";
-             echo "<p>Descricao: " . $estabelecimento->getDescricao() . "</p>";
-             echo "<p>Endereço: " . $estabelecimento->getRua() . "</p>";
-             echo "<p>CEP: " . $estabelecimento->getCep() . "</p>";
-             echo "<p>CNPJ: " . $estabelecimento->getCnpj() . "</p>";
+             echo "<p class = 'descEstabelecimento'>Descricao: " . $estabelecimento->getDescricao() . "</p>";
+             echo "<p class = 'endEstabelecimento'>Endereço: " . $estabelecimento->getRua() . "</p>";
              echo "<p>Cardápio: " . $estabelecimento->getCardapio() . "</p>";
              echo "<p>Avaliação média: " . $estabelecimento->ObterNotaMedia($estabelecimento->getIdEstabelecimento()) . "/5</p>";
              echo '</div>';
