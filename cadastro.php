@@ -1,3 +1,29 @@
+<?php
+require_once "class/Estabelecimento.class.php";
+require_once "class/EstabelecimentoDAO.class.php";
+
+if(isset($_POST['submit'])){
+
+    $con = new Conexao();
+    $con = $con->obterConexao();
+    $nome = $_POST['nome'];
+    $descricao = $_POST['descricao'];
+    $endereco = $_POST['endereco'];
+    $cep = $_POST['cep'];
+    $cnpj = $_POST['cnpj'];
+    $cardapio = $_POST['cardapio'];
+    $objt = new Estabelecimento($nome, $descricao, $endereco, $cep, $cnpj, $cardapio);
+    $obDAO  = new EstabelecimentoDAO();
+
+    if($con->prepare($obDAO->salvar($objt))){
+        $success = "Cadastro realizado com sucesso!";
+    } else {
+        $success = "Opa! Houve uma falha e não conseguimos realizar o seu cadastro! Tente novamente mais tarde.";
+    }
+
+}
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -43,7 +69,11 @@
 
                 <form name="contatoForm" style="padding-top:120px" action="cadastro.php" method="post">
                     <h2 style="color:white">CADASTRO DE ESTABELECIMENTO</h2>
+                    <?php
+                    if (isset($success)){ echo "<div style='margin-top: 17px;'>" . "-->  " . $success . "</div>";}
+                    ?>
                     <hr>
+                    <span ng-show="">Salvo com sucesso!</span>
                     <div class="row">
                         <div class="col-md-5" >
                             <label style="color: white; margin-right: 2px;">*</label>
@@ -93,53 +123,5 @@
     <script type="text/javascript" src="js/main.js" ></script>
 
 </body>
-
-<?php
-require_once "class/Estabelecimento.class.php";
-require_once "class/EstabelecimentoDAO.class.php";
-
-
-function conectarComBanco(){
-    $con = new Conexao();
-    $con = $con->obterConexao();
-}
-
-function criarObjtEstabelecimento(){
-    $nome = $_POST['nome'];
-    $descricao = $_POST['descricao'];
-    $endereco = $_POST['endereco'];
-    $cep = $_POST['cep'];
-    $cnpj = $_POST['cnpj'];
-    $cardapio = $_POST['cardapio'];
-    $objt = new Estabelecimento($nome, $descricao, $endereco, $cep, $cnpj, $cardapio);
-
-    return $objt;
-}
-
-function salvarNoBanco($objt){
-    $obDAO  = new EstabelecimentoDAO();
-    $stmt = $con->prepare($obDAO->salvar($objt));
-}
-
-function cadastrarEstabelecimento(){
-    conectarComBanco();
-    $objt = criarObjtEstabelecimento();
-    salvarNoBanco($objt);
-}
-
-cadastrarEstabelecimento();
-
-// try{
-//     cadastrarEstabelecimento();
-// }
-// catch(\Exception $e){
-//     $errorMessage = $e->getMessage();
-// }
-// finally{
-//     echo $message;
-// }
-
-
-?>
 
 </html>
