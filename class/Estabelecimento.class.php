@@ -9,16 +9,16 @@ class Estabelecimento {
     private $cep;
     private $cnpj;
     private $nome;
-    private $cardapio;
+    private $idDono
 
-    public function __construct($nome, $descricao, $rua, $cep, $cnpj, $cardapio) {
+    public function __construct($nome, $descricao, $rua, $cep, $cnpj, $idDono) {
         $this->idEstabelecimento = NULL;
         $this->descricao = $descricao;
         $this->rua = $rua;
         $this->cep = $cep;
         $this->cnpj = $cnpj;
         $this->nome = $nome;
-        $this->cardapio = $cardapio;
+        $this->idDono = $idDono;
     }
 
     function ObterNotaMedia($id) {
@@ -56,8 +56,8 @@ class Estabelecimento {
         return $this->nome;
     }
 
-    function getCardapio() {
-        return $this->cardapio;
+    function getIdDono) {
+        return $this->idDono;
     }
 
     function setIdEstabelecimento($idEstabelecimento) {
@@ -84,8 +84,8 @@ class Estabelecimento {
         $this->nome = $nome;
     }
 
-    function setCardapio($cardapio) {
-        $this->cardapio = $cardapio;
+    function setIdDono($idDono) {
+        $this->idDono = $idDono;
     }
 
 }

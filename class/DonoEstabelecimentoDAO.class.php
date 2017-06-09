@@ -15,29 +15,7 @@ class DonoEstabelecimentoDAO{
     }
 
     public function login($idDono,$login, $senha){
-        $this->codCliente = $codCliente;
-	    $this->login = $login;
-        $this->senha = $senha; 
-        $consulta = "SELECT idDono, login, senha FROM DonoEstabelecimento WHERE login='$login' AND senha='$senha'";
-	    $r = mysql_query($consulta) or die(mysql_error());
-	    if (login != '$login' and senha !='$senha'){
-	    	echo "Usuario ou senha errados.<br>";
-	    	echo "<a href=login.php>Clique aqui para voltar</a>";
-    	}
-	    while($linha = mysql_fetch_assoc($r)){
-            $idDono = $linha['idDono'];
-    	    if(mysql_num_rows($r)!=1){
-	 	        echo "Usuario ou senha errados.<br>";
-		        echo "<a href=login.php>Clique aqui para voltar</a>";
-	        }
-	        else{
-		        session_start();
-		        session_name('secreta');
-	        	$_SESSION['validacao']=1;
-	        	$_SESSION['login']=$login;
-		        header("Location: secreta.php?idDono=$idDono");
-	        }
-        }
+       
     }
 
 
