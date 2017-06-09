@@ -42,6 +42,23 @@ WITH (
   OIDS=FALSE
 );
 
+Create table DonoRestaurante
+(
+	idDono serial NOT NULL,
+	nome character varying(100) NOT NULL,
+	endereco character varying(500) NOT NULL,
+	cep character varying(15) NOT NULL,
+	cpf character varying(15) NOT NULL UNIQUE,
+	email character varying(100) NOT NULL UNIQUE,
+	login character varying(30) NOT NULL UNIQUE,
+	senha character varying(30) NOT NULL,
+
+	CONSTRAINT DonoRestaurante_pkey primary key (idDono)
+)
+WITH(
+	OIDS=FALSE
+);
+
 -- inserts
 
 INSERT INTO Estabelecimento (descricao, rua, cep, cnpj, nome)
