@@ -19,35 +19,35 @@ class DonoEstabelecimento {
     }
 
     function getNome() {
-       
+
     }
 
     function getEndereco() {
-       
+
     }
 
     function getCep() {
-   
+
     }
 
     function getCpf() {
-   
+
     }
 
     function getEmail() {
-  
+
     }
 
     function getLogin() {
-      
+
     }
 
     function getSenha() {
-      
+
     }
 
     function setIdDono($idDono) {
-      
+
     }
 
     function setNome($nome) {
@@ -55,27 +55,27 @@ class DonoEstabelecimento {
     }
 
     function setEndereco($endereco) {
-   
+
     }
 
     function setCep($cep) {
-      
+
     }
 
     function setCpf($cpf) {
-      
+
     }
 
     function setEmail($email) {
-     
+
     }
 
     function setLogin($login) {
-      
+
     }
 
     function setSenha($senha){
-        
-    }
 
+    }
+}
 ?>
