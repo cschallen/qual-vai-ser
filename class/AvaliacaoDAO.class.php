@@ -31,6 +31,14 @@ class AvaliacaoDAO{
 
     }
 
+    public function salvar($nota, $idEstabelecimento){
+  			$comando = "INSERT INTO Avaliacao(nota, id_estabelecimento) VALUES ('$nota','$idEstabelecimento')";
+
+        $conn = pg_connect("host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
+        $sql = pg_query($conn, $comando);
+  			return true;
+  		}
+
 }
 
 ?>
