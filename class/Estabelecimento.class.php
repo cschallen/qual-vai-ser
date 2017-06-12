@@ -9,7 +9,7 @@ class Estabelecimento {
     private $cep;
     private $cnpj;
     private $nome;
-    private $idDono
+    private $idDono;
 
     public function __construct($nome, $descricao, $rua, $cep, $cnpj, $idDono) {
         $this->idEstabelecimento = NULL;
@@ -56,7 +56,7 @@ class Estabelecimento {
         return $this->nome;
     }
 
-    function getIdDono) {
+    function getIdDono() {
         return $this->idDono;
     }
 
