@@ -3,31 +3,24 @@ class DonoEstabelecimento {
 
     private $idDono;
     private $nome;
-    private $endereco;
-    private $cep;
     private $cpf;
     private $email;
-    private $login;
     private $senha;
 
-    public function __construct($nome, $endereco, $cep, $cpf, $email, $login, $senha) {
-
+    public function __construct($nome, $cpf, $email, $senha) {
+        $this->idDono = NULL;
+        $this->nome = $nome;
+        $this->cpf = $cpf;
+        $this->email = $email;
+        $this->senha = $senha;
     }
 
     function getIdDono() {
-        return $this->idEstabelecimento;
+        return $this->idDono;
     }
 
     function getNome() {
         return $this->nome;
-    }
-
-    function getEndereco() {
-        return $this->endereco;
-    }
-
-    function getCep() {
-        return $this->cep;
     }
 
     function getCpf() {
@@ -36,10 +29,6 @@ class DonoEstabelecimento {
 
     function getEmail() {
         return $this->email;
-    }
-
-    function getLogin() {
-        return $this->login;
     }
 
     function getSenha() {
@@ -54,24 +43,12 @@ class DonoEstabelecimento {
         $this->nome = $nome;
     }
 
-    function setEndereco($endereco) {
-        $this->endereco = $endereco;
-    }
-
-    function setCep($cep) {
-        $this->cep = $cep;
-    }
-
     function setCpf($cpf) {
         $this->cpf = $cpf;
     }
 
     function setEmail($email) {
         $this->email = $email;
-    }
-
-    function setLogin($login) {
-        $this->login = $login;
     }
 
     function setSenha($senha){

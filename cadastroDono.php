@@ -1,3 +1,28 @@
+<?php
+require_once "class/DonoEstabelecimento.class.php";
+require_once "class/DonoEstabelecimentoDAO.class.php";
+
+if(isset($_POST['submit'])){
+    $con = new Conexao();
+    $con = $con->obterConexao();
+
+    $nome = $_POST['nome'];
+    $email = $_POST['email'];
+    $cpf = $_POST['cpf'];
+    $senha = $_POST['senha'];
+
+    $obj = new DonoEstabelecimento($nome, $cpf, $email, $senha);
+    $objDAO  = new DonoEstabelecimentoDAO();
+
+    if($con->prepare($objDAO->salvar($obj))){
+        $message = "Cadastro realizado com sucesso!";
+    } else {
+        $message = "Opa! Houve uma falha e não conseguimos realizar o seu cadastro! Tente novamente mais tarde.";
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -37,55 +62,41 @@
 
     <?php include('header.php'); ?>
 
-    <div id="top" class="starter_container2 bg">
+    <div class="starter_container2 bg">
         <div class="follow-container" style="display: flex; justify-content: center;">
             <div class="col-md-11 col-md-offset-3" style="margin: 0; display: flex; justify-content: center;">
-                <form name="contatoForm" style="padding-top:120px" action="cadastroDono.php" method="post">
+                <form name="form_dono" style="padding-top:120px" action="cadastroDono.php" method="post">
                     <h2 style="color:white;padding-right:5px;">CADASTRO DE DONO DE ESTABELECIMENTO</h2>
+
+                    <span ng-show="">Salvo com sucesso!</span>
                     <div class="col-md-5" style="width: 100%;">
                         <hr>
                         <label style="color: white; margin-right: 2px;">*</label>
                         <label> Nome: </label>
-                        <span style="color: white" ng-show=" contatoForm.nome.$touched &&  contatoForm.nome.$invalid">Campo obrigatorio.</span>
-                        <input type="text" name="nome" id="nome" ng-model="nome" class="form-control" required>
-                        <br>
-                        <label style="color: white; margin-right: 2px;">*</label>
-                        <label>Endereço:</label>
-                        <span style="color: white" ng-show=" contatoForm.endereco.$touched &&  contatoForm.endereco.$invalid">Campo obrigatorio.</span>
-                        <input type="text" name="endereco" id="endereco" ng-model="endereco" class="form-control" required>
-                        <br>
-                        <label style="color: white; margin-right: 2px;">*</label>
-                        <label>CEP:</label>
-                        <span style="color: white" ng-show=" contatoForm.cep.$touched &&  contatoForm.cep.$invalid">Campo obrigatorio.</span>
-                        <input type="text" name="cep" id="cep" ng-model="cep" class="form-control" required>
+                        <span style="color: white" ng-show=" form_dono.nome.$touched &&  form_dono.nome.$invalid">Campo obrigatorio.</span>
+                        <input type="text" name="nome" ng-model="nome" class="form-control" required>
                         <br>
 
                         <label style="color: white; margin-right: 2px;">*</label>
                         <label>CPF:</label>
-                        <span style="color: white" ng-show=" contatoForm.cpf.$touched &&  contatoForm.cpf.$invalid">Campo obrigatorio.</span>
-                        <input type="text" name="cpf" id="cpf" ng-model="cpf" class="form-control" required>
+                        <span style="color: white" ng-show=" form_dono.cpf.$touched &&  form_dono.cpf.$invalid">Campo obrigatorio.</span>
+                        <input type="text" name="cpf" ng-model="cpf" class="form-control" required>
                         <br>
 
                         <label style="color: white; margin-right: 2px;">*</label>
                         <label>E-mail:</label>
-                        <span style="color: white" ng-show=" contatoForm.email.$touched &&  contatoForm.email.$invalid">Campo obrigatorio.</span>
-                        <input type="email" name="email" id="email" ng-model="email" class="form-control" required>
-                        <br>
-
-                        <label style="color: white; margin-right: 2px;">*</label>
-                        <label>Login:</label>
-                        <span style="color: white" ng-show=" contatoForm.login.$touched &&  contatoForm.login.$invalid">Campo obrigatorio.</span>
-                        <input type="text" name="login" id="login" ng-model="login" class="form-control" required>
+                        <span style="color: white" ng-show=" form_dono.email.$touched &&  form_dono.email.$invalid">Campo obrigatorio.</span>
+                        <input type="email" name="email" ng-model="email" class="form-control" required>
                         <br>
 
                         <label style="color: white; margin-right: 2px;">*</label>
                         <label>Senha:</label>
-                        <span style="color: white" ng-show=" contatoForm.senha.$touched &&  contatoForm.senha.$invalid">Campo obrigatorio.</span>
-                        <input type="password" name="senha" id="senha" ng-model="senha" class="form-control" required>
+                        <span style="color: white" ng-show=" form_dono.senha.$touched &&  form_dono.senha.$invalid">Campo obrigatorio.</span>
+                        <input type="password" name="senha" ng-model="senha" class="form-control" required>
                         <br>
                         <hr>
                         <div class="col-md-6" >
-                            <button ng-disabled="contatoForm.nome.$invalid || contatoForm.endereco.$invalid || contatoForm.cep.$invalid || contatoForm.cpf.$invalid || contatoForm.email.$invalid || contatoForm.login.$invalid || contatoForm.senha.$invalid" type="submit" id="submit" name="submit" class="text-center btn-block form-btn">CADASTRAR</button>
+                            <button ng-disabled="form_dono.nome.$invalid || form_dono.cpf.$invalid || form_dono.email.$invalid || form_dono.senha.$invalid" type="submit" id="submit" name="submit" class="text-center btn-block form-btn">CADASTRAR</button>
                         </div>
                         <div class="col-md-6">
                             <a href="login.php">
@@ -105,24 +116,4 @@
     <script type="text/javascript" src="js/main.js" ></script>
 
 </body>
-
-<?php
-require_once "class/DonoEstabelecimento.class.php";
-require_once "class/DonoEstabelecimentoDAO.class.php";
-
-$con = new Conexao();
-$con = $con->obterConexao();
-$obDAO  = new DonoEstabelecimentoDAO();
-$nome = $_POST['nome'];
-$endereco = $_POST['endereco'];
-$cep = $_POST['cep'];
-$cpf = $_POST['cpf'];
-$email = $_POST['email'];
-$senha = $_POST['senha'];
-
-$ob = new DonoEstabelecimento($nome, $endereco, $cep, $cpf, $email, $senha);
-$stmt = $con->prepare($obDAO->salvar($ob));
-
-?>
-
 </html>

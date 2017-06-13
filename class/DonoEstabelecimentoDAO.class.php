@@ -14,19 +14,16 @@ class DonoEstabelecimentoDAO{
         if($obj instanceof DonoEstabelecimento){
             $idDono = $obj->getIdDono();
             $nome = $obj->getNome();
-            $endereco = $obj->getEndereco();
             $cpf = $obj->getCpf();
-            $cep = $obj->getCep();
             $email = $obj->getEmail();
-            $login = $obj->getLogin();
             $senha = $obj->getSenha();
 
             if($idDono == NULL){
-                $comando = "INSERT INTO DonoEstabelecimento(Nome, Endereco, cpf, Cep, Email, Login, Senha)
-                VALUES ('$nome','$endereco','$cpf','$cep','$email', '$login', '$senha')";
+                $comando = "INSERT INTO donoestabelecimento(nome, cpf, email, senha)
+                VALUES ('$nome', $cpf', '$email', '$senha')";
             } else {
                 $comando = "UPDATE DonoEstabelecimento
-                SET nome = '$nome', endereco = '$endereco', cpf = '$cpf', cep = '$cep', email = '$email', login = '$login', senha = '$senha'
+                SET nome = '$nome', cpf = '$cpf', email = '$email', senha = '$senha'
                 WHERE id_dono = $idDono";
             }
             return $this->con->exec($comando);
@@ -41,7 +38,7 @@ class DonoEstabelecimentoDAO{
     public function obterTodos(){
         $donos = array();
 
-        $comando = "SELECT nome, endereco, cpf, cep, email, login, senha
+        $comando = "SELECT nome, cpf, email, senha
         FROM DonoEstabelecimento";
 
         //fazendo a conexao manualmente, n consegui arrumar isso
@@ -49,20 +46,12 @@ class DonoEstabelecimentoDAO{
         $sql = pg_query($conn, $comando);
 
         while( $linha = pg_fetch_array($sql) ) {
-            $estabelecimento = new Estabelecimento($linha['nome'], $linha['descricao'], $linha['rua'], $linha['cep'], $linha['cnpj'], $linha['cardapio']);
-            $estabelecimento->setIdEstabelecimento($linha['id_estabelecimento']);
-            $estabelecimentos[] = $estabelecimento;
+            $donoEstabelecimento = new DonoEstabelecimento($linha['nome'], $linha['cpf'], $linha['email'], $linha['senha']);
+            $donoEstabelecimento->setIdDono($linha['id_dono']);
+            $estabelecimentos[] = $donoEstabelecimento;
         }
         return $estabelecimentos;
     }
-
-
-
-
-
-
-
-
 }
 
 ?>
