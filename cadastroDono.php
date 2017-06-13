@@ -34,16 +34,15 @@
     })(jQuery);
 
     </script>
-    
+
     <?php include('header.php'); ?>
 
     <div id="top" class="starter_container2 bg">
-        <div class="follow-container">
-            <div class="col-md-11 col-md-offset-3">
-
-                <form name="contatoForm" style="padding-top:120px" action="cadastro.php" method="post">
-                    <h2 style="color:white;padding-right:5px;">CADASTRO DE DONO DE ESTABELECIMENTO</h2>                   
-                    <div class="col-md-5" >
+        <div class="follow-container" style="display: flex; justify-content: center;">
+            <div class="col-md-11 col-md-offset-3" style="margin: 0; display: flex; justify-content: center;">
+                <form name="contatoForm" style="padding-top:120px" action="cadastroDono.php" method="post">
+                    <h2 style="color:white;padding-right:5px;">CADASTRO DE DONO DE ESTABELECIMENTO</h2>
+                    <div class="col-md-5" style="width: 100%;">
                         <hr>
                         <label style="color: white; margin-right: 2px;">*</label>
                         <label> Nome: </label>
@@ -90,10 +89,10 @@
                         </div>
                         <div class="col-md-6">
                             <a href="login.php">
-                            <input type="button" class="text-center btn-block form-btn" value="VOLTAR PARA LOGIN" />
+                                <input type="button" class="text-center btn-block form-btn" value="VOLTAR PARA LOGIN" />
                             </a>
                         </div>
-                    </div>                    
+                    </div>
                 </form>
             </div>
         </div>
@@ -108,8 +107,8 @@
 </body>
 
 <?php
-require_once "class/Estabelecimento.class.php";
-require_once "class/EstabelecimentoDAO.class.php";
+require_once "class/DonoEstabelecimento.class.php";
+require_once "class/DonoEstabelecimentoDAO.class.php";
 
 $con = new Conexao();
 $con = $con->obterConexao();
@@ -119,11 +118,10 @@ $endereco = $_POST['endereco'];
 $cep = $_POST['cep'];
 $cpf = $_POST['cpf'];
 $email = $_POST['email'];
-$login = $_POST['login'];
 $senha = $_POST['senha'];
 
-    $ob = new DonoEstabelecimento($nome, $endereco, $cep, $cpf, $email, $login, $senha);
-    $stmt = $con->prepare($obDAO->salvar($ob));
+$ob = new DonoEstabelecimento($nome, $endereco, $cep, $cpf, $email, $senha);
+$stmt = $con->prepare($obDAO->salvar($ob));
 
 ?>
 
