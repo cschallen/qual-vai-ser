@@ -2,8 +2,6 @@ Create table DonoEstabelecimento
 (
 	id_dono serial NOT NULL,
 	nome character varying(100) NOT NULL,
-	endereco character varying(500) NOT NULL,
-	cep character varying(15) NOT NULL,
 	cpf character varying(15) NOT NULL UNIQUE,
 	email character varying(100) NOT NULL UNIQUE,
 	senha character varying(30) NOT NULL,
@@ -63,14 +61,14 @@ WITH (
 
 -- inserts
 
-INSERT INTO DonoEstabelecimento(nome, endereco, cep, cpf, email, senha)
-VALUES('Maria', 'Rua da Maria', '98456-214', '147.521.985-95', 'maria@marial.com', 'senhadamaria');
+INSERT INTO DonoEstabelecimento(nome, cpf, email, senha)
+VALUES('Maria', '147.521.985-95', 'maria@marial.com', 'senhadamaria');
 
-INSERT INTO DonoEstabelecimento(nome, endereco, cep, cpf, email, senha)
-VALUES('Jose', 'Rua do Jose', '95174-214', '124.521.693-25', 'jose@jose.com', 'senhadojose');
+INSERT INTO DonoEstabelecimento(nome, cpf, email, senha)
+VALUES('Jose', '124.521.693-25', 'jose@jose.com', 'senhadojose');
 
-INSERT INTO DonoEstabelecimento(nome, endereco, cep, cpf, email, senha)
-VALUES('Magnolia', 'Rua da Magnolia', '98536-520', '521.523.854-96', 'mag@mag.com', 'senhadamag');
+INSERT INTO DonoEstabelecimento(nome, cpf, email, senha)
+VALUES('Magnolia', '521.523.854-96', 'mag@mag.com', 'senhadamag');
 
 
 
