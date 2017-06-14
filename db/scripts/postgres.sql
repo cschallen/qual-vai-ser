@@ -1,12 +1,12 @@
 Create table DonoEstabelecimento
 (
-	id_dono serial NOT NULL,
+	id_dono_estabelecimento serial NOT NULL,
 	nome character varying(100) NOT NULL,
 	cpf character varying(15) NOT NULL UNIQUE,
 	email character varying(100) NOT NULL UNIQUE,
 	senha character varying(30) NOT NULL,
 
-	CONSTRAINT DonoEstabelecimento_pkey primary key (id_dono)
+	CONSTRAINT DonoEstabelecimento_pkey primary key (id_dono_estabelecimento)
 )
 WITH(
 	OIDS=FALSE
@@ -20,11 +20,11 @@ Create table Estabelecimento
 	cep character varying(15) NOT NULL,
 	cnpj character varying(25) NOT NULL UNIQUE,
 	nome character varying(100) NOT NULL,
-	id_dono integer NOT NULL,
+	id_dono_estabelecimento integer NOT NULL,
 
  	CONSTRAINT Estabelecimento_pkey primary key (id_estabelecimento),
-	CONSTRAINT Estabelecimento_id_dono_fkey foreign key(id_dono)
- 	REFERENCES DonoEstabelecimento (id_dono)
+	CONSTRAINT Estabelecimento_id_dono_fkey foreign key(id_dono_estabelecimento)
+ 	REFERENCES DonoEstabelecimento (id_dono_estabelecimento)
 )
 WITH (
   OIDS=FALSE
@@ -72,13 +72,13 @@ VALUES('Magnolia', '521.523.854-96', 'mag@mag.com', 'senhadamag');
 
 
 
-INSERT INTO Estabelecimento (descricao, rua, cep, cnpj, nome, id_dono)
+INSERT INTO Estabelecimento (descricao, rua, cep, cnpj, nome, id_dono_estabelecimento)
 VALUES ('sempre bem animado esse lugar', 'rua dos manos', '74254-952', '777777', 'bar da maria', 1);
 
-INSERT INTO Estabelecimento (descricao, rua, cep, cnpj, nome, id_dono)
+INSERT INTO Estabelecimento (descricao, rua, cep, cnpj, nome, id_dono_estabelecimento)
 VALUES ('meu lugar é muito legal', 'rua dos caras', '12452-951', '465789123', 'bar do zé', 2);
 
-INSERT INTO Estabelecimento (descricao, rua, cep, cnpj, nome, id_dono)
+INSERT INTO Estabelecimento (descricao, rua, cep, cnpj, nome, id_dono_estabelecimento)
 VALUES ('um lugar para comer', 'rua x', '14795-514', '465789121', 'bar da mag', 3);
 
 

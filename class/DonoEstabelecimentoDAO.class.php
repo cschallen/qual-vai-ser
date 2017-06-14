@@ -12,7 +12,7 @@ class DonoEstabelecimentoDAO{
 
     public function salvar($obj){
         if($obj instanceof DonoEstabelecimento){
-            $idDono = $obj->getIdDono();
+            $idDono = $obj->getIdDonoEstabelecimento();
             $nome = $obj->getNome();
             $cpf = $obj->getCpf();
             $email = $obj->getEmail();
@@ -47,7 +47,7 @@ class DonoEstabelecimentoDAO{
 
         while( $linha = pg_fetch_array($sql) ) {
             $donoEstabelecimento = new DonoEstabelecimento($linha['nome'], $linha['cpf'], $linha['email'], $linha['senha']);
-            $donoEstabelecimento->setIdDono($linha['id_dono']);
+            $donoEstabelecimento->setIdDono($linha['id_dono_estabelecimento']);
             $estabelecimentos[] = $donoEstabelecimento;
         }
         return $estabelecimentos;

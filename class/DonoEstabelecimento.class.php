@@ -1,22 +1,22 @@
 <?php
 class DonoEstabelecimento {
 
-    private $idDono;
+    private $idDonoEstabelecimento;
     private $nome;
     private $cpf;
     private $email;
     private $senha;
 
     public function __construct($nome, $cpf, $email, $senha) {
-        $this->idDono = NULL;
+        $this->idDonoEstabelecimento = NULL;
         $this->nome = $nome;
         $this->cpf = $cpf;
         $this->email = $email;
         $this->senha = $senha;
     }
 
-    function getIdDono() {
-        return $this->idDono;
+    function getIdDonoEstabelecimento() {
+        return $this->idDonoEstabelecimento;
     }
 
     function getNome() {
@@ -35,7 +35,7 @@ class DonoEstabelecimento {
         return $this->senha;
     }
 
-    function setIdDono($idDono) {
+    function setIdDonoEstabelecimento($idDonoEstabelecimento) {
         $this->idDono = $idDono;
     }
 

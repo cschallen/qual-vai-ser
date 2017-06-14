@@ -11,8 +11,7 @@ if(isset($_POST['submit'])){
     $endereco = $_POST['endereco'];
     $cep = $_POST['cep'];
     $cnpj = $_POST['cnpj'];
-    $cardapio = $_POST['cardapio'];
-    $objt = new Estabelecimento($nome, $descricao, $endereco, $cep, $cnpj, $cardapio);
+    $objt = new Estabelecimento($nome, $descricao, $endereco, $cep, $cnpj, 1);
     $obDAO  = new EstabelecimentoDAO();
 
     if($con->prepare($obDAO->salvar($objt))){
@@ -20,7 +19,6 @@ if(isset($_POST['submit'])){
     } else {
         $success = "Opa! Houve uma falha e não conseguimos realizar o seu cadastro! Tente novamente mais tarde.";
     }
-
 }
 ?>
 
@@ -103,12 +101,13 @@ if(isset($_POST['submit'])){
                             <span style="color: white" ng-show=" contatoForm.descricao.$touched &&  contatoForm.descricao.$invalid">Campo obrigatorio.</span>
                             <textarea rows="4" cols="60" name="descricao" id="descricao" ng-model="descricao" class="form-control" required></textarea>
                             <br>
-                            <label style="color: white; margin-right: 2px;">*</label>
+                            <!-- TA COMENTADO ABAIXO O CAMPO DE CARDAPIO. QUEM FOR FAZER, ARRUMA DIREITINHO ELE -->
+                            <!-- <label style="color: white; margin-right: 2px;">*</label>
                             <label>Cardápio:</label>
                             <span style="color: white" ng-show=" contatoForm.cardapio.$touched &&  contatoForm.cardapio.$invalid">Campo obrigatorio.</span>
-                            <textarea rows="4" cols="60" type="text" name="cardapio" id="cardapio" ng-model="cardapio" class="form-control" required></textarea>
+                            <textarea rows="4" cols="60" type="text" name="cardapio" id="cardapio" ng-model="cardapio" class="form-control" required></textarea> -->
                             <hr>
-                            <button ng-disabled="contatoForm.nome.$invalid || contatoForm.endereco.$invalid || contatoForm.cep.$invalid || contatoForm.cnpj.$invalid || contatoForm.descricao.$invalid || contatoForm.cardapio.$invalid" type="submit" id="submit" name="submit" class="text-center btn-block form-btn">CADASTRAR</button>
+                            <button ng-disabled="contatoForm.nome.$invalid || contatoForm.endereco.$invalid || contatoForm.cep.$invalid || contatoForm.cnpj.$invalid || contatoForm.descricao.$invalid" type="submit" id="submit" name="submit" class="text-center btn-block form-btn">CADASTRAR</button>
                         </div>
                     </div>
                 </form>
