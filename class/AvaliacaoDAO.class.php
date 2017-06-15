@@ -10,6 +10,27 @@ class AvaliacaoDAO{
         $this->con = Conexao::obterConexao();
     }
 
+
+    function buscaCpf($idEstabelecimento) {
+
+        $colecao = array();
+        $comando = "SELECT  cpf
+                    FROM Avaliacao
+                    WHERE id_estabelecimento = $estabelecimento";
+
+        $estabelecimentoDAO = new EstabelecimentoDAO();
+
+        $conn = pg_connect("host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
+        $sql = pg_query($conn, $comando);
+
+        while( $linha = pg_fetch_array($sql) ) {
+            $cpf = $linha['cpf'];
+            $cpfs[] = $avaliacao;
+        }
+
+    return $cpfs;
+    }
+
     public function obterNota($estabelecimento){
         $colecao = array();
         $comando = "SELECT  id_avaliacao, nota, id_estabelecimento
@@ -31,8 +52,8 @@ class AvaliacaoDAO{
 
     }
 
-    public function salvar($nota, $idEstabelecimento){
-  			$comando = "INSERT INTO Avaliacao(nota, id_estabelecimento) VALUES ('$nota','$idEstabelecimento')";
+    public function salvar($nota, $idEstabelecimento, $cpf){
+  			$comando = "INSERT INTO Avaliacao(nota, id_estabelecimento, cpf) VALUES ('$nota','$idEstabelecimento', '$cpf')";
 
         $conn = pg_connect("host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
         $sql = pg_query($conn, $comando);

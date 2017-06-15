@@ -11,7 +11,7 @@ class EstabelecimentoDAO{
 
 	public function obter($id){
 		$establecimento = NULL;
-		$comando = "SELECT  nome, descricao, rua, cep, cnpj, cardapio
+		$comando = "SELECT  nome, descricao, rua, cep, cnpj
 		FROM estabelecimento
 		WHERE id_estabelecimento = $id";
 
@@ -20,7 +20,7 @@ class EstabelecimentoDAO{
 		$sql = pg_query($conn, $comando);
 
 		while( $linha = pg_fetch_array($sql) ) {
-			$estabelecimento = new Estabelecimento($linha['nome'], $linha['descricao'], $linha['rua'], $linha['cep'], $linha['cnpj'], $linha['cardapio']);
+			$estabelecimento = new Estabelecimento($linha['nome'], $linha['descricao'], $linha['rua'], $linha['cep'], $linha['cnpj']);
 			$estabelecimento->setIdEstabelecimento($id);
 		}
 
@@ -30,7 +30,7 @@ class EstabelecimentoDAO{
 	public function obterTodos(){
 		$estabelecimentos = array();
 
-		$comando = "SELECT id_estabelecimento, nome, descricao, rua, cep, cnpj, cardapio
+		$comando = "SELECT id_estabelecimento, nome, descricao, rua, cep, cnpj, id_dono_estabelecimento
 		FROM Estabelecimento";
 
 		//fazendo a conexao manualmente, n consegui arrumar isso
@@ -38,7 +38,7 @@ class EstabelecimentoDAO{
 		$sql = pg_query($conn, $comando);
 
 		while( $linha = pg_fetch_array($sql) ) {
-			$estabelecimento = new Estabelecimento($linha['nome'], $linha['descricao'], $linha['rua'], $linha['cep'], $linha['cnpj'], $linha['cardapio']);
+			$estabelecimento = new Estabelecimento($linha['nome'], $linha['descricao'], $linha['rua'], $linha['cep'], $linha['cnpj'], $linha ['id_dono_estabelecimento']);
 			$estabelecimento->setIdEstabelecimento($linha['id_estabelecimento']);
 			$estabelecimentos[] = $estabelecimento;
 		}

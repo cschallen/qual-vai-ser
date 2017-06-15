@@ -3,12 +3,22 @@ class Avaliacao {
     private $idAvaliacao;
     private $nota;
     private $estabelecimento;
+    private $cpf;
 
     public function __construct($nota, $estabelecimento) {
         $this->idAvaliacao = NULL;
         $this->nota = $nota;
         $this->estabelecimento = $estabelecimento;
     }
+
+    function getCpf(){
+      return $this->cpf;
+    }
+
+    function setCpf($cpf){
+      $this->cpf = $cpf;
+    }
+
     function getIdAvaliacao() {
         return $this->idAvaliacao;
     }

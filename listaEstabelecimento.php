@@ -5,12 +5,14 @@
   require_once "class/EstabelecimentoDAO.class.php";
   require_once "class/AvaliacaoDAO.class.php";
 
-  if ($_POST) {
-    if (validaCPF($_POST['$cpf'])){
-      LIST ($nota, $id_estabelecimento) = explode("_", $_POST['nota']);
-      var_dump($nota);
+  if (isset($_POST['nota'])) {
+    $cpf = $_POST['$cpf'];
+    LIST ($nota, $id_estabelecimento) = explode("_", $_POST['nota']);
+
+    if ((validaCPF($cpf)) and (comparaCpf($cpf, $id_estabelecimento))){
+
       $avaliacaoDAO = new AvaliacaoDAO();
-      $avaliacaoDAO->salvar($nota, $id_estabelecimento);
+      $avaliacaoDAO->salvar($nota, $id_estabelecimento, $cpf);
       echo "<script>alert('Votou com sucesso');window.location='locais.php'</script>";
     }else{
       echo "<script>alert('CPF inválido);window.location='locais.php'</script>";
@@ -28,7 +30,6 @@
      echo "<h1 class ='nomeEstabelecimento'> " . $estabelecimento->getNome() . "</h1>";
      echo "<p class ='descEstabelecimento'>Descricao: " . $estabelecimento->getDescricao() . "</p>";
      echo "<p class ='endEstabelecimento'>Endereço: " . $estabelecimento->getRua() . "</p>";
-     echo "<p>Cardápio: " . $estabelecimento->getCardapio() . "</p>";
      echo "<p class ='avaliacaoMedia'>Avaliação média: " . $estabelecimento->ObterNotaMedia($estabelecimento->getIdEstabelecimento()) . "/5</p>";
      echo '<form id ="avaliarLocal" action="locais.php" method="post">
              <legend>Avaliar Local:</legend>
@@ -69,12 +70,10 @@
   }
 
   function validaCPF($cpf = null) {
-
     // Verifica se um número foi informado
     if(empty($cpf)) {
         return false;
     }
-
     // Elimina possivel mascara
     $cpf = ereg_replace('[^0-9]', '', $cpf);
     $cpf = str_pad($cpf, 11, '0', STR_PAD_LEFT);
@@ -114,13 +113,26 @@
         return true;
     }
 }
+
+  function comparaCpf($cpf, $id){
+
+    $avaliacaoDAO = new avaliacaoDAO();
+
+    $listaCpf = $avaliacaoDAO->buscaCpf($id);
+    var_dump ($listaCpf);
+    if (!(empty($listaCpf))){
+      foreach ($listaCpf as $key) {
+          if ($cpf == $key){
+            return false;
+          }
+      }
+    }else {
+      if (validaCPF($cpf)){
+          return true;
+      } else{
+         return false;
+        }
+    }
+
+  }
 ?>
-
-
-<select class='form-control'  name='nota' required>
-  <option value='1_". $estabelecimento->getIdEstabelecimento() ."'>1</option>
-  <option value='2_". $estabelecimento->getIdEstabelecimento() ."'>2</option>
-  <option value='3_". $estabelecimento->getIdEstabelecimento() ."'>3</option>
-  <option value='4_". $estabelecimento->getIdEstabelecimento() ."'>4</option>
-  <option value='5_". $estabelecimento->getIdEstabelecimento() ."'>5</option>
-</select>

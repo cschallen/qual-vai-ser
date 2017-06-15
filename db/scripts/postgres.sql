@@ -34,6 +34,7 @@ Create table Avaliacao
 (
 	id_avaliacao serial NOT NULL,
 	nota integer NOT NULL,
+	cpf character varying(15) NOT NULL UNIQUE,
 	id_estabelecimento integer NOT NULL,
 
  CONSTRAINT Avaliacao_pkey primary key (id_avaliacao),
@@ -110,29 +111,18 @@ INSERT INTO Cardapio (dia, id_estabelecimento, descricao)
 VALUES (4, 2, 'carnes, mais carnes');
 
 
-INSERT INTO Avaliacao (nota, id_estabelecimento)
-VALUES (5, 1);
-INSERT INTO Avaliacao (nota, id_estabelecimento)
-VALUES (3, 1);
-INSERT INTO Avaliacao (nota, id_estabelecimento)
-VALUES (5, 1);
-INSERT INTO Avaliacao (nota, id_estabelecimento)
-VALUES (3, 1);
-INSERT INTO Avaliacao (nota, id_estabelecimento)
-VALUES (4, 1);
-INSERT INTO Avaliacao (nota, id_estabelecimento)
-VALUES (1, 1);
-INSERT INTO Avaliacao (nota, id_estabelecimento)
-VALUES (2, 2);
-INSERT INTO Avaliacao (nota, id_estabelecimento)
-VALUES (3, 2);
-INSERT INTO Avaliacao (nota, id_estabelecimento)
-VALUES (3, 2);
-INSERT INTO Avaliacao (nota, id_estabelecimento)
-VALUES (5, 2);
-INSERT INTO Avaliacao (nota, id_estabelecimento)
-VALUES (5, 2);
-INSERT INTO Avaliacao (nota, id_estabelecimento)
-VALUES (5, 2);
-INSERT INTO Avaliacao (nota, id_estabelecimento)
-VALUES (4, 2);
+
+INSERT INTO Avaliacao (nota, id_estabelecimento, cpf)
+VALUES (5, 1, '147.521.985-95');
+INSERT INTO Avaliacao (nota, id_estabelecimento, cpf)
+VALUES (3, 1, '425.552.175-17');
+INSERT INTO Avaliacao (nota, id_estabelecimento, cpf)
+VALUES (4, 3, '988.415.200-43');
+INSERT INTO Avaliacao (nota, id_estabelecimento, cpf)
+VALUES (1, 3, '860.545.477-63');
+INSERT INTO Avaliacao (nota, id_estabelecimento, cpf)
+VALUES (2, 2, '050.403.968-72');
+INSERT INTO Avaliacao (nota, id_estabelecimento, cpf)
+VALUES (3, 2,'848.226.833-38');
+INSERT INTO Avaliacao (nota, id_estabelecimento, cpf)
+VALUES (3, 2, '036.949.470-94');
