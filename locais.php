@@ -34,7 +34,7 @@
     <body>
 
         <?php include_once('header.php'); ?>
-        <?php include_once ('ListaEstabelecimento.php'); ?>
+        <?php include_once ('listaEstabelecimento.php'); ?>
 
         <section class="social_connect">
             <div class="text-content container">
