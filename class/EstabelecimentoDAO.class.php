@@ -58,13 +58,13 @@ class EstabelecimentoDAO{
 			$cnpj = $obj->getCnpj();
 			$cep = $obj->getCep();
 			$nome = $obj->getNome();
-			$cardapio = $obj->getCardapio();
+			$idDonoEstabelecimento = $obj->getIdDonoEstabelecimento();
 
 			if($idEstabelecimento == NULL){
-				$comando = "INSERT INTO Estabelecimento(Nome, Descricao, Rua, Cep, Cnpj, Cardapio) VALUES ('$nome','$descricao','$rua','$cep','$cnpj', '$cardapio')";
+				$comando = "INSERT INTO Estabelecimento(Nome, Descricao, Rua, Cep, Cnpj, id_dono_estabelecimento) VALUES ('$nome','$descricao','$rua','$cep','$cnpj', '$idDonoEstabelecimento')";
 			} else {
 				$comando = "UPDATE Estabelecimento
-				SET Nome = '$nome', Descricao = $descricao, rua = $rua, Cep = $cep, cnpj = $cnpj, Cardapio = $cardapio
+				SET Nome = '$nome', Descricao = $descricao, rua = $rua, Cep = $cep, cnpj = $cnpj, id_dono_estabelecimento = $idDonoEstabelecimento
 				WHERE id_estabelecimento = $idEstabelecimento";
 			}
 			return $this->con->exec($comando);

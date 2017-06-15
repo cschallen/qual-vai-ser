@@ -1,3 +1,27 @@
+<?php
+require_once "class/Estabelecimento.class.php";
+require_once "class/EstabelecimentoDAO.class.php";
+
+if(isset($_POST['submit'])){
+
+    $con = new Conexao();
+    $con = $con->obterConexao();
+    $nome = $_POST['nome'];
+    $descricao = $_POST['descricao'];
+    $endereco = $_POST['endereco'];
+    $cep = $_POST['cep'];
+    $cnpj = $_POST['cnpj'];
+    $objt = new Estabelecimento($nome, $descricao, $endereco, $cep, $cnpj, 1);
+    $obDAO  = new EstabelecimentoDAO();
+
+    if($con->prepare($obDAO->salvar($objt))){
+        $success = "Cadastro realizado com sucesso!";
+    } else {
+        $success = "Opa! Houve uma falha e não conseguimos realizar o seu cadastro! Tente novamente mais tarde.";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -34,7 +58,7 @@
     })(jQuery);
 
     </script>
-    
+
     <?php include('header.php'); ?>
 
     <div id="top" class="starter_container2 bg">
@@ -43,7 +67,11 @@
 
                 <form name="contatoForm" style="padding-top:120px" action="cadastro.php" method="post">
                     <h2 style="color:white">CADASTRO DE ESTABELECIMENTO</h2>
+                    <?php
+                    if (isset($success)){ echo "<div style='margin-top: 17px;'>" . "-->  " . $success . "</div>";}
+                    ?>
                     <hr>
+                    <span ng-show="">Salvo com sucesso!</span>
                     <div class="row">
                         <div class="col-md-5" >
                             <label style="color: white; margin-right: 2px;">*</label>
@@ -73,12 +101,13 @@
                             <span style="color: white" ng-show=" contatoForm.descricao.$touched &&  contatoForm.descricao.$invalid">Campo obrigatorio.</span>
                             <textarea rows="4" cols="60" name="descricao" id="descricao" ng-model="descricao" class="form-control" required></textarea>
                             <br>
-                            <label style="color: white; margin-right: 2px;">*</label>
+                            <!-- TA COMENTADO ABAIXO O CAMPO DE CARDAPIO. QUEM FOR FAZER, ARRUMA DIREITINHO ELE -->
+                            <!-- <label style="color: white; margin-right: 2px;">*</label>
                             <label>Cardápio:</label>
                             <span style="color: white" ng-show=" contatoForm.cardapio.$touched &&  contatoForm.cardapio.$invalid">Campo obrigatorio.</span>
-                            <textarea rows="4" cols="60" type="text" name="cardapio" id="cardapio" ng-model="cardapio" class="form-control" required></textarea>
+                            <textarea rows="4" cols="60" type="text" name="cardapio" id="cardapio" ng-model="cardapio" class="form-control" required></textarea> -->
                             <hr>
-                            <button ng-disabled="contatoForm.nome.$invalid || contatoForm.endereco.$invalid || contatoForm.cep.$invalid || contatoForm.cnpj.$invalid || contatoForm.descricao.$invalid || contatoForm.cardapio.$invalid" type="submit" id="submit" name="submit" class="text-center btn-block form-btn">CADASTRAR</button>
+                            <button ng-disabled="contatoForm.nome.$invalid || contatoForm.endereco.$invalid || contatoForm.cep.$invalid || contatoForm.cnpj.$invalid || contatoForm.descricao.$invalid" type="submit" id="submit" name="submit" class="text-center btn-block form-btn">CADASTRAR</button>
                         </div>
                     </div>
                 </form>
@@ -93,33 +122,5 @@
     <script type="text/javascript" src="js/main.js" ></script>
 
 </body>
-
-<?php
-require_once "class/Estabelecimento.class.php";
-require_once "class/EstabelecimentoDAO.class.php";
-
-$con = new Conexao();
-$con = $con->obterConexao();
-$obDAO  = new EstabelecimentoDAO();
-$nome = $_POST['nome'];
-$descricao = $_POST['descricao'];
-$endereco = $_POST['endereco'];
-$cep = $_POST['cep'];
-$cnpj = $_POST['cnpj'];
-$cardapio = $_POST['cardapio'];
-
-try{
-    $ob = new Estabelecimento($nome, $descricao, $endereco, $cep, $cnpj, $cardapio);
-    $stmt = $con->prepare($obDAO->salvar($ob));
-    $html = ShowDialog("Sucesso", "Cadastro realizado com sucesso.", "cadastro.php");
-    echo $html;
-}
-catch(\Exception $e){
-    $errorMessage = $e->getMessage();
-}
-
-
-
-?>
 
 </html>

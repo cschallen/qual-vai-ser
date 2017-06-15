@@ -1,81 +1,58 @@
 <?php
 class DonoEstabelecimento {
 
-    private $idDono;
+    private $idDonoEstabelecimento;
     private $nome;
-    private $endereco;
-    private $cep;
     private $cpf;
     private $email;
-    private $login;
     private $senha;
 
-    public function __construct($nome, $endereco, $cep, $cpf, $email, $login, $senha) {
-
+    public function __construct($nome, $cpf, $email, $senha) {
+        $this->idDonoEstabelecimento = NULL;
+        $this->nome = $nome;
+        $this->cpf = $cpf;
+        $this->email = $email;
+        $this->senha = $senha;
     }
 
-    function getIdDono() {
-
+    function getIdDonoEstabelecimento() {
+        return $this->idDonoEstabelecimento;
     }
 
     function getNome() {
-       
-    }
-
-    function getEndereco() {
-       
-    }
-
-    function getCep() {
-   
+        return $this->nome;
     }
 
     function getCpf() {
-   
+        return $this->cpf;
     }
 
     function getEmail() {
-  
-    }
-
-    function getLogin() {
-      
+        return $this->email;
     }
 
     function getSenha() {
-      
+        return $this->senha;
     }
 
-    function setIdDono($idDono) {
-      
+    function setIdDonoEstabelecimento($idDonoEstabelecimento) {
+        $this->idDono = $idDono;
     }
 
     function setNome($nome) {
-
-    }
-
-    function setEndereco($endereco) {
-   
-    }
-
-    function setCep($cep) {
-      
+        $this->nome = $nome;
     }
 
     function setCpf($cpf) {
-      
+        $this->cpf = $cpf;
     }
 
     function setEmail($email) {
-     
-    }
-
-    function setLogin($login) {
-      
+        $this->email = $email;
     }
 
     function setSenha($senha){
-        
+        $this->senha = $senha;
     }
-
+}
 ?>

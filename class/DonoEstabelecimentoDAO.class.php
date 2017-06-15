@@ -6,41 +6,52 @@ require_once "DonoEstabelecimento.class.php";
 class DonoEstabelecimentoDAO{
     private $con;
 
-	public function __construct(){
-		$this->con = Conexao::obterConexao();
-	}
-
-    public function incluir($obj){
-
+    public function __construct(){
+        $this->con = Conexao::obterConexao();
     }
 
-    public function login($idDono,$login, $senha){
-        $this->codCliente = $codCliente;
-	    $this->login = $login;
-        $this->senha = $senha; 
-        $consulta = "SELECT idDono, login, senha FROM DonoEstabelecimento WHERE login='$login' AND senha='$senha'";
-	    $r = mysql_query($consulta) or die(mysql_error());
-	    if (login != '$login' and senha !='$senha'){
-	    	echo "Usuario ou senha errados.<br>";
-	    	echo "<a href=login.php>Clique aqui para voltar</a>";
-    	}
-	    while($linha = mysql_fetch_assoc($r)){
-            $idDono = $linha['idDono'];
-    	    if(mysql_num_rows($r)!=1){
-	 	        echo "Usuario ou senha errados.<br>";
-		        echo "<a href=login.php>Clique aqui para voltar</a>";
-	        }
-	        else{
-		        session_start();
-		        session_name('secreta');
-	        	$_SESSION['validacao']=1;
-	        	$_SESSION['login']=$login;
-		        header("Location: secreta.php?idDono=$idDono");
-	        }
+    public function salvar($obj){
+        if($obj instanceof DonoEstabelecimento){
+            $idDono = $obj->getIdDonoEstabelecimento();
+            $nome = $obj->getNome();
+            $cpf = $obj->getCpf();
+            $email = $obj->getEmail();
+            $senha = $obj->getSenha();
+
+            if($idDono == NULL){
+                $comando = "INSERT INTO donoestabelecimento(nome, cpf, email, senha)
+                VALUES ('$nome', $cpf', '$email', '$senha')";
+            } else {
+                $comando = "UPDATE DonoEstabelecimento
+                SET nome = '$nome', cpf = '$cpf', email = '$email', senha = '$senha'
+                WHERE id_dono = $idDono";
+            }
+            return $this->con->exec($comando);
         }
     }
 
+    public function excluir($id){
+        $comando = "DELETE FROM DonoEstabelecimento WHERE id_dono = $id";
+        return $this->con->exec($comando);
+    }
 
+    public function obterTodos(){
+        $donos = array();
+
+        $comando = "SELECT nome, cpf, email, senha
+        FROM DonoEstabelecimento";
+
+        //fazendo a conexao manualmente, n consegui arrumar isso
+        $conn = pg_connect("host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
+        $sql = pg_query($conn, $comando);
+
+        while( $linha = pg_fetch_array($sql) ) {
+            $donoEstabelecimento = new DonoEstabelecimento($linha['nome'], $linha['cpf'], $linha['email'], $linha['senha']);
+            $donoEstabelecimento->setIdDono($linha['id_dono_estabelecimento']);
+            $estabelecimentos[] = $donoEstabelecimento;
+        }
+        return $estabelecimentos;
+    }
 }
 
 ?>

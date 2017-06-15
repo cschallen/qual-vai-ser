@@ -1,3 +1,17 @@
+Create table DonoEstabelecimento
+(
+	id_dono_estabelecimento serial NOT NULL,
+	nome character varying(100) NOT NULL,
+	cpf character varying(15) NOT NULL UNIQUE,
+	email character varying(100) NOT NULL UNIQUE,
+	senha character varying(30) NOT NULL,
+
+	CONSTRAINT DonoEstabelecimento_pkey primary key (id_dono_estabelecimento)
+)
+WITH(
+	OIDS=FALSE
+);
+
 Create table Estabelecimento
 (
 	id_estabelecimento serial NOT NULL,
@@ -6,8 +20,11 @@ Create table Estabelecimento
 	cep character varying(15) NOT NULL,
 	cnpj character varying(25) NOT NULL UNIQUE,
 	nome character varying(100) NOT NULL,
+	id_dono_estabelecimento integer NOT NULL,
 
- 	CONSTRAINT Estabelecimento_pkey primary key (id_estabelecimento)
+ 	CONSTRAINT Estabelecimento_pkey primary key (id_estabelecimento),
+	CONSTRAINT Estabelecimento_id_dono_fkey foreign key(id_dono_estabelecimento)
+ 	REFERENCES DonoEstabelecimento (id_dono_estabelecimento)
 )
 WITH (
   OIDS=FALSE
@@ -44,11 +61,26 @@ WITH (
 
 -- inserts
 
-INSERT INTO Estabelecimento (descricao, rua, cep, cnpj, nome)
-VALUES ('sempre bem animado esse lugar', 'rua dos manos', '875645', '777777', 'bar do tonhao');
+INSERT INTO DonoEstabelecimento(nome, cpf, email, senha)
+VALUES('Maria', '147.521.985-95', 'maria@marial.com', 'senhadamaria');
 
-INSERT INTO Estabelecimento (descricao, rua, cep, cnpj, nome)
-VALUES ('meu lugar é muito legal', 'rua dos caras', '91120564', '465789123', 'bar do zé');
+INSERT INTO DonoEstabelecimento(nome, cpf, email, senha)
+VALUES('Jose', '124.521.693-25', 'jose@jose.com', 'senhadojose');
+
+INSERT INTO DonoEstabelecimento(nome, cpf, email, senha)
+VALUES('Magnolia', '521.523.854-96', 'mag@mag.com', 'senhadamag');
+
+
+
+INSERT INTO Estabelecimento (descricao, rua, cep, cnpj, nome, id_dono_estabelecimento)
+VALUES ('sempre bem animado esse lugar', 'rua dos manos', '74254-952', '777777', 'bar da maria', 1);
+
+INSERT INTO Estabelecimento (descricao, rua, cep, cnpj, nome, id_dono_estabelecimento)
+VALUES ('meu lugar é muito legal', 'rua dos caras', '12452-951', '465789123', 'bar do zé', 2);
+
+INSERT INTO Estabelecimento (descricao, rua, cep, cnpj, nome, id_dono_estabelecimento)
+VALUES ('um lugar para comer', 'rua x', '14795-514', '465789121', 'bar da mag', 3);
+
 
 INSERT INTO Cardapio (dia, id_estabelecimento, descricao)
 VALUES (1, 1, 'beterraba, aipim, feijão');
