@@ -11,7 +11,7 @@ class EstabelecimentoDAO{
 
 	public function obter($id){
 		$establecimento = NULL;
-		$comando = "SELECT  nome, descricao, rua, cep, cnpj
+		$comando = "SELECT  nome, descricao, rua, cep, lat, lng, cnpj
 		FROM estabelecimento
 		WHERE id_estabelecimento = $id";
 
@@ -20,7 +20,7 @@ class EstabelecimentoDAO{
 		$sql = pg_query($conn, $comando);
 
 		while( $linha = pg_fetch_array($sql) ) {
-			$estabelecimento = new Estabelecimento($linha['nome'], $linha['descricao'], $linha['rua'], $linha['cep'], $linha['cnpj']);
+			$estabelecimento = new Estabelecimento($linha['nome'], $linha['descricao'], $linha['rua'], $linha['cep'], $linha['lat'], $linha['lng'], $linha['cnpj']);
 			$estabelecimento->setIdEstabelecimento($id);
 		}
 
@@ -30,15 +30,15 @@ class EstabelecimentoDAO{
 	public function obterTodos(){
 		$estabelecimentos = array();
 
-		$comando = "SELECT id_estabelecimento, nome, descricao, rua, cep, cnpj, id_dono_estabelecimento
-		FROM Estabelecimento";
+		$comando = "SELECT id_estabelecimento, nome, descricao, rua, cep, lat, lng, cnpj, id_dono_estabelecimento
+		FROM estabelecimento";
 
 		//fazendo a conexao manualmente, n consegui arrumar isso
 		$conn = pg_connect("host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
 		$sql = pg_query($conn, $comando);
 
 		while( $linha = pg_fetch_array($sql) ) {
-			$estabelecimento = new Estabelecimento($linha['nome'], $linha['descricao'], $linha['rua'], $linha['cep'], $linha['cnpj'], $linha ['id_dono_estabelecimento']);
+			$estabelecimento = new Estabelecimento($linha['nome'], $linha['descricao'], $linha['rua'], $linha['cep'], $linha['lat'], $linha['lng'], $linha['cnpj'], $linha['id_dono_estabelecimento']);
 			$estabelecimento->setIdEstabelecimento($linha['id_estabelecimento']);
 			$estabelecimentos[] = $estabelecimento;
 		}
@@ -46,7 +46,7 @@ class EstabelecimentoDAO{
 	}
 
 	public function excluir($id){
-		$comando = "DELETE FROM Estabelecimento WHERE id_estabelecimento = $id";
+		$comando = "DELETE FROM estabelecimento WHERE id_estabelecimento = $id";
 		return $this->con->exec($comando);
 	}
 
@@ -57,14 +57,15 @@ class EstabelecimentoDAO{
 			$rua = $obj->getRua();
 			$cnpj = $obj->getCnpj();
 			$cep = $obj->getCep();
+			$lat = $obj->getLat();
+			$lng = $obj->getLng();
 			$nome = $obj->getNome();
 			$idDonoEstabelecimento = $obj->getIdDonoEstabelecimento();
-
 			if($idEstabelecimento == NULL){
-				$comando = "INSERT INTO Estabelecimento(Nome, Descricao, Rua, Cep, Cnpj, id_dono_estabelecimento) VALUES ('$nome','$descricao','$rua','$cep','$cnpj', '$idDonoEstabelecimento')";
+				$comando = "INSERT INTO estabelecimento(nome, descricao, rua, cep, lat, lng, cnpj, id_dono_estabelecimento) VALUES ('$nome','$descricao','$rua','$cep','$lat','$lng','$cnpj','$idDonoEstabelecimento')";
 			} else {
 				$comando = "UPDATE Estabelecimento
-				SET Nome = '$nome', Descricao = $descricao, rua = $rua, Cep = $cep, cnpj = $cnpj, id_dono_estabelecimento = $idDonoEstabelecimento
+				SET nome = $nome, descricao = $descricao, rua = $rua, cep = $cep, lat = $lat, lng = $lng, cnpj = $cnpj, id_dono_estabelecimento = $idDonoEstabelecimento
 				WHERE id_estabelecimento = $idEstabelecimento";
 			}
 			return $this->con->exec($comando);
