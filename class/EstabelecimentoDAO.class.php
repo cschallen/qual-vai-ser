@@ -61,8 +61,10 @@ class EstabelecimentoDAO{
 			$lng = $obj->getLng();
 			$nome = $obj->getNome();
 			$idDonoEstabelecimento = $obj->getIdDonoEstabelecimento();
+
 			if($idEstabelecimento == NULL){
-				$comando = "INSERT INTO estabelecimento(nome, descricao, rua, cep, lat, lng, cnpj, id_dono_estabelecimento) VALUES ('$nome','$descricao','$rua','$cep','$lat','$lng','$cnpj','$idDonoEstabelecimento')";
+				$comando = "INSERT INTO estabelecimento(nome, descricao, rua, cep, lat, lng, cnpj, id_dono_estabelecimento)
+				VALUES ('$nome','$descricao','$rua','$cep','$lat','$lng','$cnpj','$idDonoEstabelecimento')";
 			} else {
 				$comando = "UPDATE Estabelecimento
 				SET nome = $nome, descricao = $descricao, rua = $rua, cep = $cep, lat = $lat, lng = $lng, cnpj = $cnpj, id_dono_estabelecimento = $idDonoEstabelecimento

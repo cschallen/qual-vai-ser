@@ -12,19 +12,20 @@ class DonoEstabelecimentoDAO{
 
     public function salvar($obj){
         if($obj instanceof DonoEstabelecimento){
-            $idDono = $obj->getIdDonoEstabelecimento();
+            $idDonoEstabelecimento = $obj->getIdDonoEstabelecimento();
             $nome = $obj->getNome();
             $cpf = $obj->getCpf();
             $email = $obj->getEmail();
             $senha = $obj->getSenha();
 
-            if($idDono == NULL){
+
+            if($idDonoEstabelecimento == NULL){
                 $comando = "INSERT INTO donoestabelecimento(nome, cpf, email, senha)
                 VALUES ('$nome', $cpf', '$email', '$senha')";
             } else {
                 $comando = "UPDATE DonoEstabelecimento
                 SET nome = '$nome', cpf = '$cpf', email = '$email', senha = '$senha'
-                WHERE id_dono = $idDono";
+                WHERE id_dono_estabelecimento = $idDonoEstabelecimento";
             }
             return $this->con->exec($comando);
         }
