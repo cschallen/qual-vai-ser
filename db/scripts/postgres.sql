@@ -76,13 +76,13 @@ VALUES('Magnolia', '521.523.854-96', 'mag@mag.com', 'senhadamag');
 
 
 INSERT INTO Estabelecimento (descricao, rua, cep, lat, lng, cnpj, nome, id_dono_estabelecimento)
-VALUES ('sempre bem animado esse lugar', 'rua dos manos', '74254-952', '40.71727401', '-74.00898606', '777777', 'bar da maria', 1);
+VALUES ('sempre bem animado esse lugar', 'rua dos manos', '91110-080', '-30.0016887', '-51.1362590', '777777', 'bar da maria', 1);
 
 INSERT INTO Estabelecimento (descricao, rua, cep, lat, lng, cnpj, nome, id_dono_estabelecimento)
-VALUES ('meu lugar é muito legal', 'rua dos caras', '12452-951', '40.71727401','-74.00898606', '465789123', 'bar do zé', 2);
+VALUES ('meu lugar é muito legal', 'rua dos caras', '90620-170', '-30.0509683','-51.2022014', '465789123', 'bar do zé', 2);
 
 INSERT INTO Estabelecimento (descricao, rua, cep, lat, lng, cnpj, nome, id_dono_estabelecimento)
-VALUES ('um lugar para comer', 'rua x', '14795-514', '40.71727401', '-74.00898606', '465789121', 'bar da mag', 3);
+VALUES ('um lugar para comer', 'rua x', '90870-310', '-30.0697428', '-51.2114579', '465789121', 'bar da mag', 3);
 
 
 
