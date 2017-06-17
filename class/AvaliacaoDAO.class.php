@@ -16,7 +16,7 @@ class AvaliacaoDAO{
         $colecao = array();
         $comando = "SELECT  cpf
                     FROM Avaliacao
-                    WHERE id_estabelecimento = $estabelecimento";
+                    WHERE id_estabelecimento = $idEstabelecimento";
 
         $estabelecimentoDAO = new EstabelecimentoDAO();
 
@@ -25,7 +25,7 @@ class AvaliacaoDAO{
 
         while( $linha = pg_fetch_array($sql) ) {
             $cpf = $linha['cpf'];
-            $cpfs[] = $avaliacao;
+            $cpfs[] = $cpf;
         }
 
     return $cpfs;
