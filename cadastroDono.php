@@ -41,10 +41,7 @@
             <div class="col-md-11 col-md-offset-3" style="margin: 0; display: flex; justify-content: center;">
                 <form name="cadastroDonoForm" style="padding-top:120px" action="cadastroDono.php" method="post">
                     <h2 style="color:white;padding-right:5px;">CADASTRO DE DONO DE ESTABELECIMENTO</h2>
-                    <?php
-                    if (isset($message)){ echo "<div style='margin-top: 17px;'>" . "-->  " . $message . "</div>";}
-                    ?>
-                    <span ng-show="">Salvo com sucesso!</span>
+
                     <div class="col-md-5" style="width: 100%;">
                         <hr>
                         <label style="color: white; margin-right: 2px;">*</label>
@@ -108,7 +105,10 @@ $senha = $_POST['senha_dono'];
 $obj = new DonoEstabelecimento($nome, $cpf, $email, $senha);
 
 $objDAO  = new DonoEstabelecimentoDAO();
-var_dump($objDAO);
-$objDAO->salvar($obj);
 
+if ($objDAO->salvar($obj) > 0) {
+    ?>
+    <script type="text/javascript" >alert("OK");</script>
+    <?php
+}
 ?>

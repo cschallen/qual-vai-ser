@@ -11,6 +11,7 @@ class DonoEstabelecimentoDAO{
     }
 
     public function salvar($obj){
+        // var_dump($obj);
         if($obj instanceof DonoEstabelecimento){
             $idDonoEstabelecimento = $obj->getIdDonoEstabelecimento();
             $nome = $obj->getNome();
@@ -18,10 +19,9 @@ class DonoEstabelecimentoDAO{
             $email = $obj->getEmail();
             $senha = $obj->getSenha();
 
-
             if($idDonoEstabelecimento == NULL){
                 $comando = "INSERT INTO donoestabelecimento(nome, cpf, email, senha)
-                VALUES ('$nome', $cpf', '$email', '$senha')";
+                VALUES ('$nome', '$cpf', '$email', '$senha')";
             } else {
                 $comando = "UPDATE DonoEstabelecimento
                 SET nome = '$nome', cpf = '$cpf', email = '$email', senha = '$senha'
