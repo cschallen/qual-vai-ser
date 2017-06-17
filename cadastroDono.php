@@ -108,7 +108,7 @@ $objDAO  = new DonoEstabelecimentoDAO();
 
 if ($objDAO->salvar($obj) > 0) {
     ?>
-    <script type="text/javascript" >alert("OK");</script>
+    <script type="text/javascript" >alert("Cadastrado com sucesso!");</script>
     <?php
 }
 ?>

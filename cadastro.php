@@ -21,7 +21,7 @@ if(isset($_POST['submit'])){
 	$lng = 0;
     }
     $cnpj = $_POST['cnpj'];
-    $objt = new Estabelecimento($nome, $descricao, $endereco, $cep, $cnpj, 1);
+    $objt = new Estabelecimento($nome, $descricao, $endereco, $cep, $lat, $lng, $cnpj, 1);
     $obDAO  = new EstabelecimentoDAO();
 
     if($con->prepare($obDAO->salvar($objt))){
