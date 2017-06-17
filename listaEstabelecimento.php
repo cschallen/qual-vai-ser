@@ -18,27 +18,27 @@ foreach ($todosEstabelecimentos as $estabelecimento) {
            <legend>Avaliar Local:</legend>
            <div class="form-check form-check-inline">
             <label class="form-check-label">
-              <input class="form-check-input" type="radio" name="nota" id="inlineRadio1" value="1_" '. $estabelecimento->getIdEstabelecimento() .'"> 1
+              <input class="form-check-input" type="radio" name="nota" id="inlineRadio1" value="1_'. $estabelecimento->getIdEstabelecimento() .'"> 1
             </label>
           </div>
           <div class="form-check form-check-inline">
             <label class="form-check-label">
-              <input class="form-check-input" type="radio" name="nota" id="inlineRadio2" value="2_ '. $estabelecimento->getIdEstabelecimento() .'"> 2
+              <input class="form-check-input" type="radio" name="nota" id="inlineRadio2" value="2_'. $estabelecimento->getIdEstabelecimento() .'"> 2
             </label>
           </div>
           <div class="form-check form-check-inline disabled">
             <label class="form-check-label">
-              <input class="form-check-input" type="radio" name="nota" id="inlineRadio3" value="3_ '. $estabelecimento->getIdEstabelecimento() .'"> 3
+              <input class="form-check-input" type="radio" name="nota" id="inlineRadio3" value="3_'. $estabelecimento->getIdEstabelecimento() .'"> 3
             </label>
           </div>
           <div class="form-check form-check-inline disabled">
             <label class="form-check-label">
-              <input class="form-check-input" type="radio" name="nota" id="inlineRadio4" value="4_ '. $estabelecimento->getIdEstabelecimento() .'"> 4
+              <input class="form-check-input" type="radio" name="nota" id="inlineRadio4" value="4_'. $estabelecimento->getIdEstabelecimento() .'"> 4
             </label>
           </div>
           <div class="form-check form-check-inline disabled">
             <label class="form-check-label">
-              <input class="form-check-input" type="radio" name="nota" id="inlineRadio5" value="5_ '. $estabelecimento->getIdEstabelecimento() .'"> 5
+              <input class="form-check-input" type="radio" name="nota" id="inlineRadio5" value="5_'. $estabelecimento->getIdEstabelecimento() .'"> 5
             </label>
           </div>
           <label>*</label>
