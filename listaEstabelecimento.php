@@ -5,7 +5,7 @@
 
 $estabelecimentoDAO = new EstabelecimentoDAO();
 
-$todosEstabelecimentos = $estabelecimentoDAO->obterTodos();
+$todosEstabelecimentos = $estabelecimentoDAO->obterTodosDist();
 foreach ($todosEstabelecimentos as $estabelecimento) {
    echo '<div class="jumbotron">';
    echo '<div class = "container">';
