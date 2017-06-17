@@ -36,7 +36,7 @@ class DonoEstabelecimento {
     }
 
     function setIdDonoEstabelecimento($idDonoEstabelecimento) {
-        $this->idDono = $idDono;
+        $this->idDonoEstabelecimento = $idDonoEstabelecimento;
     }
 
     function setNome($nome) {
