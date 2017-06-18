@@ -36,7 +36,7 @@ Create table Avaliacao
 (
 	id_avaliacao serial NOT NULL,
 	nota integer NOT NULL,
-	cpf character varying(15) NOT NULL UNIQUE,
+	cpf character varying(15) NOT NULL,
 	id_estabelecimento integer NOT NULL,
 
 	CONSTRAINT Avaliacao_pkey primary key (id_avaliacao),

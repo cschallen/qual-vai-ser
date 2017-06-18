@@ -11,23 +11,24 @@ class CardapioDAO{
     }
 
     public function obterCardapioEstabelecimento($estabelecimento){
+
 				$colecao = array();
-				$comando = "SELECT dia, descricao 
-								FROM Cardapio
-								WHERE id_estabelecimento = $estabelecimento ";
+				$comando = "SELECT dia, descricao
+								    FROM Cardapio
+								    WHERE id_estabelecimento = $estabelecimento";
 
 				$estabelecimentoDAO = new EstabelecimentoDAO();
 
-				foreach ($this->con->query($comando) as $linha){
-					
-						$estabelecimentoObj = $estabelecimentoDAO->obter($estabelecimento);
+        $conn = pg_connect("host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
+        $sql = pg_query($conn, $comando);
 
-						$obj = new Cardapio($linha['dia'], $linha['descricao'], $estabelecimentoObj);
-						$obj->setIdCardapio($linha['id_cardapio']);
-						$colecao[] = $obj;
-				}				
-				return $colecao;
-	}
+        while( $linha = pg_fetch_array($sql) ) {
+            $cardapio = new Cardapio($linha['dia'], $linha['descricao']);
+            $listaCardapio[] = $cardapio;
+
+        }
+        return $listaCardapio;
+	   }
 
 }
 

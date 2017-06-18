@@ -1,14 +1,14 @@
 <?php
 class Cardapio {
     private $idCardapio;
-	private $dia;
+	 private $dia;
     private $descricao;
     private $estabelecimento;
 
-    public function __construct($dia, $descricao, $estabelecimento) {
+    public function __construct($dia, $descricao) {
         $this->idCardapio = NULL;
         $this->dia = $nota;
-		$this->descricao = $descricao;
+		    $this->descricao = $descricao;
         $this->estabelecimento = $estabelecimento;
     }
     function getIdCardapio() {
@@ -18,7 +18,7 @@ class Cardapio {
     function getDia() {
         return $this->dia;
     }
-	
+
 	function getDescricao() {
         return $this->descricao;
     }
@@ -34,7 +34,7 @@ class Cardapio {
     function setDia($dia) {
         $this->dia = $dia;
     }
-	
+
 	function setDescricao($descricao) {
         $this->descricao = $descricao;
     }

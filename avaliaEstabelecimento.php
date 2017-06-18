@@ -4,20 +4,21 @@
   require_once "class/EstabelecimentoDAO.class.php";
   require_once "class/AvaliacaoDAO.class.php";
 
-  if ( isset( $_POST ) || !empty( $_POST ) ) {
-    $cpf = $_POST['cpf'];
-    LIST ($nota, $id_estabelecimento) = explode("_", $_POST['nota']);
-    $aux = comparaCpf($cpf, $id_estabelecimento);
-    if ((validaCPF($cpf)) && (comparaCpf($cpf, $id_estabelecimento))){
-      $avaliacaoDAO = new AvaliacaoDAO();
-      $avaliacaoDAO->salvar($nota, $id_estabelecimento, $cpf);
+  if ((isset($_POST ['nota']))  && (isset($_POST ['cpf']))) {
+      $cpf = $_POST['cpf'];
+      LIST ($nota, $id_estabelecimento) = explode("_", $_POST['nota']);
+      $aux = comparaCpf($cpf, $id_estabelecimento);
+      if ((validaCPF($cpf)) && (comparaCpf($cpf, $id_estabelecimento))){
+        $avaliacaoDAO = new AvaliacaoDAO();
+        $avaliacaoDAO->salvar($nota, $id_estabelecimento, $cpf);
+        $msg = "Avaliação conluída com sucesso";
+      }else {
+        $msg = "Opa! Existe algo de arrado com este cpf";
+      }
 
-        header("Location:locais.php");
-    }else{
-      header("Location:locais.php");
-    }
 
-
+  } else {
+    $msg = "Complete os campos.";
   }
 
   function validaCPF($cpf) {
@@ -86,3 +87,20 @@
         }
     }
 ?>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="utf-8">
+	</head>
+
+	<body> <?php
+			echo "
+				<META HTTP-EQUIV=REFRESH CONTENT = '0;URL=locais.php'>
+				<script type=\"text/javascript\">
+					alert(\"$msg\");
+				</script>
+			";
+		?>
+	</body>
+</html>
