@@ -28,12 +28,17 @@ class Estabelecimento {
     function ObterNotaMedia($id) {
         $avaliacaoDAO = new AvaliacaoDAO();
         $array = $avaliacaoDAO->obterNota($id);
-        $notas = 0;
-        foreach ($array as $nota) {
-            $notas  = $notas + $nota->getNota();
+        if ($array){
+          $notas = 0;
+          foreach ($array as $nota) {
+              $notas  = $notas + $nota->getNota();
+          }
+          $notaMedia = $notas/count($array);
+          return number_format($notaMedia, 1);
+        } else{
+          return false;
         }
-        $notaMedia = $notas/count($array);
-        return number_format($notaMedia, 1);
+
     }
 
     function getIdEstabelecimento() {

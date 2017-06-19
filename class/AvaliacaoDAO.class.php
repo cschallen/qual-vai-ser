@@ -41,15 +41,16 @@ class AvaliacaoDAO{
 
         $conn = pg_connect("host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
     		$sql = pg_query($conn, $comando);
+        if (pg_num_rows($sql) > 0) {
+      			while( $linha = pg_fetch_array($sql) ) {
+                $avaliacao = new Avaliacao($linha['nota'], $linha['id_estabelecimento']);
+      					$avaliacao->setIdAvaliacao($linha['id_avaliacao']);
+      					$notas[] = $avaliacao;
 
-				while( $linha = pg_fetch_array($sql) ) {
-            $avaliacao = new Avaliacao($linha['nota'], $linha['id_estabelecimento']);
-						$avaliacao->setIdAvaliacao($linha['id_avaliacao']);
-						$notas[] = $avaliacao;
-				}
-
-		return $notas;
-
+        		    return $notas;
+      			}
+        }
+        return false;
     }
 
     public function salvar($nota, $idEstabelecimento, $cpf){

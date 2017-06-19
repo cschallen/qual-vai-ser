@@ -68,7 +68,13 @@ $todosEstabelecimentos = $estabelecimentoDAO->obterTodosDist(); ?>
                             <td><?php echo $estabelecimento->getIdEstabelecimento(); ?></td>
                             <td><?php echo $estabelecimento->getNome(); ?></td>
                             <td><?php echo $estabelecimento->getRua(); ?></td>
-                            <td><?php echo $estabelecimento->ObterNotaMedia($estabelecimento->getIdEstabelecimento()); ?></td>
+                            <td><?php if ($estabelecimento->ObterNotaMedia($estabelecimento->getIdEstabelecimento())){
+                                        echo $estabelecimento->ObterNotaMedia($estabelecimento->getIdEstabelecimento()) . " / 5";;
+                                      }else {
+                                        echo "Sem avaliação";
+                                      }
+                                  ?>
+                            </td>
                             <td>
                             <button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#myModal<?php echo $estabelecimento->getIdEstabelecimento(); ?>">Mais informações</button>
                             <button type="button" class="btn btn-xs btn-success" data-toggle="modal" data-target="#myModalAvaliar<?php echo $estabelecimento->getIdEstabelecimento(); ?>">Avaliar Local</button>
