@@ -3,10 +3,12 @@ session_start();
 require_once "class/Estabelecimento.class.php";
 require_once "class/EstabelecimentoDAO.class.php";
 
+
 if(isset($_POST['submit'])){
 
     $con = new Conexao();
     $con = $con->obterConexao();
+    $idDono = $_SESSION['id_dono'];
     $nome = $_POST['nome'];
     $descricao = $_POST['descricao'];
     $endereco = $_POST['endereco'];
@@ -22,7 +24,7 @@ if(isset($_POST['submit'])){
 	$lng = 0;
     }
     $cnpj = $_POST['cnpj'];
-    $objt = new Estabelecimento($nome, $descricao, $endereco, $cep, $lat, $lng, $cnpj, 1);
+    $objt = new Estabelecimento($nome, $descricao, $endereco, $cep, $lat, $lng, $cnpj, $idDono);
     $obDAO  = new EstabelecimentoDAO();
 
     if($con->prepare($obDAO->salvar($objt))){
@@ -30,6 +32,7 @@ if(isset($_POST['submit'])){
     } else {
         $success = "Opa! Houve uma falha e não conseguimos realizar o seu cadastro! Tente novamente mais tarde.";
     }
+
 }
 ?>
 
