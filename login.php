@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,14 +26,22 @@
             <div class="col-md-4 col-md-offset-3">
                 <h2 style="color:white">LOGIN</h2>
                 <hr>
-                <form name="contatoForm" action="senha.php" method="post">
-                    <input class="form-control" type="text" name="usuario" placeholder="Usuário" ng-required="true"/>
+                <form name="contatoForm" action="autentica.php" method="post">
+                    <input class="form-control" type="text" name="email" placeholder="Email" ng-required="true"/>
                     <br>
                     <input class="form-control" type="password" name="senha" placeholder="Senha" ng-required="true" />
                     <hr>
                     <button type="submit" class="text-center form-btn btn-success btn-block form-btn">ACESSAR</button>
                 </form>
-                
+                <p class="text-center text-danger">
+                  <?php if (isset($_SESSION['loginErro'])){
+                    echo $_SESSION['loginErro'];
+                    unset($_SESSION['loginErro']);
+                  }
+
+                    ?>
+                </p>
+
                 <br>
                 <hr>
                <p style="background-color: white;border-radius:5px">Ainda não é cadastrado? <a href="cadastroDono.php">Clique aqui</a></p>

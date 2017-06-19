@@ -16,8 +16,11 @@
                     <li><a class="navactive color_animation" href="index.php">INÍCIO</a></li>
                     <li><a class="color_animation" href="#about">SOBRE NÓS</a></li>
                     <li><a class="color_animation" href="locais.php">LOCAIS</a></li>
-                    <li><a class="color_animation" href="cadastroDono.php">CADASTRE-SE</a></li>
-                    <li><a class="color_animation" href="login.php">LOGIN</a></li>
+                    <li><a class="color_animation" href="cadastro.php">CADASTRE SEU ESTABELECIMENTO</a></li>
+                    <li><a href="logout.php" class="btn btn-basic btn-lg">
+                          <span class="glyphicon glyphicon-log-out"></span> Sair
+                         </a>
+                    </li>
                 </ul>
             </div>
         </div>

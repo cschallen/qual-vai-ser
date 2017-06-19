@@ -1,4 +1,5 @@
 <?php
+  session_start();
   require_once "class/Estabelecimento.class.php";
   require_once "class/EstabelecimentoDAO.class.php";
   require_once "class/AvaliacaoDAO.class.php";
@@ -38,7 +39,13 @@ $todosEstabelecimentos = $estabelecimentoDAO->obterTodosDist(); ?>
     </script>
 
     <body>
-            <?php include_once('header.php'); ?>
+            <?php if (isset($_SESSION['id_dono'])){
+                    include_once('headerLogado.php');
+                  }else{
+                    include_once('header.php');
+                  }
+            ?>
+
             <div class="container theme-showcase" role="main">
                 <div class="page-header">
                     <h1>Estabelecimentos</h1>

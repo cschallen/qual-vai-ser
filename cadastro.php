@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once "class/Estabelecimento.class.php";
 require_once "class/EstabelecimentoDAO.class.php";
 
@@ -69,7 +70,12 @@ if(isset($_POST['submit'])){
 
     </script>
 
-    <?php include('header.php'); ?>
+    <?php if (isset($_SESSION['id_dono'])){
+            include_once('headerLogado.php');
+          }else{
+            include_once('header.php');
+          }
+    ?>
 
     <div id="top" class="starter_container2 bg">
         <div class="follow-container">

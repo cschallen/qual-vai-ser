@@ -64,14 +64,17 @@ WITH (
 
 -- inserts
 
+-- senha=senhadamaria
 INSERT INTO DonoEstabelecimento(nome, cpf, email, senha)
-VALUES('Maria', '147.521.985-95', 'maria@marial.com', 'senhadamaria');
+VALUES('Maria', '147.521.985-95', 'maria@marial.com', '045d92694b819b16e93b58d63565988e');
 
+-- senha=senhadojose
 INSERT INTO DonoEstabelecimento(nome, cpf, email, senha)
-VALUES('Jose', '124.521.693-25', 'jose@jose.com', 'senhadojose');
+VALUES('Jose', '124.521.693-25', 'jose@jose.com', '045d92694b819b16e93b58d63565988e');
 
+-- senha=senhadamag
 INSERT INTO DonoEstabelecimento(nome, cpf, email, senha)
-VALUES('Magnolia', '521.523.854-96', 'mag@mag.com', 'senhadamag');
+VALUES('Magnolia', '521.523.854-96', 'mag@mag.com', '7d0fdb9d1d1211ab739990af8ae959dd');
 
 
 

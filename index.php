@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <!DOCTYPE html>
 <html>
 
@@ -19,8 +20,12 @@
 </head>
 
 <body>
-
-    <?php include('header.php'); ?>
+    <?php if (isset($_SESSION['id_dono'])){
+            include_once('headerLogado.php');
+          }else{
+            include_once('header.php');
+          }
+    ?>
 
     <div id="top" class="starter_container bg">
         <div class="follow_container">

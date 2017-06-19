@@ -19,6 +19,9 @@ class DonoEstabelecimentoDAO{
             $email = $obj->getEmail();
             $senha = $obj->getSenha();
 
+            //criptografa senha
+            $senha = md5($senha);
+
             if($idDonoEstabelecimento == NULL){
                 $comando = "INSERT INTO donoestabelecimento(nome, cpf, email, senha)
                 VALUES ('$nome', '$cpf', '$email', '$senha')";
