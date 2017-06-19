@@ -4,7 +4,7 @@ Create table DonoEstabelecimento
 	nome character varying(100) NOT NULL,
 	cpf character varying(15) NOT NULL UNIQUE,
 	email character varying(100) NOT NULL UNIQUE,
-	senha character varying(30) NOT NULL,
+	senha character varying(100) NOT NULL,
 
 	CONSTRAINT DonoEstabelecimento_pkey primary key (id_dono_estabelecimento)
 )
@@ -64,15 +64,12 @@ WITH (
 
 -- inserts
 
--- senha=senhadamaria
 INSERT INTO DonoEstabelecimento(nome, cpf, email, senha)
 VALUES('Maria', '147.521.985-95', 'maria@marial.com', '045d92694b819b16e93b58d63565988e');
 
--- senha=senhadojose
 INSERT INTO DonoEstabelecimento(nome, cpf, email, senha)
 VALUES('Jose', '124.521.693-25', 'jose@jose.com', '045d92694b819b16e93b58d63565988e');
 
--- senha=senhadamag
 INSERT INTO DonoEstabelecimento(nome, cpf, email, senha)
 VALUES('Magnolia', '521.523.854-96', 'mag@mag.com', '7d0fdb9d1d1211ab739990af8ae959dd');
 
