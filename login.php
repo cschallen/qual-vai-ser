@@ -23,7 +23,7 @@
 
     <div id="top" class="starter_container3 bg">
         <div class="follow_container2">
-            <div class="col-md-4 col-md-offset-3">
+            <div class="col-md-4">
                 <h2 style="color:white">LOGIN</h2>
                 <hr>
                 <form name="contatoForm" action="autentica.php" method="post">
