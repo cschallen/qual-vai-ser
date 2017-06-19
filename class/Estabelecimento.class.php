@@ -23,6 +23,24 @@ class Estabelecimento {
         $this->cnpj = $cnpj;
         $this->nome = $nome;
         $this->idDonoEstabelecimento = $idDonoEstabelecimento;
+        if($nome == NULL || $nome == ""){
+            throw new Exception("O campo NOME não pode estar vazio");
+        }
+        if($descricao == NULL || $descricao == ""){
+            throw new Exception("O campo DESCRICAO não pode estar vazio");
+        }
+        if($rua == NULL || $rua == ""){
+            throw new Exception("O campo RUA não pode estar vazio");
+        }
+        if($cep == NULL || $cep == ""){
+            throw new Exception("O campo CEP não pode estar vazio");
+        }
+        if($cnpj == NULL || $cnpj == ""){
+            throw new Exception("O campo CNPJ não pode estar vazio");
+        }
+        if($idDonoEstabelecimento == NULL || $idDonoEstabelecimento == ""){
+            throw new Exception("O campo ID DONO não pode estar vazio");
+        }
     }
 
     function ObterNotaMedia($id) {
@@ -73,39 +91,76 @@ class Estabelecimento {
     }
 
     function setIdEstabelecimento($idEstabelecimento) {
-        $this->idEstabelecimento = $idEstabelecimento;
+        if($idEstabelecimento == NULL){
+            throw new Exception("O campo ID ESTABELECIMENTO não pode estar vazio");
+
+        } else {
+            $this->idEstabelecimento = $idEstabelecimento;
+        }
     }
 
     function setDescricao($descricao) {
-        $this->descricao = $descricao;
+        if($descricao == NULL){
+            throw new Exception("O campo DESCRICAO não pode estar vazio");
+        } else {
+            $this->descricao = $descricao;
+        }
     }
 
     function setRua($rua) {
-        $this->rua = $rua;
+        if($rua == NULL){
+            throw new Exception("O campo RUA não pode estar vazio");
+        } else {
+            $this->rua = $rua;
+        }
     }
 
     function setCep($cep) {
-        $this->cep = $cep;
+        if($cep == NULL){
+            throw new Exception("O campo CEP não pode estar vazio");
+        } else {
+            $this->cep = $cep;
+        }
     }
 
     function setLat($lat) {
-        $this->lat = $lat;
+        if($lat == NULL){
+            throw new Exception("O campo LAT não pode estar vazio");
+        } else {
+            $this->lat = $lat;
+        }
     }
 
     function setLng($lng) {
-        $this->lng = $lng;
+        if($lng == NULL){
+            throw new Exception("O campo LNG não pode estar vazio");
+        } else {
+            $this->lng = $lng;
+        }
     }
 
     function setCnpj($cnpj) {
-        $this->cnpj = $cnpj;
+        if($cnpj == NULL){
+            throw new Exception("O campo CNPJ não pode estar vazio");
+        } else {
+            $this->cnpj = $cnpj;
+        }
     }
 
     function setNome($nome) {
-        $this->nome = $nome;
+        if($nome == NULL){
+            throw new Exception("O campo NOME não pode estar vazio");
+        } else {
+            $this->nome = $nome;
+        }
     }
 
     function setIdDonoEstabelecimento($idDonoEstabelecimento) {
-        $this->idDonoEstabelecimento = $idDonoEstabelecimento;
+        if($idDonoEstabelecimento == NULL){
+            throw new Exception("O campo ID DONO ESTABELECIMENTO não pode estar vazio");
+        } else {
+            $this->idDonoEstabelecimento = $idDonoEstabelecimento;
+        }
     }
 
 }

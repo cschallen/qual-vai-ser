@@ -4,12 +4,12 @@ use PHPUnit\Framework\TestCase as PHPUnit;
 
 require_once './class/DonoEstabelecimento.class.php';
 
-class DonoEstabelecimentoTeste extends PHPUnit{
+class DonoEstabelecimentoTest extends PHPUnit{
 
     //construtor
 
     // --------------- Nome ---------------
-    
+
      /**
     * @expectedException Exception
     * @expectedExceptionMessage Nome não pode ser nulo.
@@ -92,7 +92,7 @@ class DonoEstabelecimentoTeste extends PHPUnit{
      /**
     * @expectedException Exception
     * @expectedExceptionMessage Senha não pode ser nula.
-    */    
+    */
     public function construtorSenha_Null(){
         new DonoEstabelecimento("Fulano", "214.521.845-52", "fulano@fulano.com", null);
     }
@@ -150,7 +150,7 @@ class DonoEstabelecimentoTeste extends PHPUnit{
      /**
     * @expectedException Exception
     * @expectedExceptionMessage Nome não pode ser vazio.
-    */  
+    */
     public function setNome_SemValor(){
         $dono = new DonoEstabelecimento("Fulano", "Rua X", "91541-150", "214.521.845-52", "fulano@fulano.com", "fulaninho", "senhadofulano");
         $dono.setNome("");
@@ -159,7 +159,7 @@ class DonoEstabelecimentoTeste extends PHPUnit{
      /**
     * @expectedException Exception
     * @expectedExceptionMessage Nome não pode ser em branco.
-    */  
+    */
     public function setNome_ApenasEspacoEmBranco(){
         $dono = new DonoEstabelecimento("Fulano", "Rua X", "91541-150", "214.521.845-52", "fulano@fulano.com", "fulaninho", "senhadofulano");
         $dono.setNome(" ");
@@ -168,7 +168,7 @@ class DonoEstabelecimentoTeste extends PHPUnit{
      /**
     * @expectedException Exception
     * @expectedExceptionMessage Nome não pode ser nulo.
-    */  
+    */
     public function setNome_Null(){
         $dono = new DonoEstabelecimento("Fulano", "Rua X", "91541-150", "214.521.845-52", "fulano@fulano.com", "fulaninho", "senhadofulano");
         $dono.setNome(null);
@@ -176,7 +176,7 @@ class DonoEstabelecimentoTeste extends PHPUnit{
 
 
 
-    // --------------------- CPF --------------------- 
+    // --------------------- CPF ---------------------
 
     public function setCPF_Sucesso(){
         $dono = new DonoEstabelecimento("Fulano","214.521.845-52", "fulano@fulano.com", "senhadofulano");
@@ -188,7 +188,7 @@ class DonoEstabelecimentoTeste extends PHPUnit{
     /**
     * @expectedException Exception
     * @expectedExceptionMessage CPF não pode ser vazio.
-    */  
+    */
     public function setCPF_SemValor(){
         $dono = new DonoEstabelecimento("Fulano","214.521.845-52", "fulano@fulano.com", "senhadofulano");
         $dono.setCPF("");
@@ -197,7 +197,7 @@ class DonoEstabelecimentoTeste extends PHPUnit{
     /**
     * @expectedException Exception
     * @expectedExceptionMessage CPF não pode ser em branco.
-    */  
+    */
     public function setCPF_ApenasEspacoEmBranco(){
         $dono = new DonoEstabelecimento("Fulano","214.521.845-52", "fulano@fulano.com", "senhadofulano");
         $dono.setCPF(" ");
@@ -206,7 +206,7 @@ class DonoEstabelecimentoTeste extends PHPUnit{
     /**
     * @expectedException Exception
     * @expectedExceptionMessage CPF não pode ser nulo.
-    */  
+    */
     public function setCPFNull(){
        $dono = new DonoEstabelecimento("Fulano","214.521.845-52", "fulano@fulano.com", "senhadofulano");
         $dono.setCPF(null);
@@ -224,7 +224,7 @@ class DonoEstabelecimentoTeste extends PHPUnit{
     /**
     * @expectedException Exception
     * @expectedExceptionMessage Email não pode ser vazio.
-    */  
+    */
     public function setEmail_SemValor(){
         $dono = new DonoEstabelecimento("Fulano","214.521.845-52", "fulano@fulano.com", "senhadofulano");
         $dono.setEmail("");
@@ -233,7 +233,7 @@ class DonoEstabelecimentoTeste extends PHPUnit{
     /**
     * @expectedException Exception
     * @expectedExceptionMessage Email não pode ser em branco.
-    */  
+    */
     public function setEmail_ApenasEspacoEmBranco(){
         $dono = new DonoEstabelecimento("Fulano","214.521.845-52", "fulano@fulano.com", "senhadofulano");
         $dono.setEmail(" ");
@@ -242,7 +242,7 @@ class DonoEstabelecimentoTeste extends PHPUnit{
     /**
     * @expectedException Exception
     * @expectedExceptionMessage Email não pode ser nulo.
-    */  
+    */
     public function setEmailNull(){
        $dono = new DonoEstabelecimento("Fulano","214.521.845-52", "fulano@fulano.com", "senhadofulano");
         $dono.setEmail(null);
@@ -260,7 +260,7 @@ class DonoEstabelecimentoTeste extends PHPUnit{
     /**
     * @expectedException Exception
     * @expectedExceptionMessage Senha não pode ser vazia.
-    */  
+    */
     public function setSenha_SemValor(){
         $dono = new DonoEstabelecimento("Fulano","214.521.845-52", "fulano@fulano.com", "senhadofulano");
         $dono.setSenha("");
@@ -269,7 +269,7 @@ class DonoEstabelecimentoTeste extends PHPUnit{
     /**
     * @expectedException Exception
     * @expectedExceptionMessage Senha não pode ser em branco.
-    */  
+    */
     public function setSenha_ApenasEspacoEmBranco(){
         $dono = new DonoEstabelecimento("Fulano","214.521.845-52", "fulano@fulano.com", "senhadofulano");
         $dono.setSenha(" ");
@@ -278,7 +278,7 @@ class DonoEstabelecimentoTeste extends PHPUnit{
     /**
     * @expectedException Exception
     * @expectedExceptionMessage Senha não pode ser nula.
-    */  
+    */
     public function setSenhaNull(){
         $dono = new DonoEstabelecimento("Fulano","214.521.845-52", "fulano@fulano.com", "senhadofulano");
         $dono.setSenha(null);

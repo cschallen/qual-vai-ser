@@ -5,369 +5,257 @@ use PHPUnit\Framework\TestCase as PHPUnit;
 require_once './class/Estabelecimento.class.php';
 require_once './class/DonoEstabelecimento.class.php';
 
-class EstabelecimentoTeste extends PHPUnit{
-
-    //construtor
-
-    // --------------- Nome ---------------
-    
-     /**
-    * @expectedException Exception
-    * @expectedExceptionMessage Nome não pode ser nulo.
-    */
-    public function construtorNome_Null(){
-        new Estabelecimento(null, "Descricao do Estab", "Rua Z", "91451-852", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
-    }
-
-       /**
-    * @expectedException Exception
-    * @expectedExceptionMessage Nome não pode ser vazio.
-    */
-    public function construtorNome_Vazio(){
-        new Estabelecimento("", "Descricao do Estab", "Rua Z", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
-    }
-
-       /**
-    * @expectedException Exception
-    * @expectedExceptionMessage Nome não pode ser em branco.
-    */
-    public function construtorNome_EmBranco(){
-        new Estabelecimento("  ", "Descricao do Estab", "Rua Z", "91451-852", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
-    }
-    
-      // --------------- Descricao ---------------
-    
-     /**
-    * @expectedException Exception
-    * @expectedExceptionMessage Descricao não pode ser nula.
-    */
-    public function construtorDescricao_Null(){
-        new Estabelecimento("Xis Do X", null, "Rua Z", "91451-852", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
-    }
-
-       /**
-    * @expectedException Exception
-    * @expectedExceptionMessage Descricao não pode vazia.
-    */
-    public function construtorDescricao_Vazia(){
-        new Estabelecimento("Xis Do X", "", "Rua Z", "91451-852", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
-    }
-
-       /**
-    * @expectedException Descricao
-    * @expectedExceptionMessage Descricao não pode ser em branco.
-    */
-    public function construtorDescricao_EmBranco(){
-        new Estabelecimento("Xis Do X", "  ", "Rua Z", "91451-852", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
-
-     // --------------- Rua ---------------
-    
-     /**
-    * @expectedException Exception
-    * @expectedExceptionMessage Rua não pode ser nula.
-    */
-    public function construtorRua_Null(){
-        new Estabelecimento("Xis Do X", "Descricao do Estab", null, "91451-852", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
-    }
-
-       /**
-    * @expectedException Exception
-    * @expectedExceptionMessage Rua não pode ser nulo.
-    */
-    public function construtorRua_Vazia(){
-        new Estabelecimento("Xis Do X", "Descricao do Estab", "", "91451-852", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
-    }
-
-       /**
-    * @expectedException Exception
-    * @expectedExceptionMessage Rua não pode ser em branco.
-    */
-    public function construtorRua_EmBranco(){
-        new Estabelecimento("Xis Do X", "Descricao do Estab", "   ", "91451-852", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
-
-
-   // --------------- CEP ---------------
-    
-     /**
-    * @expectedException Exception
-    * @expectedExceptionMessage CEP não pode ser nulo.
-    */
-    public function construtorCEP_Null(){
-        new Estabelecimento("Xis Do X", "Descricao do Estab", "Rua Z", null, '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
-    }
-
-       /**
-    * @expectedException Exception
-    * @expectedExceptionMessage CEP não pode ser vazio.
-    */
-    public function construtorCEP_Vazio(){
-        new Estabelecimento("Xis Do X", "Descricao do Estab", "Rua Z", "", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
-    }
-
-       /**
-    * @expectedException Exception
-    * @expectedExceptionMessage CEP não pode ser em branco.
-    */
-    public function construtorCEP_EmBranco(){
-        new Estabelecimento("Xis Do X", "Descricao do Estab", "Rua Z", "   ", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
-
-
-
-     // --------------- CNPJ ---------------
-    
-     /**
-    * @expectedException Exception
-    * @expectedExceptionMessage CNPJ não pode ser nulo.
-    */
-    public function construtorCNPJ_Null(){
-        new Estabelecimento("Xis Do X", "Descricao do Estab", "Rua Z", "91451-852", '40.71727401', '-74.00898606', null, 1);
-    }
-
-       /**
-    * @expectedException Exception
-    * @expectedExceptionMessage CNPJ não pode ser vazio.
-    */
-    public function construtorCNPJ_Vazio(){
-        new Estabelecimento("Xis Do X", "Descricao do Estab", "Rua Z", "91451-852", '40.71727401', '-74.00898606', "", 1);
-    }
-
-       /**
-    * @expectedException Exception
-    * @expectedExceptionMessage CNPJ não pode ser em branco.
-    */
-    public function construtorCNPJ_EmBranco(){
-        new Estabelecimento("Xis Do X", "Descricao do Estab", "Rua Z", "91451-852", '40.71727401', '-74.00898606', "  ", 1);
-
-
-
-     // --------------- Dono ---------------
-    
+class EstabelecimentoTest extends PHPUnit{
 
     /**
     * @expectedException Exception
-    * @expectedExceptionMessage Dono não pode ser vazio.
+    * @expectedExceptionMessage O campo NOME não pode estar vazio
     */
-    public function construtor_SemDono(){
-        new Estabelecimento("Xis Do X", "Descricao do Estab", "Rua Z", "91451-852", '40.71727401', '-74.00898606', "99.999.999/9999-99");
+    public function testConstrutorNome_Null(){
+        new Estabelecimento(null, "Descricao do Estab", "Rua Z", "91451-852", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
+    }
+
+    /**
+    * @expectedException Exception
+    * @expectedExceptionMessage O campo NOME não pode estar vazio
+    */
+    public function testConstrutorNome_Vazio(){
+        new Estabelecimento("", "Descricao do Estab", "Rua Z", "91451-852", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
+    }
+
+    /**
+    * @expectedException Exception
+    * @expectedExceptionMessage O campo DESCRICAO não pode estar vazio
+    */
+    public function testConstrutorDescricao_Null(){
+        new Estabelecimento("Xis Do X", null, "Rua Z", "91451-852", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
+    }
+
+    /**
+    * @expectedException Exception
+    * @expectedExceptionMessage O campo DESCRICAO não pode estar vazio
+    */
+    public function testConstrutorDescricao_Vazia(){
+        new Estabelecimento("Xis Do X", "", "Rua Z", "91451-852", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
+    }
+
+    /**
+    * @expectedException Exception
+    * @expectedExceptionMessage O campo RUA não pode estar vazio
+    */
+    public function testConstrutorRua_Null(){
+        new Estabelecimento("Xis Do X", "Descricao do Estab", null, "91451-852", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
+    }
+
+    /**
+    * @expectedException Exception
+    * @expectedExceptionMessage O campo RUA não pode estar vazio
+    */
+    public function testConstrutorRua_Vazia(){
+        new Estabelecimento("Xis Do X", "Descricao do Estab", "", "91451-852", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
+    }
+
+
+    /**
+    * @expectedException Exception
+    * @expectedExceptionMessage O campo CEP não pode estar vazio
+    */
+    public function testConstrutorCEP_Null(){
+        new Estabelecimento("Xis Do X", "Descricao do Estab", "Rua Z", null, '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
+    }
+
+    /**
+    * @expectedException Exception
+    * @expectedExceptionMessage O campo CEP não pode estar vazio
+    */
+    public function testConstrutorCEP_Vazio(){
+        new Estabelecimento("Xis Do X", "Descricao do Estab", "Rua Z", "", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
+    }
+
+    /**
+    * @expectedException Exception
+    * @expectedExceptionMessage O campo CNPJ não pode estar vazio
+    */
+    public function testConstrutorCNPJ_Null(){
+        new Estabelecimento("Xis Do X", "Descricao do Estab", "Rua Z", "91451-852", '40.71727401', '-74.00898606', null, 1);
+    }
+
+    /**
+    * @expectedException Exception
+    * @expectedExceptionMessage O campo CNPJ não pode estar vazio
+    */
+    public function testConstrutorCNPJ_Vazio(){
+        new Estabelecimento("Xis Do X", "Descricao do Estab", "Rua Z", "91451-852", '40.71727401', '-74.00898606', "", 1);
+    }
+
+    /**
+    * @expectedException Exception
+    * @expectedExceptionMessage O campo ID DONO não pode estar vazio
+    */
+    public function testConstrutor_SemDono(){
+        new Estabelecimento("Xis Do X", "Descricao do Estab", "Rua Z", "91451-852", '40.71727401', '-74.00898606', "99.999.999/9999-99", NULL);
     }
 
 
     //getters
 
-    public function getRuaTest() {
+    public function testGetRuaTest() {
         $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
         $this->assertEquals('Rua X', $estabelecimento->getRua());
     }
 
-    public function getDescricaoTest() {
+    public function testGetDescricao() {
         $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
         $this->assertEquals("Descricao do estabelecimento", $estabelecimento->getDescricao());
     }
 
-    public function getCepTest() { 
+    public function testGetCep() {
         $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
         $this->assertEquals("91450-140", $estabelecimento->getCep());
     }
 
-    public function getCNPJTest() {
+    public function testGetCNPJ() {
         $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
         $this->assertEquals("99.999.999/9999-99", $estabelecimento->getCnpj());
     }
 
-    public function getNomeTest() {
+    public function testGetNome() {
         $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
         $this->assertEquals("Estabelecimento Teste", $estabelecimento->getNome());
     }
 
-    //setters
+    // setters
 
-    //-------------------- Nome ------------------
-
-    public function setNome_Sucesso(){
-         $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
-        $estabelecimento.setNome("Novo estabelecimento");
-
-        assertEquals("Novo estabelecimento", $estabelecimento.getNome());
-    }
-
-     /**
-    * @expectedException Exception
-    * @expectedExceptionMessage Nome não pode ser vazio.
-    */  
-    public function setNome_SemValor(){
+    public function testSetNome_Sucesso(){
         $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
-        $estabelecimento.setNome("");
+        $estabelecimento->setNome("Novo estabelecimento");
+
+        $this->assertEquals("Novo estabelecimento", $estabelecimento->getNome());
     }
 
     /**
     * @expectedException Exception
-    * @expectedExceptionMessage Nome não pode ser em branco.
-    */  
-    public function setNome_EspacoEmBranco(){
+    * @expectedExceptionMessage O campo NOME não pode estar vazio
+    */
+    public function testSetNome_SemValor(){
         $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
-        $estabelecimento.setNome("  ");
+        $estabelecimento->setNome("");
     }
 
     /**
     * @expectedException Exception
-    * @expectedExceptionMessage Nome não pode ser nulo.
-    */  
-    public function setNome_Null(){
+    * @expectedExceptionMessage O campo NOME não pode estar vazio
+    */
+    public function testSetNome_Null(){
         $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
-        $estabelecimento.setNome(null);
+        $estabelecimento->setNome(null);
     }
 
-        //-------------------- Descricao ------------------
-
-    public function setDescricao_Sucesso(){
+    public function testSetDescricao_Sucesso(){
         $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
-        $estabelecimento.setDescricao("Nova descricao");
+        $estabelecimento->setDescricao("Nova descricao");
 
-        assertEquals("Nova descricao", $estabelecimento.getDescricao());
-    }
-
-     /**
-    * @expectedException Exception
-    * @expectedExceptionMessage Descricao não pode ser vazio.
-    */  
-    public function setDescricao_SemValor(){
-        $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
-        $estabelecimento.setDescricao("");
+        $this->assertEquals("Nova descricao", $estabelecimento->getDescricao());
     }
 
     /**
     * @expectedException Exception
-    * @expectedExceptionMessage Descricao não pode ser em branco.
-    */  
-    public function setDescricao_EspacoEmBranco(){
+    * @expectedExceptionMessage O campo DESCRICAO não pode estar vazio
+    */
+    public function testSetDescricao_SemValor(){
         $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
-        $estabelecimento.setDescricao("  ");
+        $estabelecimento->setDescricao("");
     }
 
     /**
     * @expectedException Exception
-    * @expectedExceptionMessage Descricao não pode ser nulo.
-    */  
-    public function setDescricao_Null(){
+    * @expectedExceptionMessage O campo DESCRICAO não pode estar vazio
+    */
+    public function testSetDescricao_Null(){
         $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
-        $estabelecimento.setDescricao(null);
+        $estabelecimento->setDescricao(null);
     }
 
-        //-------------------- Rua ------------------
-
-    public function setRua_Sucesso(){
+    public function testSetRua_Sucesso(){
         $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
-        $estabelecimento.setRua("Rua Nova");
+        $estabelecimento->setRua("Rua Nova");
 
-        assertEquals("Rua Nova", $estabelecimento.getRua());
-    }
-
-     /**
-    * @expectedException Exception
-    * @expectedExceptionMessage Rua não pode ser vazio.
-    */  
-    public function setRua_SemValor(){
-        $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
-        $estabelecimento.setRua("");
+        $this->assertEquals("Rua Nova", $estabelecimento->getRua());
     }
 
     /**
     * @expectedException Exception
-    * @expectedExceptionMessage Rua não pode ser em branco.
-    */  
-    public function setRua_EspacoEmBranco(){
+    * @expectedExceptionMessage O campo RUA não pode estar vazio
+    */
+    public function testSetRua_SemValor(){
         $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
-        $estabelecimento.setRua("  ");
+        $estabelecimento->setRua("");
     }
 
     /**
     * @expectedException Exception
-    * @expectedExceptionMessage Rua não pode ser nulo.
-    */  
-    public function setRua_Null(){
+    * @expectedExceptionMessage O campo RUA não pode estar vazio
+    */
+    public function testSetRua_Null(){
         $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
-        $estabelecimento.setRua(null);
+        $estabelecimento->setRua(null);
     }
 
-        //-------------------- CEP ------------------
-
-    public function setCEP_Sucesso(){
+    public function testSetCEP_Sucesso(){
         $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
-        $estabelecimento.setCEP("11111-111");
+        $estabelecimento->setCEP("11111-111");
 
-        assertEquals("11111-111", $estabelecimento.getCEP());
-    }
-
-     /**
-    * @expectedException Exception
-    * @expectedExceptionMessage CEP não pode ser vazio.
-    */  
-    public function setCEP_SemValor(){
-        $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
-        $estabelecimento.setCEP("");
+        $this->assertEquals("11111-111", $estabelecimento->getCEP());
     }
 
     /**
     * @expectedException Exception
-    * @expectedExceptionMessage CEP não pode ser em branco.
-    */  
-    public function setCEP_EspacoEmBranco(){
+    * @expectedExceptionMessage O campo CEP não pode estar vazio
+    */
+    public function testSetCEP_SemValor(){
         $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
-        $estabelecimento.setCEP("  ");
+        $estabelecimento->setCEP("");
     }
 
     /**
     * @expectedException Exception
-    * @expectedExceptionMessage CEP não pode ser nulo.
-    */  
-    public function setCEP_Null(){
+    * @expectedExceptionMessage O campo CEP não pode estar vazio
+    */
+    public function testSetCEP_Null(){
         $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
-        $estabelecimento.setCEP(null);
+        $estabelecimento->setCEP(null);
     }
 
-        //-------------------- CNPJ ------------------
-
-    public function setCNPJ_Sucesso(){
+    public function testSetCNPJ_Sucesso(){
         $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
-        $estabelecimento.setCNPJ("88.888.888/8888-88");
+        $estabelecimento->setCNPJ("88.888.888/8888-88");
 
-        assertEquals("88.888.888/8888-88", $estabelecimento.getCNPJ());
-    }
-
-     /**
-    * @expectedException Exception
-    * @expectedExceptionMessage CNPJ não pode ser vazio.
-    */  
-    public function setCNPJ_SemValor(){
-        $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
-        $estabelecimento.setCNPJ("");
+        $this->assertEquals("88.888.888/8888-88", $estabelecimento->getCNPJ());
     }
 
     /**
     * @expectedException Exception
-    * @expectedExceptionMessage CNPJ não pode ser em branco.
-    */  
-    public function setCNPJ_EspacoEmBranco(){
+    * @expectedExceptionMessage O campo CNPJ não pode estar vazio
+    */
+    public function testSetCNPJ_SemValor(){
         $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
-        $estabelecimento.setCNPJ("  ");
+        $estabelecimento->setCNPJ("");
     }
 
     /**
     * @expectedException Exception
-    * @expectedExceptionMessage CNPJ não pode ser nulo.
-    */  
-    public function setCNPJ_Null(){
+    * @expectedExceptionMessage O campo CNPJ não pode estar vazio
+    */
+    public function testSetCNPJ_Null(){
         $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
-        $estabelecimento.setCNPJ(null);
+        $estabelecimento->setCNPJ(null);
     }
 
-        //-------------------- Dono ------------------
-
-    public function setDono_Sucesso(){
+    public function testSetDono_Sucesso(){
         $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
-        $estabelecimento.setidDono(2);
+        $estabelecimento->setidDonoEstabelecimento(2);
 
-        assertEquals(2, $estabelecimento.getidDono());
+        $this->assertEquals(2, $estabelecimento->getidDonoEstabelecimento());
     }
 
 
