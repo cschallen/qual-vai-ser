@@ -2,17 +2,33 @@
 session_start();
 require_once "class/Estabelecimento.class.php";
 require_once "class/EstabelecimentoDAO.class.php";
+require_once "class/Cardapio.class.php";
+require_once "class/CardapioDAO.class.php";
 
 
 if(isset($_POST['submit'])){
 
+    function teste(){
+        echo "@@@@@@@";
+        $cardapio_domingo = $_POST['cardapio_domingo'];
+        echo $cardapio_domingo;
+        var_dump();
+        // $cardapioDAO = new CardapioDAO();
+        // $objCard = new Cardapio()
+    }
+
+
     $con = new Conexao();
     $con = $con->obterConexao();
     $idDono = $_SESSION['id_dono'];
+
     $nome = $_POST['nome'];
     $descricao = $_POST['descricao'];
     $endereco = $_POST['endereco'];
     $cep = $_POST['cep'];
+    $cnpj = $_POST['cnpj'];
+
+
     $request_url = "http://maps.googleapis.com/maps/api/geocode/xml?address=".$cep;
     $xml = simplexml_load_file($request_url) or die("url not loading");
     $status = $xml->status;
@@ -20,20 +36,22 @@ if(isset($_POST['submit'])){
         $lat = $xml->result->geometry->location->lat;
         $lng = $xml->result->geometry->location->lng;
     }else{
-    	$lat = 0;
-	$lng = 0;
+        $lat = 0;
+        $lng = 0;
     }
-    $cnpj = $_POST['cnpj'];
+
     $objt = new Estabelecimento($nome, $descricao, $endereco, $cep, $lat, $lng, $cnpj, $idDono);
     $obDAO  = new EstabelecimentoDAO();
 
+
     if($con->prepare($obDAO->salvar($objt))){
         $success = "Cadastro realizado com sucesso!";
+        teste();
     } else {
         $success = "Opa! Houve uma falha e não conseguimos realizar o seu cadastro! Tente novamente mais tarde.";
     }
-
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -74,10 +92,10 @@ if(isset($_POST['submit'])){
     </script>
 
     <?php if (isset($_SESSION['id_dono'])){
-            include_once('headerLogado.php');
-          }else{
-            include_once('header.php');
-          }
+        include_once('headerLogado.php');
+    }else{
+        include_once('header.php');
+    }
     ?>
 
     <div id="top" class="starter_container2 bg">
@@ -120,13 +138,14 @@ if(isset($_POST['submit'])){
                             <span style="color: white" ng-show=" contatoForm.descricao.$touched &&  contatoForm.descricao.$invalid">Campo obrigatorio.</span>
                             <textarea rows="4" cols="60" name="descricao" id="descricao" ng-model="descricao" class="form-control" required></textarea>
                             <br>
-                            <!-- TA COMENTADO ABAIXO O CAMPO DE CARDAPIO. QUEM FOR FAZER, ARRUMA DIREITINHO ELE -->
-                            <!-- <label style="color: white; margin-right: 2px;">*</label>
-                            <label>Cardápio:</label>
-                            <span style="color: white" ng-show=" contatoForm.cardapio.$touched &&  contatoForm.cardapio.$invalid">Campo obrigatorio.</span>
-                            <textarea rows="4" cols="60" type="text" name="cardapio" id="cardapio" ng-model="cardapio" class="form-control" required></textarea> -->
+
+                            <label style="color: white; margin-right: 2px;">*</label>
+                            <label>Cardápio Domingo:</label>
+                            <span style="color: white" ng-show=" contatoForm.cardapio_domingo.$touched &&  contatoForm.cardapio_domingo.$invalid">Campo obrigatorio.</span>
+                            <textarea rows="4" cols="60" type="text" name="cardapio_domingo" id="cardapio_domingo" ng-model="cardapio_domingo" class="form-control" required></textarea>
+
                             <hr>
-                            <button ng-disabled="contatoForm.nome.$invalid || contatoForm.endereco.$invalid || contatoForm.cep.$invalid || contatoForm.cnpj.$invalid || contatoForm.descricao.$invalid" type="submit" id="submit" name="submit" class="text-center btn-block form-btn">CADASTRAR</button>
+                            <button ng-disabled="contatoForm.nome.$invalid || contatoForm.endereco.$invalid || contatoForm.cep.$invalid || contatoForm.cnpj.$invalid || contatoForm.descricao.$invalid || contatoForm.cardapio_domingo.$invalid" type="submit" id="submit" name="submit" class="text-center btn-block form-btn">CADASTRAR</button>
                         </div>
                     </div>
                 </form>

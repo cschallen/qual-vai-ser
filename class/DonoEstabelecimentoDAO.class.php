@@ -11,7 +11,7 @@ class DonoEstabelecimentoDAO{
     }
 
     public function salvar($obj){
-        // var_dump($obj);
+
         if($obj instanceof DonoEstabelecimento){
             $idDonoEstabelecimento = $obj->getIdDonoEstabelecimento();
             $nome = $obj->getNome();
