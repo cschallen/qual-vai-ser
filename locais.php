@@ -48,7 +48,7 @@ $todosEstabelecimentos = $estabelecimentoDAO->obterTodosDist(); ?>
 
             <div class="container theme-showcase" role="main">
                 <div class="page-header">
-                    <h1>Estabelecimentos</h1>
+                    <h1 class="border-none">Estabelecimentos</h1>
                 </div>
                 <div class="row">
                   <div class="col-md-12">
