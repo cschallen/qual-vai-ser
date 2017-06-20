@@ -7,7 +7,7 @@ class Cardapio {
 
     public function __construct($dia, $descricao) {
         $this->idCardapio = NULL;
-        $this->dia = $nota;
+        $this->dia = $dia;
 		    $this->descricao = $descricao;
         $this->estabelecimento = $estabelecimento;
     }
