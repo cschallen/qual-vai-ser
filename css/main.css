@@ -896,3 +896,59 @@ MEDIA QUERIE DESKTOP
         font-size: 30px;
     }
 }
+
+.form {
+    width: 95vw;
+    height: 70vh;
+    background-color: #d8d8d8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container1 {
+
+}
+
+.container2 {
+    width: 95%;
+    height: 95%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*background-color: green;*/
+}
+
+.yellow {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.aaa {
+    display: flex;
+    flex-direction: row;
+    height: 50vh;
+    width: 75vw;
+}
+
+.blue {
+    width: 50%;
+    height: 100%;
+}
+
+.red {
+    height: 100%;
+    width: 50%;
+}
+
+.bbb {
+    height: 100%;
+    width: 100%;
+}
+
+.formu {
+    background-color: yellow;
+    width: 80% !important;
+    height: 80% !important;
+}

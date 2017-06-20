@@ -21,8 +21,8 @@ if(isset($_POST['submit'])){
         $lat = $xml->result->geometry->location->lat;
         $lng = $xml->result->geometry->location->lng;
     }else{
-    	$lat = 0;
-	$lng = 0;
+        $lat = 0;
+        $lng = 0;
     }
     $objt = new Estabelecimento($nome, $descricao, $endereco, $cep, $lat, $lng, $cnpj, $idDono);
     $obDAO  = new EstabelecimentoDAO();
@@ -39,25 +39,25 @@ if(isset($_POST['submit'])){
         $idEstabelecimento = $obDAO->obterIdEstabelcimento($_POST['cnpj']);
         $cardapioDAO = new CardapioDAO();
         if (isset($_POST['cardapio_dom'])){
-          $cardapioDAO->salvar(1 ,$_POST['cardapio_dom'], $idEstabelecimento);
+            $cardapioDAO->salvar(1 ,$_POST['cardapio_dom'], $idEstabelecimento);
         }
         if (isset($_POST['cardapio_seg'])){
-          $cardapioDAO->salvar(2, $_POST['cardapio_seg'], $idEstabelecimento);
+            $cardapioDAO->salvar(2, $_POST['cardapio_seg'], $idEstabelecimento);
         }
         if (isset($_POST['cardapio_ter'])){
-          $cardapioDAO->salvar(3, $_POST['cardapio_ter'], $idEstabelecimento);
+            $cardapioDAO->salvar(3, $_POST['cardapio_ter'], $idEstabelecimento);
         }
         if (isset($_POST['cardapio_qua'])){
-          $cardapioDAO->salvar(4, $_POST['cardapio_qua'], $idEstabelecimento);
+            $cardapioDAO->salvar(4, $_POST['cardapio_qua'], $idEstabelecimento);
         }
         if (isset($_POST['cardapio_qui'])){
-          $cardapioDAO->salvar(5, $_POST['cardapio_qui'], $idEstabelecimento);
+            $cardapioDAO->salvar(5, $_POST['cardapio_qui'], $idEstabelecimento);
         }
         if (isset($_POST['cardapio_sex'])){
-          $cardapioDAO->salvar(6, $_POST['cardapio_sex'], $idEstabelecimento);
+            $cardapioDAO->salvar(6, $_POST['cardapio_sex'], $idEstabelecimento);
         }
         if (isset($_POST['cardapio_sab'])){
-          $cardapioDAO->salvar(7, $_POST['cardapio_seg'], $idEstabelecimento);
+            $cardapioDAO->salvar(7, $_POST['cardapio_seg'], $idEstabelecimento);
         }
 
         $success = "Cadastro realizado com sucesso!";
@@ -104,15 +104,22 @@ if(isset($_POST['submit'])){
     </script>
 
     <?php if (isset($_SESSION['id_dono'])){
-            include_once('headerLogado.php');
-          }else{
-            include_once('header.php');
-          }
+        include_once('headerLogado.php');
+    }else{
+        include_once('header.php');
+    }
     ?>
+
+    <script>
+    $('#nav-1').on('click', function(){
+        $('.')
+    });
+    </script>
 
     <div id="top" class="starter_container2 bg">
         <div class="follow-container">
-            <div class="col-md-11 col-md-offset-1">
+            <div class="col-md-11">
+
 
                 <form name="contatoForm" style="padding-top:120px" action="cadastro.php" method="post">
                     <h2 style="color:white">CADASTRO DE ESTABELECIMENTO</h2>
@@ -120,62 +127,103 @@ if(isset($_POST['submit'])){
                     if (isset($success)){ echo "<div style='margin-top: 17px;'>" . "-->  " . $success . "</div>";}
                     ?>
                     <hr>
-                    <span ng-show="">Salvo com sucesso!</span>
-                    <div class="row">
-                        <div class="col-md-5" >
-                            <label style="color: white; margin-right: 2px;">*</label>
-                            <label> Nome: </label>
-                            <span style="color: white" ng-show=" contatoForm.nome.$touched &&  contatoForm.nome.$invalid">Campo obrigatorio.</span>
-                            <input type="text" name="nome" id="nome" ng-model="nome" class="form-control" required>
-                            <br>
-                            <label style="color: white; margin-right: 2px;">*</label>
-                            <label>Endereço:</label>
-                            <span style="color: white" ng-show=" contatoForm.endereco.$touched &&  contatoForm.endereco.$invalid">Campo obrigatorio.</span>
-                            <input type="text" name="endereco" id="endereco" ng-model="endereco" class="form-control" required>
-                            <br>
-                            <label style="color: white; margin-right: 2px;">*</label>
-                            <label>CEP:</label>
-                            <span style="color: white" ng-show=" contatoForm.cep.$touched &&  contatoForm.cep.$invalid">Campo obrigatorio.</span>
-                            <input type="text" name="cep" id="cep" ng-model="cep" class="form-control" required>
-                            <br>
-                            <label style="color: white; margin-right: 2px;">*</label>
-                            <label>CNPJ:</label>
-                            <span style="color: white" ng-show=" contatoForm.cnpj.$touched &&  contatoForm.cnpj.$invalid">Campo obrigatorio.</span>
-                            <input type="text" name="cnpj" id="cnpj" ng-model="required" class="form-control" required>
-                            <br>
-                        </div>
-                        <div class="col-md-6">
-                            <label style="color: white; margin-right: 2px;">*</label>
-                            <label>Descrição:</label>
-                            <span style="color: white" ng-show=" contatoForm.descricao.$touched &&  contatoForm.descricao.$invalid">Campo obrigatorio.</span>
-                            <textarea rows="4" cols="60" name="descricao" id="descricao" ng-model="descricao" class="form-control" required></textarea>
-                            <br>
-                            <label>Cardápio Segunda</label>
-                            <span style="color: white" ng-show=" contatoForm.cardapio.$touched &&  contatoForm.cardapio.$invalid">Campo obrigatorio.</span>
-                            <textarea rows="4" cols="60" type="text" name="cardapio_seg" id="cardapio_seg" ng-model="cardapio_seg" class="form-control" required></textarea>
-                            <label>Cardápio Terça</label>
-                            <span style="color: white" ng-show=" contatoForm.cardapio.$touched &&  contatoForm.cardapio.$invalid">Campo obrigatorio.</span>
-                            <textarea rows="4" cols="60" type="text" name="cardapio_ter" id="cardapio_ter" ng-model="cardapio_ter" class="form-control" required></textarea>
-                            <label>Cardápio Quarta</label>
-                            <span style="color: white" ng-show=" contatoForm.cardapio.$touched &&  contatoForm.cardapio.$invalid">Campo obrigatorio.</span>
-                            <textarea rows="4" cols="60" type="text" name="cardapio_qua" id="cardapio_qua" ng-model="cardapio_qua" class="form-control" required></textarea>
-                            <label>Cardápio Quinta</label>
-                            <span style="color: white" ng-show=" contatoForm.cardapio.$touched &&  contatoForm.cardapio.$invalid">Campo obrigatorio.</span>
-                            <textarea rows="4" cols="60" type="text" name="cardapio_qui" id="cardapio_qui" ng-model="cardapio_qui" class="form-control" required></textarea>
-                            <label>Cardápio Sexta</label>
-                            <span style="color: white" ng-show=" contatoForm.cardapio.$touched &&  contatoForm.cardapio.$invalid">Campo obrigatorio.</span>
-                            <textarea rows="4" cols="60" type="text" name="cardapio_sex" id="cardapio_sex" ng-model="cardapio_sex" class="form-control" required></textarea>
-                            <label>Cardápio Sábado</label>
-                            <span style="color: white" ng-show=" contatoForm.cardapio.$touched &&  contatoForm.cardapio.$invalid">Campo obrigatorio.</span>
-                            <textarea rows="4" cols="60" type="text" name="cardapio_sab" id="cardapio_sab" ng-model="cardapio_sab" class="form-control" required></textarea>
-                            <label>Cardápio Domingo</label>
-                            <span style="color: white" ng-show=" contatoForm.cardapio.$touched &&  contatoForm.cardapio.$invalid">Campo obrigatorio.</span>
-                            <textarea rows="4" cols="60" type="text" name="cardapio_dom" id="cardapio_dom" ng-model="cardapio_dom" class="form-control" required></textarea>
-                            <hr>
-                            <button ng-disabled="contatoForm.nome.$invalid || contatoForm.endereco.$invalid || contatoForm.cep.$invalid || contatoForm.cnpj.$invalid || contatoForm.descricao.$invalid" type="submit" id="submit" name="submit" class="text-center btn-block form-btn">CADASTRAR</button>
-                        </div>
+
+                    <div class="form">
+                        <form name="contatoForm" style="padding-top:120px" action="cadastro.php" method="post">
+                            <div class="container1">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="nav-item active">
+                                        <a style="text-decoration: none" class="nav-link navactive" data-toggle="tab" href="#part1" role="tab">Passo 1</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a style="text-decoration: none" class="nav-link" data-toggle="tab" href="#part2" role="tab">Passo 2</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="container2">
+                                <div class="yellow tab-content" style="width: 90% !important; height: 90% !important;">
+                                    <div class="bbb tab-pane active" id="part1" role="tabpanel">
+
+                                        <label style="color: white; margin-right: 2px;">*</label>
+                                        <label> Nome: </label>
+                                        <span style="color: white" ng-show=" contatoForm.nome.$touched &&  contatoForm.nome.$invalid">Campo obrigatorio.</span>
+                                        <input type="text" name="nome" id="nome" ng-model="nome" class="form-control" required>
+                                        <br>
+                                        <label style="color: white; margin-right: 2px;">*</label>
+                                        <label>Endereço:</label>
+                                        <span style="color: white" ng-show=" contatoForm.endereco.$touched &&  contatoForm.endereco.$invalid">Campo obrigatorio.</span>
+                                        <input type="text" name="endereco" id="endereco" ng-model="endereco" class="form-control" required>
+                                        <br>
+                                        <label style="color: white; margin-right: 2px;">*</label>
+                                        <label>CEP:</label>
+                                        <span style="color: white" ng-show=" contatoForm.cep.$touched &&  contatoForm.cep.$invalid">Campo obrigatorio.</span>
+                                        <input type="text" name="cep" id="cep" ng-model="cep" class="form-control" required>
+                                        <br>
+                                        <label style="color: white; margin-right: 2px;">*</label>
+                                        <label>CNPJ:</label>
+                                        <span style="color: white" ng-show=" contatoForm.cnpj.$touched &&  contatoForm.cnpj.$invalid">Campo obrigatorio.</span>
+                                        <input type="text" name="cnpj" id="cnpj" ng-model="required" class="form-control" required>
+                                        <br>
+                                        <label style="color: white; margin-right: 2px;">*</label>
+                                        <label>Descrição:</label>
+                                        <span style="color: white" ng-show=" contatoForm.descricao.$touched &&  contatoForm.descricao.$invalid">Campo obrigatorio.</span>
+                                        <textarea rows="4" cols="60" name="descricao" id="descricao" ng-model="descricao" class="form-control" required></textarea>
+                                        <br>
+
+                                    </div>
+
+                                    <div class="tab-pane form-group" id="part2" role="tabpanel">
+                                        <div class="aaa">
+                                            <div class="red">
+                                                <label>Cardápio Segunda</label>
+                                                <span style="color: white" ng-show=" contatoForm.cardapio.$touched &&  contatoForm.cardapio.$invalid">Campo obrigatorio.</span>
+                                                <textarea style="width: 96%;" rows="3" cols="30" type="text" name="cardapio_seg" id="cardapio_seg" ng-model="cardapio_seg" class="form-control" required></textarea>
+                                                <label>Cardápio Terça</label>
+                                                <!-- <span style="color: white" ng-show=" contatoForm.cardapio.$touched &&  contatoForm.cardapio.$invalid">Campo obrigatorio.</span> -->
+                                                <textarea style="width: 96%;" rows="3" cols="30" type="text" name="cardapio_ter" id="cardapio_ter" ng-model="cardapio_ter" class="form-control"></textarea>
+
+                                                <label>Cardápio Quarta</label>
+                                                <!-- <span style="color: white" ng-show=" contatoForm.cardapio.$touched &&  contatoForm.cardapio.$invalid">Campo obrigatorio.</span> -->
+                                                <textarea style="width: 96%;" rows="3" cols="30" type="text" name="cardapio_qua" id="cardapio_qua" ng-model="cardapio_qua" class="form-control"></textarea>
+                                                <label>Cardápio Quinta</label>
+                                                <!-- <span style="color: white" ng-show=" contatoForm.cardapio.$touched &&  contatoForm.cardapio.$invalid">Campo obrigatorio.</span> -->
+                                                <textarea style="width: 96%;" rows="3" cols="30" type="text" name="cardapio_qui" id="cardapio_qui" ng-model="cardapio_qui" class="form-control"></textarea>
+
+                                            </div>
+
+                                            <div class="blue">
+                                                <label>Cardápio Sexta</label>
+                                                <!-- <span style="color: white" ng-show=" contatoForm.cardapio.$touched &&  contatoForm.cardapio.$invalid">Campo obrigatorio.</span> -->
+                                                <textarea style="width: 96%;" rows="3" cols="30" type="text" name="cardapio_sex" id="cardapio_sex" ng-model="cardapio_sex" class="form-control"></textarea>
+
+                                                <label>Cardápio Sábado</label>
+                                                <!-- <span style="color: white" ng-show=" contatoForm.cardapio.$touched &&  contatoForm.cardapio.$invalid">Campo obrigatorio.</span> -->
+                                                <textarea style="width: 96%;" rows="3" cols="30" type="text" name="cardapio_sab" id="cardapio_sab" ng-model="cardapio_sab" class="form-control"></textarea>
+
+                                                <label>Cardápio Domingo</label>
+                                                <!-- <span style="color: white" ng-show=" contatoForm.cardapio.$touched &&  contatoForm.cardapio.$invalid">Campo obrigatorio.</span> -->
+                                                <textarea style="width: 96%;" rows="3" cols="30" type="text" name="cardapio_dom" id="cardapio_dom" ng-model="cardapio_dom" class="form-control"></textarea>
+
+                                                <hr>
+                                                <button ng-disabled="contatoForm.cardapio_seg.$invalid || contatoForm.nome.$invalid || contatoForm.endereco.$invalid || contatoForm.cep.$invalid || contatoForm.cnpj.$invalid || contatoForm.descricao.$invalid" type="submit" id="submit" name="submit" class="text-center btn-block form-btn">CADASTRAR</button>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
+
+
+
+
+
                 </form>
+
+
             </div>
         </div>
     </div>
