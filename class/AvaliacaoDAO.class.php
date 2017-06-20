@@ -46,9 +46,10 @@ class AvaliacaoDAO{
                 $avaliacao = new Avaliacao($linha['nota'], $linha['id_estabelecimento']);
       					$avaliacao->setIdAvaliacao($linha['id_avaliacao']);
       					$notas[] = $avaliacao;
-
-        		    return $notas;
       			}
+            
+
+        		return $notas;
         }
         return false;
     }
