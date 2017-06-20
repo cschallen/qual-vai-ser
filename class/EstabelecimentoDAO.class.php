@@ -27,6 +27,24 @@ class EstabelecimentoDAO{
 		return $estabelecimento;
 	}
 
+	public function obterIdEstabelcimento($cnpj){
+
+		$comando = "SELECT  id_estabelecimento
+		FROM estabelecimento
+		WHERE cnpj = '$cnpj'";
+
+		//fazendo a conexao manualmente, n consegui arrumar isso
+		$conn = pg_connect("host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
+		$sql = pg_query($conn, $comando);
+
+		if (pg_num_rows($sql) == 1) {
+			$idEstabelecimento = pg_fetch_assoc($sql);
+			return $idEstabelecimento['id_estabelecimento'];
+	  } else {
+	 		return false;
+	  }
+	}
+
 	public function obterTodosDist(){
 		$estabelecimentos = array();
 		$comando = "SELECT id_estabelecimento, nome, descricao, rua, cep, lat, lng, cnpj, id_dono_estabelecimento,

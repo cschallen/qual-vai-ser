@@ -2,7 +2,7 @@
 session_start();
 require_once "class/Estabelecimento.class.php";
 require_once "class/EstabelecimentoDAO.class.php";
-
+require_once "class/CardapioDAO.class.php";
 
 if(isset($_POST['submit'])){
 
@@ -13,6 +13,7 @@ if(isset($_POST['submit'])){
     $descricao = $_POST['descricao'];
     $endereco = $_POST['endereco'];
     $cep = $_POST['cep'];
+    $cnpj = $_POST['cnpj'];
     $request_url = "http://maps.googleapis.com/maps/api/geocode/xml?address=".$cep;
     $xml = simplexml_load_file($request_url) or die("url not loading");
     $status = $xml->status;
@@ -23,16 +24,45 @@ if(isset($_POST['submit'])){
     	$lat = 0;
 	$lng = 0;
     }
-    $cnpj = $_POST['cnpj'];
     $objt = new Estabelecimento($nome, $descricao, $endereco, $cep, $lat, $lng, $cnpj, $idDono);
     $obDAO  = new EstabelecimentoDAO();
 
     if($con->prepare($obDAO->salvar($objt))){
-        $success = "Cadastro realizado com sucesso!";
+        $passou = true;
     } else {
         $success = "Opa! Houve uma falha e não conseguimos realizar o seu cadastro! Tente novamente mais tarde.";
+        $passou = false;
     }
 
+
+    if ($passou){
+        $idEstabelecimento = $obDAO->obterIdEstabelcimento($_POST['cnpj']);
+        $cardapioDAO = new CardapioDAO();
+        if (isset($_POST['cardapio_dom'])){
+          $cardapioDAO->salvar(1 ,$_POST['cardapio_dom'], $idEstabelecimento);
+        }
+        if (isset($_POST['cardapio_seg'])){
+          $cardapioDAO->salvar(2, $_POST['cardapio_seg'], $idEstabelecimento);
+        }
+        if (isset($_POST['cardapio_ter'])){
+          $cardapioDAO->salvar(3, $_POST['cardapio_ter'], $idEstabelecimento);
+        }
+        if (isset($_POST['cardapio_qua'])){
+          $cardapioDAO->salvar(4, $_POST['cardapio_qua'], $idEstabelecimento);
+        }
+        if (isset($_POST['cardapio_qui'])){
+          $cardapioDAO->salvar(5, $_POST['cardapio_qui'], $idEstabelecimento);
+        }
+        if (isset($_POST['cardapio_sex'])){
+          $cardapioDAO->salvar(6, $_POST['cardapio_sex'], $idEstabelecimento);
+        }
+        if (isset($_POST['cardapio_sab'])){
+          $cardapioDAO->salvar(7, $_POST['cardapio_seg'], $idEstabelecimento);
+        }
+
+        $success = "Cadastro realizado com sucesso!";
+
+    }
 }
 ?>
 
@@ -120,11 +150,27 @@ if(isset($_POST['submit'])){
                             <span style="color: white" ng-show=" contatoForm.descricao.$touched &&  contatoForm.descricao.$invalid">Campo obrigatorio.</span>
                             <textarea rows="4" cols="60" name="descricao" id="descricao" ng-model="descricao" class="form-control" required></textarea>
                             <br>
-                            <!-- TA COMENTADO ABAIXO O CAMPO DE CARDAPIO. QUEM FOR FAZER, ARRUMA DIREITINHO ELE -->
-                            <!-- <label style="color: white; margin-right: 2px;">*</label>
-                            <label>Cardápio:</label>
+                            <label>Cardápio Segunda</label>
                             <span style="color: white" ng-show=" contatoForm.cardapio.$touched &&  contatoForm.cardapio.$invalid">Campo obrigatorio.</span>
-                            <textarea rows="4" cols="60" type="text" name="cardapio" id="cardapio" ng-model="cardapio" class="form-control" required></textarea> -->
+                            <textarea rows="4" cols="60" type="text" name="cardapio_seg" id="cardapio_seg" ng-model="cardapio_seg" class="form-control" required></textarea>
+                            <label>Cardápio Terça</label>
+                            <span style="color: white" ng-show=" contatoForm.cardapio.$touched &&  contatoForm.cardapio.$invalid">Campo obrigatorio.</span>
+                            <textarea rows="4" cols="60" type="text" name="cardapio_ter" id="cardapio_ter" ng-model="cardapio_ter" class="form-control" required></textarea>
+                            <label>Cardápio Quarta</label>
+                            <span style="color: white" ng-show=" contatoForm.cardapio.$touched &&  contatoForm.cardapio.$invalid">Campo obrigatorio.</span>
+                            <textarea rows="4" cols="60" type="text" name="cardapio_qua" id="cardapio_qua" ng-model="cardapio_qua" class="form-control" required></textarea>
+                            <label>Cardápio Quinta</label>
+                            <span style="color: white" ng-show=" contatoForm.cardapio.$touched &&  contatoForm.cardapio.$invalid">Campo obrigatorio.</span>
+                            <textarea rows="4" cols="60" type="text" name="cardapio_qui" id="cardapio_qui" ng-model="cardapio_qui" class="form-control" required></textarea>
+                            <label>Cardápio Sexta</label>
+                            <span style="color: white" ng-show=" contatoForm.cardapio.$touched &&  contatoForm.cardapio.$invalid">Campo obrigatorio.</span>
+                            <textarea rows="4" cols="60" type="text" name="cardapio_sex" id="cardapio_sex" ng-model="cardapio_sex" class="form-control" required></textarea>
+                            <label>Cardápio Sábado</label>
+                            <span style="color: white" ng-show=" contatoForm.cardapio.$touched &&  contatoForm.cardapio.$invalid">Campo obrigatorio.</span>
+                            <textarea rows="4" cols="60" type="text" name="cardapio_sab" id="cardapio_sab" ng-model="cardapio_sab" class="form-control" required></textarea>
+                            <label>Cardápio Domingo</label>
+                            <span style="color: white" ng-show=" contatoForm.cardapio.$touched &&  contatoForm.cardapio.$invalid">Campo obrigatorio.</span>
+                            <textarea rows="4" cols="60" type="text" name="cardapio_dom" id="cardapio_dom" ng-model="cardapio_dom" class="form-control" required></textarea>
                             <hr>
                             <button ng-disabled="contatoForm.nome.$invalid || contatoForm.endereco.$invalid || contatoForm.cep.$invalid || contatoForm.cnpj.$invalid || contatoForm.descricao.$invalid" type="submit" id="submit" name="submit" class="text-center btn-block form-btn">CADASTRAR</button>
                         </div>

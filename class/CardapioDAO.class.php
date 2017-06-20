@@ -30,6 +30,15 @@ class CardapioDAO{
         return $listaCardapio;
 	   }
 
+
+     public function salvar($dia, $descricao, $idEstabelecimento){
+   			$comando = "INSERT INTO Cardapio(dia, descricao, id_estabelecimento) VALUES ('$dia','$descricao', '$idEstabelecimento')";
+
+         $conn = pg_connect("host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
+         $sql = pg_query($conn, $comando);
+   			return true;
+   		}
+
 }
 
 ?>
