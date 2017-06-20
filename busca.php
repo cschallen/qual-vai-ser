@@ -1,5 +1,16 @@
 <?php
 require_once "class/Conexao.class.php";
+require_once "class/EstabelecimentoDAO.class.php";
+require_once "class/Estabelecimento.class.php";
+require_once "class/CardapioDAO.class.php";
+require_once "class/AvaliacaoDAO.class.php";
+
+
+
+                $busca = $_POST['busca'];
+					 $estabelecimentoDAO = new EstabelecimentoDAO();
+					 $todosEstabelecimentos = $estabelecimentoDAO->obterTodosBusca($busca);                
+                	
 ?>
 
 <!DOCTYPE html>
@@ -25,35 +36,144 @@ require_once "class/Conexao.class.php";
 
 <body>
     <?php include('header.php'); ?>
-    <div id="top" class="starter_container3 bg">
+    <div id="top" class=" bg">
         <div class="follow-container">
+            <div style="background-color: white !important;"  class="col-md-12">
+
+
+
+                         <div class="container theme-showcase" role="main">
+        <div class="page-header">
+            <h1 class="border-none">Estabelecimentos</h1>
+        </div>
+        <div class="row">
             <div class="col-md-12">
-                <div class="page-header">
-                    <h2 style="padding-top:120px">ESTABELECIMENTOS</h2>
-                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nome do Estabelecimento</th>
+                            <th>Endereço</th>
+                            <th>Avaliação Média</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <?php foreach ($todosEstabelecimentos as $estabelecimento) {  ?>
+                        <tbody>
+                            <tr>
+                                <td><?php echo $estabelecimento->getIdEstabelecimento(); ?></td>
+                                <td><?php echo $estabelecimento->getNome(); ?></td>
+                                <td><?php echo $estabelecimento->getRua(); ?></td>
+                                <td><?php if ($estabelecimento->ObterNotaMedia($estabelecimento->getIdEstabelecimento())){
+                                    echo $estabelecimento->ObterNotaMedia($estabelecimento->getIdEstabelecimento()) . " / 5";;
+                                }else {
+                                    echo "Sem avaliação";
+                                }
+                                ?>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#myModal<?php echo $estabelecimento->getIdEstabelecimento(); ?>">Mais informações</button>
+                                <button type="button" class="btn btn-xs btn-success" data-toggle="modal" data-target="#myModalAvaliar<?php echo $estabelecimento->getIdEstabelecimento(); ?>">Avaliar Local</button>
+                            </td>
+                        </tr>
+                        <!-- Inicio Modal -->
+                        <div class="modal fade" id="myModalAvaliar<?php echo $estabelecimento->getIdEstabelecimento(); ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title text-center" id="myModalLabel">Avaliar Local</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="POST" action="avaliaEstabelecimento.php" enctype="multipart/form-data">
+                                            <div class="form-group">
+                                                <label for="recipient-cpf" class="control-label">Digite um CPF válido:</label>
+                                                <input name="cpf" type="text" class="cpf form-control">
+                                            </div>
+                                            <label for="recipient-nota" class="control-label">Dê uma nota:</label>
+                                            <div class="btn-group" data-toggle="buttons">
+                                                <label class="btn btn-primary">
+                                                    <input type="radio" name="nota" id="option1" value="1_<?php echo $estabelecimento->getIdEstabelecimento()?>" autocomplete="off"> 1
+                                                </label>
+                                                <label class="btn btn-primary">
+                                                    <input type="radio" name="nota" id="option2" value="2_<?php echo $estabelecimento->getIdEstabelecimento()?>" autocomplete="off"> 2
+                                                </label>
+                                                <label class="btn btn-primary">
+                                                    <input type="radio" name="nota" id="option3" value="3_<?php echo $estabelecimento->getIdEstabelecimento()?>" autocomplete="off"> 3
+                                                </label>
+                                                <label class="btn btn-primary">
+                                                    <input type="radio" name="nota" id="option4" value="4_<?php echo $estabelecimento->getIdEstabelecimento()?>" autocomplete="off"> 4
+                                                </label>
+                                                <label class="btn btn-primary">
+                                                    <input type="radio" name="nota" id="option5" value="5_<?php echo $estabelecimento->getIdEstabelecimento()?>" autocomplete="off"> 5
+                                                </label>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-success">Avaliar</button>
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Fim Modal -->
+                        <!-- Inicio Modal -->
+                        <div class="modal fade" id="myModal<?php echo $estabelecimento->getIdEstabelecimento(); ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h2 class="modal-title text-center" id="myModalLabel"><?php echo $estabelecimento->getNome();?></h2>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p><?php echo "<b>Descrição:</b> " . $estabelecimento->getDescricao(); ?></p>
+                                        <?php $idEstb = $estabelecimento->getIdEstabelecimento(); ?>
+                                        <?php $obDAO = new CardapioDAO(); ?>
+                                        <?php $cardapio = $obDAO->obterCardapioEstabelecimento($idEstb); ?>
+                                        <?php foreach ($cardapio as $c) {  ?>
+                                            <hr>
+                                            <?php $dia = $c->getDia();
+
+                                            switch ($dia) {
+                                                case 1:
+                                                $diaText = "Domingo";
+                                                break;
+                                                case 2:
+                                                $diaText = "Segunda";
+                                                break;
+                                                case 3:
+                                                $diaText = "Terça";
+                                                break;
+                                                case 4:
+                                                $diaText = "Quarta";
+                                                break;
+                                                case 5:
+                                                $diaText = "Quinta";
+                                                break;
+                                                case 6:
+                                                $diaText = "Sexta";
+                                                break;
+                                                case 7:
+                                                $diaText = "Sabado";
+                                                break;
+                                            }
+                                            echo "<b>" . $diaText . "</b>" . ": " . $c->getDescricao();
+                                            ?><br><?php
 
 
-
-                <?php
-                $busca = $_POST['busca'];
-                $conn = pg_connect("host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
-                $comando = "SELECT e.nome, e.rua FROM cardapio c, estabelecimento e WHERE c.id_estabelecimento = e.id_estabelecimento and c.descricao ILIKE '%".$busca."%'";
-                $sql = pg_query($conn, $comando);
-                $row = pg_num_rows($sql);
-                if($row > 0){
-                    while($linha = pg_fetch_array($sql)){
-                        $nome = $linha['nome'];
-                        $rua = $linha['rua'];
-
-                        echo " Nome: ".@$nome;
-                        echo " Rua: ".@$rua;
-
-                    }
-                }
-                else {
-                    echo "Nenhum registro encontrado!";
-                }
-                ?>
+                                        } ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Fim Modal -->
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
             </div>
         </div>
     </div>
