@@ -88,6 +88,25 @@ class EstabelecimentoDAO{
 			}
 			return $estabelecimentos;
 		}
+		
+		
+
+		public function obterTodosBusca($busca){
+			$estabelecimentos = array();
+
+         $comando = "SELECT DISTINCT e.id_estabelecimento, e.nome, e.descricao, e.rua, e.cep, e.lat, e.lng, e.cnpj, e.id_dono_estabelecimento FROM cardapio c, estabelecimento e 
+         				WHERE c.id_estabelecimento = e.id_estabelecimento AND c.descricao ILIKE '%".$busca."%'";
+			//fazendo a conexao manualmente, n consegui arrumar isso
+			$conn = pg_connect("host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
+			$sql = pg_query($conn, $comando);
+
+			while( $linha = pg_fetch_array($sql) ) {
+				$estabelecimento = new Estabelecimento($linha['nome'], $linha['descricao'], $linha['rua'], $linha['cep'], $linha['lat'], $linha['lng'], $linha['cnpj'], $linha['id_dono_estabelecimento']);
+				$estabelecimento->setIdEstabelecimento($linha['id_estabelecimento']);
+				$estabelecimentos[] = $estabelecimento;
+			}
+			return $estabelecimentos;
+		}
 
 		public function excluir($id){
 			$comando = "DELETE FROM estabelecimento WHERE id_estabelecimento = $id";
