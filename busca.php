@@ -35,7 +35,12 @@ require_once "class/AvaliacaoDAO.class.php";
 </head>
 
 <body>
-    <?php include('header.php'); ?>
+    <?php if (isset($_SESSION['id_dono'])){
+        include_once('headerLogado.php');
+    }else{
+        include_once('header.php');
+    }
+    ?>
     <div id="top" class=" bg">
         <div class="follow-container">
             <div style="background-color: white !important;"  class="col-md-12">
