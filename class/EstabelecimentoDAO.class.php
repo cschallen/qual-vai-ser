@@ -88,14 +88,14 @@ class EstabelecimentoDAO{
 			}
 			return $estabelecimentos;
 		}
-		
-		
+
+
 
 		public function obterTodosBusca($busca){
 			$estabelecimentos = array();
 
-         $comando = "SELECT DISTINCT e.id_estabelecimento, e.nome, e.descricao, e.rua, e.cep, e.lat, e.lng, e.cnpj, e.id_dono_estabelecimento FROM cardapio c, estabelecimento e 
-         				WHERE c.id_estabelecimento = e.id_estabelecimento AND c.descricao ILIKE '%".$busca."%'";
+         $comando = "SELECT DISTINCT e.id_estabelecimento, e.nome, e.descricao, e.rua, e.cep, e.lat, e.lng, e.cnpj, e.id_dono_estabelecimento FROM cardapio c, estabelecimento e
+         				WHERE c.id_estabelecimento = e.id_estabelecimento AND c.descricao ILIKE '%".$busca."%' OR e.nome ILIKE '%".$busca."%'";
 			//fazendo a conexao manualmente, n consegui arrumar isso
 			$conn = pg_connect("host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
 			$sql = pg_query($conn, $comando);
