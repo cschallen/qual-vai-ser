@@ -1,74 +1,59 @@
 <?php
-//
-// use PHPUnit\Framework\TestCase as PHPUnit;
-//
-// require_once './class/Cardapio.class.php';
-//
-// class CardapioConstructorTest extends PHPUnit{
-//
-//      /**
-//     * @expectedException Exception
-//     * @expectedExceptionMessage O campo NOME não pode estar vazio
-//     */
-//     public function testConstrutorNome_Null(){
-//         new DonoEstabelecimento(null, "214.521.845-52", "fulano@fulano.com", "senhadofulano");
-//     }
-//
-//      /**
-//     * @expectedException Exception
-//     * @expectedExceptionMessage O campo NOME não pode estar vazio
-//     */
-//     public function testConstrutorNome_Vazio(){
-//         new DonoEstabelecimento("", "214.521.845-52", "fulano@fulano.com", "senhadofulano");
-//     }
-//
-//     /**
-//     * @expectedException Exception
-//     * @expectedExceptionMessage O campo CPF não pode estar vazio
-//     */
-//     public function testConstrutorCPF_Null(){
-//         new DonoEstabelecimento("Fulano", null, "fulano@fulano.com", "senhadofulano");
-//     }
-//
-//      /**
-//     * @expectedException Exception
-//     * @expectedExceptionMessage O campo CPF não pode estar vazio
-//     */
-//     public function testConstrutorCPF_Vazio(){
-//         new DonoEstabelecimento("Fulano", "", "fulano@fulano.com", "senhadofulano");
-//     }
-//
-//      /**
-//     * @expectedException Exception
-//     * @expectedExceptionMessage O campo EMAIL não pode estar vazio
-//     */
-//     public function testConstrutorEmail_Null(){
-//         new DonoEstabelecimento("Fulano", "214.521.845-52", null, "senhadofulano");
-//     }
-//
-//      /**
-//     * @expectedException Exception
-//     * @expectedExceptionMessage O campo EMAIL não pode estar vazio
-//     */
-//     public function testConstrutorEmail_Vazio(){
-//         new DonoEstabelecimento("Fulano", "214.521.845-52", "", "senhadofulano");
-//     }
-//
-//      /**
-//     * @expectedException Exception
-//     * @expectedExceptionMessage O campo SENHA não pode estar vazio
-//     */
-//     public function testConstrutorSenha_Null(){
-//         new DonoEstabelecimento("Fulano", "214.521.845-52", "fulano@fulano.com", null);
-//     }
-//
-//      /**
-//     * @expectedException Exception
-//     * @expectedExceptionMessage O campo SENHA não pode estar vazio
-//     */
-//     public function testConstrutorSenha_Vazio(){
-//         new DonoEstabelecimento("Fulano", "214.521.845-52", "fulano@fulano.com", "");
-//     }
-// }
+
+use PHPUnit\Framework\TestCase as PHPUnit;
+
+require_once './class/Cardapio.class.php';
+
+class CardapioConstructorTest extends PHPUnit{
+
+     /**
+    * @expectedException Exception
+    * @expectedExceptionMessage O campo DIA não pode estar vazio
+    */
+    public function testConstrutorDia_Null(){
+        new Cardapio(null, "uma descricao de local", 1);
+    }
+
+     /**
+    * @expectedException Exception
+    * @expectedExceptionMessage O campo DIA não pode estar vazio
+    */
+    public function testConstrutorDia_Vazio(){
+        new Cardapio("", "uma descricao de local", 1);
+    }
+
+    /**
+    * @expectedException Exception
+    * @expectedExceptionMessage O campo DESCRICAO não pode estar vazio
+    */
+    public function testConstrutorDescricao_Null(){
+        new Cardapio(1, null, 1);
+    }
+
+     /**
+    * @expectedException Exception
+    * @expectedExceptionMessage O campo DESCRICAO não pode estar vazio
+    */
+    public function testConstrutorDescricao_Vazio(){
+        new Cardapio(1, "", 1);
+    }
+
+     /**
+    * @expectedException Exception
+    * @expectedExceptionMessage O campo ESTABELECIMENTO não pode estar vazio
+    */
+    public function testConstrutorEstabelecimento_Null(){
+        new Cardapio(1, "uma descricao de local", null);
+    }
+
+     /**
+    * @expectedException Exception
+    * @expectedExceptionMessage O campo ESTABELECIMENTO não pode estar vazio
+    */
+    public function testConstrutorEstabelecimento_Vazio(){
+        new Cardapio(1, "uma descricao de local", "");
+    }
+
+}
 
 ?>

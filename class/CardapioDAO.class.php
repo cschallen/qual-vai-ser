@@ -23,7 +23,7 @@ class CardapioDAO{
         $sql = pg_query($conn, $comando);
 
         while( $linha = pg_fetch_array($sql) ) {
-            $cardapio = new Cardapio($linha['dia'], $linha['descricao']);
+            $cardapio = new Cardapio($linha['dia'], $linha['descricao'], $estabelecimento);
             $listaCardapio[] = $cardapio;
 
         }

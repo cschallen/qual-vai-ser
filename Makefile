@@ -4,4 +4,4 @@ run:
 
 tests:
 	@echo "--- Testando ---" && \
-	phpunit test/
+	phpunit test/ --colors
