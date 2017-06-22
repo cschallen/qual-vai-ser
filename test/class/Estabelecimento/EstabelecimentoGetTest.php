@@ -10,8 +10,8 @@ class EstabelecimentoGetTest extends PHPUnit{
 
     public function testObterNotaMedia() {
         $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
-        $avaliacao1 = new Avaliacao(5, 1);
-        $avaliacao2 = new Avaliacao(3, 1);
+        $avaliacao1 = new Avaliacao(5, 1, "123.654.789-99");
+        $avaliacao2 = new Avaliacao(3, 1, "123.654.789-90");
 
         $this->assertEquals(4, $estabelecimento->ObterNotaMedia(1));
     }

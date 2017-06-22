@@ -33,7 +33,7 @@ class AvaliacaoDAO{
 
     public function obterNota($estabelecimento){
         $colecao = array();
-        $comando = "SELECT  id_avaliacao, nota, id_estabelecimento
+        $comando = "SELECT id_avaliacao, nota, id_estabelecimento, cpf
         FROM Avaliacao
         WHERE id_estabelecimento = $estabelecimento";
 
@@ -43,11 +43,11 @@ class AvaliacaoDAO{
     		$sql = pg_query($conn, $comando);
         if (pg_num_rows($sql) > 0) {
       			while( $linha = pg_fetch_array($sql) ) {
-                $avaliacao = new Avaliacao($linha['nota'], $linha['id_estabelecimento']);
+                $avaliacao = new Avaliacao($linha['nota'], $linha['id_estabelecimento'], $linha['cpf']);
       					$avaliacao->setIdAvaliacao($linha['id_avaliacao']);
       					$notas[] = $avaliacao;
       			}
-            
+
 
         		return $notas;
         }
