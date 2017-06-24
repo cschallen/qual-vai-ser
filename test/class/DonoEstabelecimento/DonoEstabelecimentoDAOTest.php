@@ -8,6 +8,7 @@ require_once './class/DonoEstabelecimentoDAO.class.php';
 
 class DonoEstabelecimentoDAOTest extends PHPUnit{
 
+    //NESSE METODO ELE BUSCA OS DADOS REAIS DO BANCO
     // public function testObterTodos(){
     //     $donoEstabelecimentoDAO = new DonoEstabelecimentoDAO();
     //     $donoEstabelecimento = new DonoEstabelecimento('Jose', '124.521.693-25', 'jose@jose.com', 'senhadojose');
