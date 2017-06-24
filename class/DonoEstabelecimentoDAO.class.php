@@ -42,16 +42,20 @@ class DonoEstabelecimentoDAO{
     public function obterTodos(){
         $donos = array();
 
-        $comando = "SELECT nome, cpf, email, senha
+        $comando = "SELECT id_dono_estabelecimento, nome, cpf, email, senha
         FROM DonoEstabelecimento";
 
         //fazendo a conexao manualmente, n consegui arrumar isso
-        $conn = pg_connect("host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
-        $sql = pg_query($conn, $comando);
+        $conn = new PDO("pgsql:host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
+        $conn = $conn->prepare($comando);
+        $conn->execute();
 
-        while( $linha = pg_fetch_array($sql) ) {
+        // $sql = pg_query($conn, $comando);
+
+
+        while( $linha = pg_fetch_array($comando) ) {
             $donoEstabelecimento = new DonoEstabelecimento($linha['nome'], $linha['cpf'], $linha['email'], $linha['senha']);
-            $donoEstabelecimento->setIdDono($linha['id_dono_estabelecimento']);
+            $donoEstabelecimento->setIdDonoEstabelecimento($linha['id_dono_estabelecimento']);
             $estabelecimentos[] = $donoEstabelecimento;
         }
         return $estabelecimentos;
