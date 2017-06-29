@@ -6,6 +6,7 @@ class DonoEstabelecimento {
     private $cpf;
     private $email;
     private $senha;
+    private $tipo;
 
     public function __construct($nome, $cpf, $email, $senha) {
         $this->idDonoEstabelecimento = NULL;
@@ -13,6 +14,8 @@ class DonoEstabelecimento {
         $this->cpf = $cpf;
         $this->email = $email;
         $this->senha = $senha;
+		  $this->tipo = 1;
+
         if($nome == NULL || $nome == ""){
             throw new Exception("O campo NOME não pode estar vazio");
         }
@@ -45,6 +48,10 @@ class DonoEstabelecimento {
 
     function getSenha() {
         return $this->senha;
+    }
+
+	 function getTipo() {
+        return $this->tipo;
     }
 
     function setIdDonoEstabelecimento($idDonoEstabelecimento) {
@@ -85,6 +92,10 @@ class DonoEstabelecimento {
         } else {
             $this->senha = $senha;
         }
+    }
+
+	 function setTipo($tipo){
+        $this->tipo = $tipo;
     }
 }
 ?>

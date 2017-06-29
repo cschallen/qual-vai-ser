@@ -18,16 +18,17 @@ class DonoEstabelecimentoDAO{
             $cpf = $obj->getCpf();
             $email = $obj->getEmail();
             $senha = $obj->getSenha();
+            $tipo = $obj->getTipo();
 
             //criptografa senha
             $senha = md5($senha);
 
             if($idDonoEstabelecimento == NULL){
-                $comando = "INSERT INTO donoestabelecimento(nome, cpf, email, senha)
-                VALUES ('$nome', '$cpf', '$email', '$senha')";
+                $comando = "INSERT INTO donoestabelecimento(nome, cpf, email, senha, tipo)
+                VALUES ('$nome', '$cpf', '$email', '$senha', '$tipo')";
             } else {
                 $comando = "UPDATE DonoEstabelecimento
-                SET nome = '$nome', cpf = '$cpf', email = '$email', senha = '$senha'
+                SET nome = '$nome', cpf = '$cpf', email = '$email', senha = '$senha', tipo = '$tipo'
                 WHERE id_dono_estabelecimento = $idDonoEstabelecimento";
             }
             return $this->con->exec($comando);
@@ -42,7 +43,7 @@ class DonoEstabelecimentoDAO{
     public function obterTodos(){
         $donos = array();
 
-        $comando = "SELECT nome, cpf, email, senha
+        $comando = "SELECT nome, cpf, email, senha, tipo
         FROM DonoEstabelecimento";
 
         //fazendo a conexao manualmente, n consegui arrumar isso
@@ -50,7 +51,7 @@ class DonoEstabelecimentoDAO{
         $sql = pg_query($conn, $comando);
 
         while( $linha = pg_fetch_array($sql) ) {
-            $donoEstabelecimento = new DonoEstabelecimento($linha['nome'], $linha['cpf'], $linha['email'], $linha['senha']);
+            $donoEstabelecimento = new DonoEstabelecimento($linha['nome'], $linha['cpf'], $linha['email'], $linha['senha'], $tipo['tipo']);
             $donoEstabelecimento->setIdDono($linha['id_dono_estabelecimento']);
             $estabelecimentos[] = $donoEstabelecimento;
         }

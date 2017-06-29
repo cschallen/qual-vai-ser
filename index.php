@@ -21,10 +21,16 @@
 
 <body>
     <?php if (isset($_SESSION['id_dono'])){
-            include_once('headerLogado.php');
-          }else{
-            include_once('header.php');
+    				if($_SESSION['tipo'] == 0){
+          			include_once('headerAdmin.php');
+    				}else {
+    					include_once('headerDonoEstabelecimento.php');
+   		 		}
+    		 }else{
+            	include_once('header.php');
           }
+
+
     ?>
 
     <div id="top" class="starter_container bg">
