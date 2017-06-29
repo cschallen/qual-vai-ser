@@ -91,14 +91,14 @@ require_once "class/Conexao.class.php";
 											
 												<td>
 													<button class="btn btn-success" >
-														<a href="areaAdmin.php?id=1/Aprovado" style="color:white">
+														<a href="areaAdmin.php?id=<?php $estabelecimento->getIdEstabelecimento(); ?>/Aprovado" style="color:white">
 															<span class="glyphicon glyphicon-ok-sign"></span> Aprovar
 														</a>
 													</button>
     											</td>
     											<td>
 													<button class="btn btn-danger" >
-														<a href="areaAdmin.php?id=1/Reprovado" style="color:white">
+														<a href="areaAdmin.php?id=<?php $estabelecimento->getIdEstabelecimento(); ?>/Reprovado" style="color:white">
 															<span class="glyphicon glyphicon-remove-sign"></span> Reprovar
 														</a>
 													</button>
