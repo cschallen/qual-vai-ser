@@ -9,7 +9,7 @@
        $email = pg_escape_string ($_POST['email']);
        $senha = pg_escape_string ($_POST['senha']);
 
-       $comando ="SELECT id_dono_estabelecimento, nome
+       $comando ="SELECT id_dono_estabelecimento, nome, tipo
                   FROM DonoEstabelecimento
                   WHERE email = '$email' and senha = '" . md5($senha) . "'";
 
@@ -20,6 +20,7 @@
          $resultado = pg_fetch_assoc($sql);
           $_SESSION ['id_dono'] = $resultado['id_dono_estabelecimento'];
           $_SESSION['nome']= $resultado['nome'];
+          $_SESSION['tipo']= $resultado['tipo'];
           header("location: index.php");
        } else {
           $_SESSION['loginErro'] = "Email ou senha estão incorretos.";
