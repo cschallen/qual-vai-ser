@@ -11,7 +11,7 @@ class EstabelecimentoDAO{
 
 	public function obter($id){
 		$establecimento = NULL;
-		$comando = "SELECT  nome, descricao, rua, cep, lat, lng, cnpj
+		$comando = "SELECT  nome, descricao, rua, cep, lat, lng, cnpj, status
 		FROM estabelecimento
 		WHERE id_estabelecimento = $id";
 
@@ -20,7 +20,7 @@ class EstabelecimentoDAO{
 		$sql = pg_query($conn, $comando);
 
 		while( $linha = pg_fetch_array($sql) ) {
-			$estabelecimento = new Estabelecimento($linha['nome'], $linha['descricao'], $linha['rua'], $linha['cep'], $linha['lat'], $linha['lng'], $linha['cnpj']);
+			$estabelecimento = new Estabelecimento($linha['nome'], $linha['descricao'], $linha['rua'], $linha['cep'], $linha['lat'], $linha['lng'], $linha['cnpj'], $linha['status']);
 			$estabelecimento->setIdEstabelecimento($id);
 		}
 
@@ -47,7 +47,7 @@ class EstabelecimentoDAO{
 
 	public function obterTodosDist(){
 		$estabelecimentos = array();
-		$comando = "SELECT id_estabelecimento, nome, descricao, rua, cep, lat, lng, cnpj, id_dono_estabelecimento,
+		$comando = "SELECT id_estabelecimento, nome, descricao, rua, cep, lat, lng, cnpj, id_dono_estabelecimento, status,
 		111.045 * DEGREES(ACOS(COS(RADIANS(latpoint))
 		* COS(RADIANS(lat))
 		* COS(RADIANS(longpoint) - RADIANS(lng))
@@ -59,49 +59,57 @@ class EstabelecimentoDAO{
 			ON 1=1
 			ORDER BY distance_in_km
 			LIMIT 15";
-			//fazendo a conexao manualmente, n consegui arrumar isso
+	//		fazendo a conexao manualmente, n consegui arrumar isso
 			$conn = pg_connect("host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
 			$sql = pg_query($conn, $comando);
 
-			while( $linha = pg_fetch_array($sql) ) {
-				$estabelecimento = new Estabelecimento($linha['nome'], $linha['descricao'], $linha['rua'], $linha['cep'], $linha['lat'], $linha['lng'], $linha['cnpj'], $linha['id_dono_estabelecimento']);
+			
+			
+
+		while( $linha = pg_fetch_array($sql) ) {
+				$estabelecimento = new Estabelecimento($linha['nome'], $linha['descricao'], $linha['rua'], $linha['cep'], $linha['lat'], $linha['lng'], $linha['cnpj'], $linha['id_dono_estabelecimento'], $linha['status']);
 				$estabelecimento->setIdEstabelecimento($linha['id_estabelecimento']);
 				$estabelecimentos[] = $estabelecimento;
 			}
+		
+		
+			
 			return $estabelecimentos;
 		}
 
 		public function obterTodos(){
 			$estabelecimentos = array();
 
-			$comando = "SELECT id_estabelecimento, nome, descricao, rua, cep, lat, lng, cnpj, id_dono_estabelecimento
+			$comando = "SELECT id_estabelecimento, nome, descricao, rua, cep, lat, lng, cnpj, id_dono_estabelecimento, status
 			FROM estabelecimento";
 
 			//fazendo a conexao manualmente, n consegui arrumar isso
-			$conn = pg_connect("host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
+				$conn = pg_connect("host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
 			$sql = pg_query($conn, $comando);
+			
+			
 
 			while( $linha = pg_fetch_array($sql) ) {
-				$estabelecimento = new Estabelecimento($linha['nome'], $linha['descricao'], $linha['rua'], $linha['cep'], $linha['lat'], $linha['lng'], $linha['cnpj'], $linha['id_dono_estabelecimento']);
+				$estabelecimento = new Estabelecimento($linha['nome'], $linha['descricao'], $linha['rua'], $linha['cep'], $linha['lat'], $linha['lng'], $linha['cnpj'], $linha['id_dono_estabelecimento'], $linha['status']);
 				$estabelecimento->setIdEstabelecimento($linha['id_estabelecimento']);
 				$estabelecimentos[] = $estabelecimento;
 			}
-			return $estabelecimentos;
-		}
+			return $estabelecimentos; 
+		} 
 
 
 
 		public function obterTodosBusca($busca){
 			$estabelecimentos = array();
 
-         $comando = "SELECT DISTINCT e.id_estabelecimento, e.nome, e.descricao, e.rua, e.cep, e.lat, e.lng, e.cnpj, e.id_dono_estabelecimento FROM cardapio c, estabelecimento e
+         $comando = "SELECT DISTINCT e.id_estabelecimento, e.nome, e.descricao, e.rua, e.cep, e.lat, e.lng, e.cnpj, e.id_dono_estabelecimento, status FROM cardapio c, estabelecimento e
          				WHERE c.id_estabelecimento = e.id_estabelecimento AND c.descricao ILIKE '%".$busca."%' OR e.nome ILIKE '%".$busca."%'";
 			//fazendo a conexao manualmente, n consegui arrumar isso
 			$conn = pg_connect("host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
 			$sql = pg_query($conn, $comando);
 
 			while( $linha = pg_fetch_array($sql) ) {
-				$estabelecimento = new Estabelecimento($linha['nome'], $linha['descricao'], $linha['rua'], $linha['cep'], $linha['lat'], $linha['lng'], $linha['cnpj'], $linha['id_dono_estabelecimento']);
+				$estabelecimento = new Estabelecimento($linha['nome'], $linha['descricao'], $linha['rua'], $linha['cep'], $linha['lat'], $linha['lng'], $linha['cnpj'], $linha['id_dono_estabelecimento'], $linha['status']);
 				$estabelecimento->setIdEstabelecimento($linha['id_estabelecimento']);
 				$estabelecimentos[] = $estabelecimento;
 			}
@@ -124,18 +132,25 @@ class EstabelecimentoDAO{
 				$lng = $obj->getLng();
 				$nome = $obj->getNome();
 				$idDonoEstabelecimento = $obj->getIdDonoEstabelecimento();
+				$status = $obj->getStatus();
 
 				if($idEstabelecimento == NULL){
 					$comando = "INSERT INTO estabelecimento(nome, descricao, rua, cep, lat, lng, cnpj, id_dono_estabelecimento)
-					VALUES ('$nome','$descricao','$rua','$cep','$lat','$lng','$cnpj','$idDonoEstabelecimento')";
+					VALUES ('$nome','$descricao','$rua','$cep','$lat','$lng','$cnpj','$idDonoEstabelecimento', 'pendente')";
 				} else {
 					$comando = "UPDATE estabelecimento
-					SET nome = $nome, descricao = $descricao, rua = $rua, cep = $cep, lat = $lat, lng = $lng, cnpj = $cnpj, id_dono_estabelecimento = $idDonoEstabelecimento
+					SET nome = $nome, descricao = $descricao, rua = $rua, cep = $cep, lat = $lat, lng = $lng, cnpj = $cnpj, id_dono_estabelecimento = $idDonoEstabelecimento, status = $status
 					WHERE id_estabelecimento = $idEstabelecimento";
 				}
 				return $this->con->exec($comando);
 			}
 		}
+
+	//	public function statusEstabelecimento($status, $idEstabelecimento){
+	//		$comando = "UPDATE estabelecimento SET $status = 'Aprovado' WHERE id_estabelecimento = $idEstabelecimento";
+	//		return $this->con->exec($comando);
+	//	}
+		
 
 	}
 
