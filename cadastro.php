@@ -14,6 +14,7 @@ if(isset($_POST['submit'])){
     $endereco = $_POST['endereco'];
     $cep = $_POST['cep'];
     $cnpj = $_POST['cnpj'];
+    $statusEstabelecimento = $_POST['status'];
     $request_url = "http://maps.googleapis.com/maps/api/geocode/xml?address=".$cep;
     $xml = simplexml_load_file($request_url) or die("url not loading");
     $status = $xml->status;
@@ -24,7 +25,7 @@ if(isset($_POST['submit'])){
         $lat = 0;
         $lng = 0;
     }
-    $objt = new Estabelecimento($nome, $descricao, $endereco, $cep, $lat, $lng, $cnpj, $idDono);
+    $objt = new Estabelecimento($nome, $descricao, $endereco, $cep, $lat, $lng, $cnpj, $idDono, $status);
     $obDAO  = new EstabelecimentoDAO();
 
     if($con->prepare($obDAO->salvar($objt))){

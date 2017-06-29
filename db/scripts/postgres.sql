@@ -23,6 +23,7 @@ Create table Estabelecimento
 	cnpj character varying(25) NOT NULL UNIQUE,
 	nome character varying(100) NOT NULL,
 	id_dono_estabelecimento integer NOT NULL,
+	status character varying(20) NOT NULL,
 
 	CONSTRAINT Estabelecimento_pkey primary key (id_estabelecimento),
 	CONSTRAINT Estabelecimento_id_dono_fkey foreign key(id_dono_estabelecimento)
@@ -75,14 +76,14 @@ VALUES('Magnolia', '521.523.854-96', 'mag@mag.com', '7d0fdb9d1d1211ab739990af8ae
 
 
 
-INSERT INTO Estabelecimento (descricao, rua, cep, lat, lng, cnpj, nome, id_dono_estabelecimento)
-VALUES ('sempre bem animado esse lugar', 'rua dos manos', '91110-080', '-30.0016887', '-51.1362590', '777777', 'bar da maria', 1);
+INSERT INTO Estabelecimento (descricao, rua, cep, lat, lng, cnpj, nome, id_dono_estabelecimento, status)
+VALUES ('sempre bem animado esse lugar', 'rua dos manos', '91110-080', '-30.0016887', '-51.1362590', '777777', 'bar da maria', 1, 'Aprovado');
 
-INSERT INTO Estabelecimento (descricao, rua, cep, lat, lng, cnpj, nome, id_dono_estabelecimento)
-VALUES ('meu lugar é muito legal', 'rua dos caras', '90620-170', '-30.0509683','-51.2022014', '465789123', 'bar do zé', 2);
+INSERT INTO Estabelecimento (descricao, rua, cep, lat, lng, cnpj, nome, id_dono_estabelecimento, status)
+VALUES ('meu lugar é muito legal', 'rua dos caras', '90620-170', '-30.0509683','-51.2022014', '465789123', 'bar do zé', 2, 'Aprovado');
 
-INSERT INTO Estabelecimento (descricao, rua, cep, lat, lng, cnpj, nome, id_dono_estabelecimento)
-VALUES ('um lugar para comer', 'rua x', '90870-310', '-30.0697428', '-51.2114579', '465789121', 'bar da mag', 3);
+INSERT INTO Estabelecimento (descricao, rua, cep, lat, lng, cnpj, nome, id_dono_estabelecimento,status)
+VALUES ('um lugar para comer', 'rua x', '90870-310', '-30.0697428', '-51.2114579', '465789121', 'bar da mag', 3, 'Aprovado');
 
 
 
