@@ -1,17 +1,3 @@
-/*
-Theme Name: Restaurant
-Theme URI: http://themewagon.com/demo/Restaurant/
-Author: ThemeWagon
-Author URI: http://themewagon.com/
-Description:
-Version: 1.0
-License: GNU General Public License v3 or later
-License URI: http://www.gnu.org/licenses/gpl-3.0.html
-Text Domain: restaurant
-*/
-/*========================
-GLOBAL
-=========================*/
 h1 {
     font-size: 37px;
     font-weight: 900;
@@ -190,6 +176,54 @@ li{
     /*padding-left: 10px;*/
     word-spacing: 5px !important;
 }
+
+a:link.aprovar, a:visited.aprovar {
+    background-color: green;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+	border-radius: 2px;
+}
+
+
+a:hover.aprovar, a:active.aprovar {
+    background-color: darkgreen;
+}
+
+a:link.aprovar, a:visited.aprovar {
+    background-color: #228B22;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 2px;
+}
+
+
+a:hover.aprovar, a:active.aprovar {
+    background-color: darkgreen;
+    border: 1px solid black;
+}
+
+a:link.reprovar, a:visited.reprovar {
+    background-color: #f44336;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 2px;
+}
+
+
+a:hover.reprovar, a:active.reprovar {
+    background-color: red;
+    border: 1px solid black;
+}
+
 /*========================
 INTRO CONTAINER
 =========================*/
