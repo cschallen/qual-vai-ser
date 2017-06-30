@@ -6,23 +6,7 @@ require_once "class/Conexao.class.php";
  $estabelecimentoDAO = new EstabelecimentoDAO();
  $todosEstabelecimentos = $estabelecimentoDAO->obterTodos();
 
-
-   $conn = pg_connect("host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
-    
-   $sql = pg_query($conn, $comando);
-    
-    $idEstabelecimento = pg_escape_string($_POST['id']);
-   
-    
-    $posicao = strpos($idEstabelecimento, '/');
-    $status = substr($idEstabelecimento, $posicao+1); 
-    
-    $idEstab = strstr($idEstabelecimento, "/".$status, true);
-    
-    echo $idEstab;
-    
-   $comando = "UPDATE estabelecimento SET status = '$status' WHERE id_estabelecimento = '$idEstab'";
-   return $con->exec($comando);
+  
 
 ?>
 
@@ -34,18 +18,16 @@ require_once "class/Conexao.class.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/main.css" media="screen" type="text/css">
-    <script src="https:cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
-    <link href='http:fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-    <link href='http:fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/style-portfolio.css">
     <link rel="stylesheet" href="css/picto-foundry-food.css" />
     <link rel="stylesheet" href="css/jquery-ui.css">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link rel="icon" href="favicon-1.ico" type="image/x-icon">
-    <link href="http:netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/bootstrap-theme.css">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
 </head>
 
 <body>
@@ -56,7 +38,7 @@ require_once "class/Conexao.class.php";
             	 <div style="padding-top:120px">
                     <h3 >GERÊNCIA DE ESTABELECIMENTOS</h3>
 					<div class="form" style="width: 80%;margin:auto;justify-content:left;color:gray;opacity: 0.9;filter: Alpha(opacity=50);border-radius:10px">
-                   		<form name="contatoForm"  action="areaAdmin.php" method="post">
+                   		<form name="contatoForm"  action="alteraStatus.php" method="post">
                    			<div class="container1">
                             	<ul class="nav nav-tabs" role="tablist">
                               	  <li class="nav-item active">
@@ -81,30 +63,20 @@ require_once "class/Conexao.class.php";
 												</tr>
 											</thead>
 											<?php foreach ($todosEstabelecimentos as $estabelecimento) {
-												?>
+												if ($estabelecimento->getStatus() == 'Reprovado'){?>
 											<tbody>
 											 <tr>
-												<td><?php echo $estabelecimento->getIdEstabelecimento(); ?></td>
+												<td ><?php echo $estabelecimento->getIdEstabelecimento(); ?></td>
 												<td><?php echo $estabelecimento->getNome(); ?></td>
 												<td><?php echo $estabelecimento->getRua(); ?></td>
-												<td></td>
-											
+												<td></td>										
 												<td>
-													<button class="btn btn-success" >
-														<a href="areaAdmin.php?id=<?php $estabelecimento->getIdEstabelecimento(); ?>/Aprovado" style="color:white">
-															<span class="glyphicon glyphicon-ok-sign"></span> Aprovar
-														</a>
-													</button>
+													<a class="aprovar" href="alteraStatus.php?id=<?php echo $estabelecimento->getIdEstabelecimento(); ?>/Aprovado" style="color:white">Aprovar</a>
     											</td>
     											<td>
-													<button class="btn btn-danger" >
-														<a href="areaAdmin.php?id=<?php $estabelecimento->getIdEstabelecimento(); ?>/Reprovado" style="color:white">
-															<span class="glyphicon glyphicon-remove-sign"></span> Reprovar
-														</a>
-													</button>
-												
+													<a class="reprovar" href="alteraStatus.php?id=<?php echo $estabelecimento->getIdEstabelecimento(); ?>/Reprovado" style="color:white">Reprovar</a>
     											</td>
-    											<?php } ?>
+    											<?php } }?>
 											 </tr>                                              
 											</tbody>
 								 		</table>
@@ -120,22 +92,18 @@ require_once "class/Conexao.class.php";
 													<th>Ação</th>
 												</tr>
 											</thead>
-											<?php foreach ($todosEstabelecimentos as $estabelecimento) { ?>
-												
+											<?php foreach ($todosEstabelecimentos as $estabelecimento) {
+												if ($estabelecimento->getStatus() == 'Aprovado'){?>
 											<tbody>
 												<tr>
 													<td><?php echo $estabelecimento->getIdEstabelecimento(); ?></td>
 													<td><?php echo $estabelecimento->getNome(); ?></td>
 													<td><?php echo $estabelecimento->getRua(); ?></td>
 													<td></td>
-											<?php } ?>
-    												<td>
-													<button class="btn btn-danger" >
-														<a href="areaAdmin.php?id=<?php $estabelecimento->getIdEstabelecimento(); ?>/Reprovado" style="color:white">
-															<span class="glyphicon glyphicon-remove-sign"></span> Reprovar
-														</a>
-													</button>
-    												</td>
+													<td>
+														<a class="reprovar" href="alteraStatus.php?id=<?php echo $estabelecimento->getIdEstabelecimento(); ?>/Reprovado" style="color:white">Reprovar</a>
+    													</td>
+												<?php }} ?>
 												</tr>                                              
 											</tbody>
 								 		</table>
