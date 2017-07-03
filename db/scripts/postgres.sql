@@ -75,6 +75,9 @@ VALUES('Jose', '124.521.693-25', 'jose@jose.com', '045d92694b819b16e93b58d635659
 INSERT INTO DonoEstabelecimento(nome, cpf, email, senha, tipo)
 VALUES('Magnolia', '521.523.854-96', 'mag@mag.com', '7d0fdb9d1d1211ab739990af8ae959dd',1);
 
+INSERT INTO DonoEstabelecimento(nome, cpf, email, senha, tipo)
+VALUES('Administrador', '382.314.820-67', 'admin', '21232f297a57a5a743894a0e4a801fc3',0);
+
 
 
 INSERT INTO Estabelecimento (descricao, rua, cep, lat, lng, cnpj, nome, id_dono_estabelecimento, status)
