@@ -16,10 +16,16 @@
                     <li><a class="navactive color_animation" href="index.php">INÍCIO</a></li>
                     <li><a class="color_animation" href="#about">SOBRE NÓS</a></li>
                     <li><a class="color_animation" href="locais.php">LOCAIS</a></li>
-                    <li><a class="color_animation" href="cadastro.php">CADASTRE SEU ESTABELECIMENTO</a></li>
-                    <li><a href="logout.php" class="btn btn-basic btn-lg">
-                          <span class="glyphicon glyphicon-log-out"></span> Sair
-                         </a>
+                    <li><div class="dropdown">
+                          <button class="btn btn-basic btn-lg dropdown-toggle" type="button" data-toggle="dropdown">Olá, <?php echo ($_SESSION['nome']); ?>
+                          <span class="caret"></span></button>
+                          <ul class="dropdown-menu">
+                            <li class="dropdown-header">Sua área</li>
+                            <li><a href="cadastro.php">CADASTRE NOVO ESTABELECIMENTO</a></li>
+                            <li><a href="#">MEUS DADOS</a></li>
+                            <li><a href="logout.php">SAIR</a></li>
+                          </ul>
+                        </div>
                     </li>
                 </ul>
             </div>
