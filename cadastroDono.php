@@ -35,7 +35,7 @@
 
     </script>
     <?php if (isset($_SESSION['id_dono'])){
-            include_once('headerLogado.php');
+            include_once('headerDonoEstabelecimento.php');
           }else{
             include_once('header.php');
           }

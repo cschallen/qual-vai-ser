@@ -1,4 +1,4 @@
-Create table DonoEstabelecimento
+CREATE TABLE DonoEstabelecimento
 (
 	id_dono_estabelecimento serial NOT NULL,
 	nome character varying(100) NOT NULL,
