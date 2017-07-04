@@ -45,7 +45,7 @@ class EstabelecimentoDAO{
 		}
 	}
 
-	public function obterTodosDist(){
+	public function obterTodosDistAprovado(){
 		$estabelecimentos = array();
 		$comando = "SELECT id_estabelecimento, nome, descricao, rua, cep, lat, lng, cnpj, id_dono_estabelecimento, status,
 		111.045 * DEGREES(ACOS(COS(RADIANS(latpoint))
@@ -61,16 +61,11 @@ class EstabelecimentoDAO{
 		$conn = pg_connect("host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
 		$sql = pg_query($conn, $comando);
 
-
-
-
 		while( $linha = pg_fetch_array($sql) ) {
 			$estabelecimento = new Estabelecimento($linha['nome'], $linha['descricao'], $linha['rua'], $linha['cep'], $linha['lat'], $linha['lng'], $linha['cnpj'], $linha['id_dono_estabelecimento'], $linha['status']);
 			$estabelecimento->setIdEstabelecimento($linha['id_estabelecimento']);
 			$estabelecimentos[] = $estabelecimento;
 		}
-
-
 
 		return $estabelecimentos;
 	}
