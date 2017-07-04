@@ -9,8 +9,8 @@ require_once "class/AvaliacaoDAO.class.php";
 
                 $busca = $_POST['busca'];
 					 $estabelecimentoDAO = new EstabelecimentoDAO();
-					 $todosEstabelecimentos = $estabelecimentoDAO->obterTodosBusca($busca);                
-                	
+					 $todosEstabelecimentos = $estabelecimentoDAO->obterTodosBusca($busca);
+
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +36,7 @@ require_once "class/AvaliacaoDAO.class.php";
 
 <body>
     <?php if (isset($_SESSION['id_dono'])){
-        include_once('headerLogado.php');
+        include_once('headerDonoEstabelecimento.php');
     }else{
         include_once('header.php');
     }

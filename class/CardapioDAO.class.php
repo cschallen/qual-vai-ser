@@ -4,40 +4,39 @@ include_once "Cardapio.class.php";
 include_once "EstabelecimentoDAO.class.php";
 
 class CardapioDAO{
-    private $con;
+  private $con;
 
-    public function __construct(){
-        $this->con = Conexao::obterConexao();
+  public function __construct(){
+    $this->con = Conexao::obterConexao();
+  }
+
+  public function obterCardapioEstabelecimento($estabelecimento){
+
+    $colecao = array();
+    $comando = "SELECT dia, descricao
+    FROM Cardapio
+    WHERE id_estabelecimento = $estabelecimento";
+
+    $estabelecimentoDAO = new EstabelecimentoDAO();
+
+    $conn = pg_connect("host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
+    $sql = pg_query($conn, $comando);
+
+    while( $linha = pg_fetch_array($sql) ) {
+      $cardapio = new Cardapio($linha['dia'], $linha['descricao'], $estabelecimento);
+      $listaCardapio[] = $cardapio;
     }
-
-    public function obterCardapioEstabelecimento($estabelecimento){
-
-				$colecao = array();
-				$comando = "SELECT dia, descricao
-								    FROM Cardapio
-								    WHERE id_estabelecimento = $estabelecimento";
-
-				$estabelecimentoDAO = new EstabelecimentoDAO();
-
-        $conn = pg_connect("host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
-        $sql = pg_query($conn, $comando);
-
-        while( $linha = pg_fetch_array($sql) ) {
-            $cardapio = new Cardapio($linha['dia'], $linha['descricao'], $estabelecimento);
-            $listaCardapio[] = $cardapio;
-
-        }
-        return $listaCardapio;
-	   }
+    return $listaCardapio;
+  }
 
 
-     public function salvar($dia, $descricao, $idEstabelecimento){
-   			$comando = "INSERT INTO Cardapio(dia, descricao, id_estabelecimento) VALUES ('$dia','$descricao', '$idEstabelecimento')";
+  public function salvar($dia, $descricao, $idEstabelecimento){
+    $comando = "INSERT INTO Cardapio(dia, descricao, id_estabelecimento) VALUES ('$dia','$descricao', '$idEstabelecimento')";
 
-         $conn = pg_connect("host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
-         $sql = pg_query($conn, $comando);
-   			return true;
-   		}
+    $conn = pg_connect("host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
+    $sql = pg_query($conn, $comando);
+    return true;
+  }
 
 }
 
