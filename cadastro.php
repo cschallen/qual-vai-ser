@@ -41,25 +41,32 @@ if(isset($_POST['submit'])){
   if ($passou){
     $idEstabelecimento = $obDAO->obterIdEstabelcimento($_POST['cnpj']);
     $cardapioDAO = new CardapioDAO();
-    if (isset($_POST['cardapio_dom'])){
+    $cardapio_dom = $_POST['cardapio_dom'];
+    $cardapio_seg = $_POST['cardapio_seg'];
+    $cardapio_ter = $_POST['cardapio_ter'];
+    $cardapio_qua = $_POST['cardapio_qua'];
+    $cardapio_qui = $_POST['cardapio_qui'];
+    $cardapio_sex = $_POST['cardapio_sex'];
+    $cardapio_sab = $_POST['cardapio_sab'];
+    if ($cardapio_dom != "" || $cardapio_dom != NULL){
       $cardapioDAO->salvar(1 ,$_POST['cardapio_dom'], $idEstabelecimento);
     }
-    if (isset($_POST['cardapio_seg'])){
+    if ($cardapio_seg != "" || $cardapio_seg != NULL){
       $cardapioDAO->salvar(2, $_POST['cardapio_seg'], $idEstabelecimento);
     }
-    if (isset($_POST['cardapio_ter'])){
+    if ($cardapio_ter != "" || $cardapio_ter != NULL){
       $cardapioDAO->salvar(3, $_POST['cardapio_ter'], $idEstabelecimento);
     }
-    if (isset($_POST['cardapio_qua'])){
+    if ($cardapio_qua != "" || $cardapio_qua != NULL){
       $cardapioDAO->salvar(4, $_POST['cardapio_qua'], $idEstabelecimento);
     }
-    if (isset($_POST['cardapio_qui'])){
+    if ($cardapio_qui != "" || $cardapio_qui != NULL){
       $cardapioDAO->salvar(5, $_POST['cardapio_qui'], $idEstabelecimento);
     }
-    if (isset($_POST['cardapio_sex'])){
+    if ($cardapio_sex != "" || $cardapio_sex != NULL){
       $cardapioDAO->salvar(6, $_POST['cardapio_sex'], $idEstabelecimento);
     }
-    if (isset($_POST['cardapio_sab'])){
+    if ($cardapio_sab != "" || $cardapio_sab != NULL){
       $cardapioDAO->salvar(7, $_POST['cardapio_seg'], $idEstabelecimento);
     }
     $success = "Cadastro realizado com sucesso!";
