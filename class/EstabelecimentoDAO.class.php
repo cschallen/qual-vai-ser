@@ -63,17 +63,17 @@ class EstabelecimentoDAO{
 			$conn = pg_connect("host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
 			$sql = pg_query($conn, $comando);
 
-			
-			
+
+
 
 		while( $linha = pg_fetch_array($sql) ) {
 				$estabelecimento = new Estabelecimento($linha['nome'], $linha['descricao'], $linha['rua'], $linha['cep'], $linha['lat'], $linha['lng'], $linha['cnpj'], $linha['id_dono_estabelecimento'], $linha['status']);
 				$estabelecimento->setIdEstabelecimento($linha['id_estabelecimento']);
 				$estabelecimentos[] = $estabelecimento;
 			}
-		
-		
-			
+
+
+
 			return $estabelecimentos;
 		}
 
@@ -86,16 +86,16 @@ class EstabelecimentoDAO{
 			//fazendo a conexao manualmente, n consegui arrumar isso
 				$conn = pg_connect("host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
 			$sql = pg_query($conn, $comando);
-			
-			
+
+
 
 			while( $linha = pg_fetch_array($sql) ) {
 				$estabelecimento = new Estabelecimento($linha['nome'], $linha['descricao'], $linha['rua'], $linha['cep'], $linha['lat'], $linha['lng'], $linha['cnpj'], $linha['id_dono_estabelecimento'], $linha['status']);
 				$estabelecimento->setIdEstabelecimento($linha['id_estabelecimento']);
 				$estabelecimentos[] = $estabelecimento;
 			}
-			return $estabelecimentos; 
-		} 
+			return $estabelecimentos;
+		}
 
 
 
@@ -135,8 +135,8 @@ class EstabelecimentoDAO{
 				$status = $obj->getStatus();
 
 				if($idEstabelecimento == NULL){
-					$comando = "INSERT INTO estabelecimento(nome, descricao, rua, cep, lat, lng, cnpj, id_dono_estabelecimento)
-					VALUES ('$nome','$descricao','$rua','$cep','$lat','$lng','$cnpj','$idDonoEstabelecimento', 'pendente')";
+					$comando = "INSERT INTO estabelecimento(nome, descricao, rua, cep, lat, lng, cnpj, id_dono_estabelecimento, status)
+					VALUES ('$nome','$descricao','$rua','$cep','$lat','$lng','$cnpj','$idDonoEstabelecimento', 'Pendente')";
 				} else {
 					$comando = "UPDATE estabelecimento
 					SET nome = $nome, descricao = $descricao, rua = $rua, cep = $cep, lat = $lat, lng = $lng, cnpj = $cnpj, id_dono_estabelecimento = $idDonoEstabelecimento, status = $status
@@ -150,7 +150,7 @@ class EstabelecimentoDAO{
 	//		$comando = "UPDATE estabelecimento SET $status = 'Aprovado' WHERE id_estabelecimento = $idEstabelecimento";
 	//		return $this->con->exec($comando);
 	//	}
-		
+
 
 	}
 
