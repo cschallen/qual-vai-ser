@@ -7,7 +7,7 @@ require_once "class/AvaliacaoDAO.class.php";
 
 $estabelecimentoDAO = new EstabelecimentoDAO();
 
-$todosEstabelecimentos = $estabelecimentoDAO->obterTodosDist(); ?>
+$todosEstabelecimentos = $estabelecimentoDAO->obterTodosDistAprovado(); ?>
 <!DOCTYPE html>
 <html>
 <head>

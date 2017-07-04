@@ -63,7 +63,7 @@ $todosEstabelecimentos = $estabelecimentoDAO->obterTodos();
                         </tr>
                       </thead>
                       <?php foreach ($todosEstabelecimentos as $estabelecimento) {
-                        if ($estabelecimento->getStatus() == 'Reprovado'){?>
+                        if ($estabelecimento->getStatus() == 'Pendente'){?>
                           <tbody>
                             <tr>
                               <td ><?php echo $estabelecimento->getIdEstabelecimento(); ?></td>
