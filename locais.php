@@ -127,7 +127,7 @@ $todosEstabelecimentos = $estabelecimentoDAO->obterTodosDistAprovado(); ?>
                             </div>
                         </div>
                         <!-- Fim Modal -->
-                        <!-- Inicio Modal -->
+                        <!-- Inicio Modal Cardápios -->
                         <div class="modal fade" id="myModal<?php echo $estabelecimento->getIdEstabelecimento(); ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">

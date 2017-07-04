@@ -1,6 +1,8 @@
 <?php
 require_once "class/EstabelecimentoDAO.class.php";
 require_once "class/Estabelecimento.class.php";
+require_once "class/Cardapio.class.php";
+require_once "class/CardapioDAO.class.php";
 require_once "class/Conexao.class.php";
 
 $estabelecimentoDAO = new EstabelecimentoDAO();
@@ -69,7 +71,7 @@ $todosEstabelecimentos = $estabelecimentoDAO->obterTodos();
                               <td ><?php echo $estabelecimento->getIdEstabelecimento(); ?></td>
                               <td><?php echo $estabelecimento->getNome(); ?></td>
                               <td><?php echo $estabelecimento->getRua(); ?></td>
-                              <td></td>
+                              <td><button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#myModal<?php echo $estabelecimento->getIdEstabelecimento(); ?>">Mais informações</button></td>
                               <td>
                                 <a class="aprovar" href="alteraStatus.php?id=<?php echo $estabelecimento->getIdEstabelecimento(); ?>/Aprovado" style="color:white">Aprovar</a>
                               </td>
@@ -116,6 +118,58 @@ $todosEstabelecimentos = $estabelecimentoDAO->obterTodos();
               </div>
             </div>
           </div>
+
+
+          <!-- Inicio Modal Cardápios -->
+          <div class="modal fade" id="myModal<?php echo $estabelecimento->getIdEstabelecimento(); ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          <h2 class="modal-title text-center" id="myModalLabel"><?php echo $estabelecimento->getNome();?></h2>
+                      </div>
+                      <div class="modal-body">
+                          <p><?php echo "<b>Descrição:</b> " . $estabelecimento->getDescricao(); ?></p>
+                          <?php $idEstb = $estabelecimento->getIdEstabelecimento(); ?>
+                          <?php $obDAO = new CardapioDAO(); ?>
+                          <?php $cardapio = $obDAO->obterCardapioEstabelecimento($idEstb); ?>
+                          <?php foreach ($cardapio as $c) {  ?>
+                              <hr>
+                              <?php $dia = $c->getDia();
+
+                              switch ($dia) {
+                                  case 1:
+                                  $diaText = "Domingo";
+                                  break;
+                                  case 2:
+                                  $diaText = "Segunda";
+                                  break;
+                                  case 3:
+                                  $diaText = "Terça";
+                                  break;
+                                  case 4:
+                                  $diaText = "Quarta";
+                                  break;
+                                  case 5:
+                                  $diaText = "Quinta";
+                                  break;
+                                  case 6:
+                                  $diaText = "Sexta";
+                                  break;
+                                  case 7:
+                                  $diaText = "Sabado";
+                                  break;
+                              }
+                              echo "<b>" . $diaText . "</b>" . ": " . $c->getDescricao();
+                              ?><br><?php
+
+
+                          } ?>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <!-- Fim Modal -->
 
           <script type="text/javascript" src="js/jquery-1.10.2.min.js"> </script>
           <script type="text/javascript" src="js/bootstrap.min.js" ></script>
