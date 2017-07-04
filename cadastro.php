@@ -27,9 +27,7 @@ if(isset($_POST['submit'])){
   }
 
   $objt = new Estabelecimento($nome, $descricao, $endereco, $cep, $lat, $lng, $cnpj, $idDono, $statusEst);
-  echo $idDono;
-  echo "@@@@@@@@@@@@@@";
-  var_dump($objt);
+
   $obDAO  = new EstabelecimentoDAO();
 
   if($con->prepare($obDAO->salvar($objt))){
