@@ -177,17 +177,6 @@ li{
     word-spacing: 5px !important;
 }
 
-a:link.aprovar, a:visited.aprovar {
-    background-color: green;
-    color: white;
-    padding: 14px 25px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-	border-radius: 2px;
-}
-
-
 a:hover.aprovar, a:active.aprovar {
     background-color: darkgreen;
 }
@@ -198,14 +187,10 @@ a:link.aprovar, a:visited.aprovar {
     padding: 14px 25px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
-    border-radius: 2px;
-}
-
-
-a:hover.aprovar, a:active.aprovar {
-    background-color: darkgreen;
-    border: 1px solid black;
+    border-radius: 3px;
+    height: 28px;
+    display: flex;
+    align-items: center;
 }
 
 a:link.reprovar, a:visited.reprovar {
@@ -214,14 +199,16 @@ a:link.reprovar, a:visited.reprovar {
     padding: 14px 25px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
-    border-radius: 2px;
+    border-radius: 3px;
+    height: 28px;
+    display: flex;
+    align-items: center;
 }
 
 
 a:hover.reprovar, a:active.reprovar {
     background-color: red;
-    border: 1px solid black;
+
 }
 
 /*========================

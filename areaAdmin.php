@@ -71,7 +71,7 @@ $todosEstabelecimentos = $estabelecimentoDAO->obterTodos();
                               <td ><?php echo $estabelecimento->getIdEstabelecimento(); ?></td>
                               <td><?php echo $estabelecimento->getNome(); ?></td>
                               <td><?php echo $estabelecimento->getRua(); ?></td>
-                              <td><button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#myModal<?php echo $estabelecimento->getIdEstabelecimento(); ?>">Mais informações</button></td>
+                              <td><button style="height: 28px !important; border: none !important;" type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#myModal<?php echo $estabelecimento->getIdEstabelecimento(); ?>">Mais informações</button></td>
                               <td>
                                 <a class="aprovar" href="alteraStatus.php?id=<?php echo $estabelecimento->getIdEstabelecimento(); ?>/Aprovado" style="color:white">Aprovar</a>
                               </td>
