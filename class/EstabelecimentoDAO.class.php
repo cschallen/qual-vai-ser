@@ -109,9 +109,21 @@ class EstabelecimentoDAO{
 		return $estabelecimentos;
 	}
 
-	public function excluir($id){
-		$comando = "DELETE FROM estabelecimento WHERE id_estabelecimento = $id";
-		return $this->con->exec($comando);
+	public function editaSituacao($id, $situacao){
+		if ($situacao == 'Aprovado'){
+			$conn = pg_connect("host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
+			  $comando = "UPDATE estabelecimento SET status = '$status' WHERE id_estabelecimento = '$id'";
+				$sql = pg_query($conn, $comando);
+		}
+		if ($situacao == 'Reprovado'){
+			$conn = pg_connect("host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
+			  $comando = "DELETE FROM Avaliacao where id_estabelecimento = '$id'";
+				$sql = pg_query($conn, $comando);
+			  $comando = "DELETE FROM Cardapio where id_estabelecimento = '$id'";
+				$sql = pg_query($conn, $comando);
+				$comando = "DELETE FROM estabelecimento where id_estabelecimento = '$id'";
+				$sql = pg_query($conn, $comando);
+		}
 	}
 
 	public function salvar($obj){
