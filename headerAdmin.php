@@ -21,8 +21,8 @@
                           <span class="caret"></span></button>
                           <ul class="dropdown-menu">
                             <li class="dropdown-header">Sua área</li>
-                            <li><a href="#">ACEITAR INCLUSÃO DE RESTAURANTES</a></li>
-                            <li><a href="#">VER RESTAURANTES ATIVOS</a></li>
+                            <li><a href="areaAdmin.php">ACEITAR INCLUSÃO DE RESTAURANTEssS</a></li>
+                            <li><a href="areaAdmin.php">VER RESTAURANTES ATIVOS</a></li>
                             <li><a href="logout.php">SAIR</a></li>
                           </ul>
                         </div>

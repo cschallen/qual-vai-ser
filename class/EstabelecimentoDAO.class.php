@@ -114,6 +114,7 @@ class EstabelecimentoDAO{
 			$conn = pg_connect("host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
 			  $comando = "UPDATE estabelecimento SET status = '$status' WHERE id_estabelecimento = '$id'";
 				$sql = pg_query($conn, $comando);
+				return true;
 		}
 		if ($situacao == 'Reprovado'){
 			$conn = pg_connect("host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
@@ -123,7 +124,9 @@ class EstabelecimentoDAO{
 				$sql = pg_query($conn, $comando);
 				$comando = "DELETE FROM estabelecimento where id_estabelecimento = '$id'";
 				$sql = pg_query($conn, $comando);
+				return true;
 		}
+		return false;
 	}
 
 	public function salvar($obj){

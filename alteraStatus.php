@@ -12,8 +12,11 @@
 
 
 
-    $teste = $estabelecimentoDAO->editaSituacao($idEstab, $status);
-
-    header("location: areaAdmin.php");
+    $validaMudanca = $estabelecimentoDAO->editaSituacao($idEstab, $status);
+    if ($validaMudanca){
+      header("location: areaAdmin.php");
+    }else{
+      header("location: index.php");
+    }
 
 ?>

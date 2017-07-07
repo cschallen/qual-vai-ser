@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once "class/EstabelecimentoDAO.class.php";
 require_once "class/Estabelecimento.class.php";
 require_once "class/Cardapio.class.php";
@@ -7,9 +8,13 @@ require_once "class/Conexao.class.php";
 
 $estabelecimentoDAO = new EstabelecimentoDAO();
 $todosEstabelecimentos = $estabelecimentoDAO->obterTodos();
-
-
-
+if (isset($_SESSION['tipo'])){
+    if($_SESSION['tipo'] == 1){
+      header("location: index.php");
+    }
+}else{
+  header("location: index.php");
+}
 ?>
 
 <!DOCTYPE html>
