@@ -22,7 +22,7 @@
                           <ul class="dropdown-menu">
                             <li class="dropdown-header">Sua área</li>
                             <li><a href="cadastro.php">CADASTRE NOVO ESTABELECIMENTO</a></li>
-                            <li><a href="areaDono.php">Meus Estabelecimentos</a></li>
+                            <li><a href="areaDono.php">MEUS ESTABELECIMENTOS</a></li>
                             <li><a href="logout.php">SAIR</a></li>
                           </ul>
                         </div>

@@ -4,7 +4,38 @@ require_once "class/Estabelecimento.class.php";
 require_once "class/EstabelecimentoDAO.class.php";
 require_once "class/CardapioDAO.class.php";
 
+if(isset($_POST['submit'])){
 
+  $con = new Conexao();
+  $con = $con->obterConexao();
+  $idDono = $_SESSION['id_dono'];
+  $nome = $_POST['nome'];
+  $descricao = $_POST['descricao'];
+  $endereco = $_POST['endereco'];
+  $cep = $_POST['cep'];
+  $cnpj = $_POST['cnpj'];
+  $statusEst = 'Pendente';
+  $request_url = "http://maps.googleapis.com/maps/api/geocode/xml?address=".$cep;
+  $xml = simplexml_load_file($request_url) or die("url not loading");
+  $status = $xml->status;
+
+  if ($status=="OK") {
+    $lat = $xml->result->geometry->location->lat;
+    $lng = $xml->result->geometry->location->lng;
+  }else{
+    $lat = 0;
+    $lng = 0;
+  }
+
+  $objt = new Estabelecimento($nome, $descricao, $endereco, $cep, $lat, $lng, $cnpj, $idDono, $statusEst);
+  $obDAO  = new EstabelecimentoDAO();
+
+  if($con->prepare($obDAO->salvar($objt))){
+    $passou = true;
+  } else {
+    $success = "Opa! Houve uma falha e não conseguimos realizar o seu cadastro! Tente novamente mais tarde.";
+    $passou = false;
+  }
 
 if ($passou){
   $idEstabelecimento = $obDAO->obterIdEstabelcimento($_POST['cnpj']);
@@ -38,8 +69,9 @@ if ($passou){
     $cardapioDAO->salvar(7, $_POST['cardapio_seg'], $idEstabelecimento);
  }
 
-$success = "Cadastro realizado com sucesso!";
+ $success = "Cadastro realizado com sucesso!";
 
+ }
 }
 
 ?>
@@ -65,6 +97,11 @@ $success = "Cadastro realizado com sucesso!";
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link rel="icon" href="favicon-1.ico" type="image/x-icon">
+  <script type="text/javascript" src="js/jquery-1.10.2.min.js"> </script>
+  <script type="text/javascript" src="js/bootstrap.min.js" ></script>
+  <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+  <script type="text/javascript" src="js/jquery.mixitup.min.js" ></script>
+  <script type="text/javascript" src="js/main.js" ></script>
 </head>
 
 <body ng-app="">
@@ -206,11 +243,6 @@ $success = "Cadastro realizado com sucesso!";
     </div>
   </div>
 
-  <script type="text/javascript" src="js/jquery-1.10.2.min.js"> </script>
-  <script type="text/javascript" src="js/bootstrap.min.js" ></script>
-  <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
-  <script type="text/javascript" src="js/jquery.mixitup.min.js" ></script>
-  <script type="text/javascript" src="js/main.js" ></script>
 
 </body>
 

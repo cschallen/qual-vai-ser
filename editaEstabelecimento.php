@@ -5,8 +5,6 @@
     $estabelecimentoDAO = new EstabelecimentoDAO();
     $descricao = $_POST['descricao'];
     $dom = $_POST['domingo'];
-    var_dump($dom);
-    echo "<< dom <br>";
     $segunda = $_POST['segunda'];
     $terca = $_POST['terca'];
     $quarta= $_POST['quarta'];
@@ -24,6 +22,6 @@
     $estabelecimentoDAO->editaCardapio($id_estabelecimento, 6, $_POST['sexta']);
     $estabelecimentoDAO->editaCardapio($id_estabelecimento, 7, $_POST['sabado']);
 
-    // header("location: areaAdmin.php");
+    header("location: areaDono.php");
 
 ?>

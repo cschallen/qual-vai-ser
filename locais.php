@@ -27,6 +27,11 @@ $todosEstabelecimentos = $estabelecimentoDAO->obterTodosDistAprovado(); ?>
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link rel="icon" href="favicon-1.ico" type="image/x-icon">
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"> </script>
+    <script type="text/javascript" src="js/bootstrap.min.js" ></script>
+    <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="js/jquery.mixitup.min.js" ></script>
+    <script type="text/javascript" src="js/main.js" ></script>
 </head>
 <script>
 (function( $ ) {
@@ -188,14 +193,7 @@ $todosEstabelecimentos = $estabelecimentoDAO->obterTodosDistAprovado(); ?>
         <div class="text-content container">
 
         </div>
-    </section>
-    <script type="text/javascript" src="js/jquery-1.10.2.min.js"> </script>
-    <script type="text/javascript" src="js/bootstrap.min.js" ></script>
-    <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
-    <script type="text/javascript" src="js/jquery.mixitup.min.js" ></script>
-    <script type="text/javascript" src="js/main.js" ></script>
+      </section>
 
-    <script type="text/javascript">
-    </script>
 </body>
 </html>

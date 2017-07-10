@@ -35,6 +35,11 @@ if (isset($_SESSION['tipo'])){
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link rel="icon" href="favicon-1.ico" type="image/x-icon">
   <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
+  <script type="text/javascript" src="js/jquery-1.10.2.min.js"> </script>
+  <script type="text/javascript" src="js/bootstrap.min.js" ></script>
+  <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+  <script type="text/javascript" src="js/jquery.mixitup.min.js" ></script>
+  <script type="text/javascript" src="js/main.js" ></script>
 </head>
 
 <body>
@@ -176,11 +181,6 @@ if (isset($_SESSION['tipo'])){
           </div>
           <!-- Fim Modal -->
 
-          <script type="text/javascript" src="js/jquery-1.10.2.min.js"> </script>
-          <script type="text/javascript" src="js/bootstrap.min.js" ></script>
-          <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
-          <script type="text/javascript" src="js/jquery.mixitup.min.js" ></script>
-          <script type="text/javascript" src="js/main.js" ></script>
 
         </body>
 

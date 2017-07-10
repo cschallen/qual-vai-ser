@@ -15,7 +15,7 @@ class Cardapio {
             throw new Exception("O campo DIA não pode estar vazio");
         }
         if($descricao == NULL || $descricao == ""){
-            throw new Exception("O campo DESCRICAO não pode estar vazio");
+          $this->descricao = "Nenhum cardapio cadastrado.";
         }
         if($estabelecimento == NULL || $estabelecimento == ""){
             throw new Exception("O campo ESTABELECIMENTO não pode estar vazio");
