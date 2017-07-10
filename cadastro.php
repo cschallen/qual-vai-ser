@@ -4,75 +4,46 @@ require_once "class/Estabelecimento.class.php";
 require_once "class/EstabelecimentoDAO.class.php";
 require_once "class/CardapioDAO.class.php";
 
-if(isset($_POST['submit'])){
 
-  $con = new Conexao();
-  $con = $con->obterConexao();
-  $idDono = $_SESSION['id_dono'];
-  $nome = $_POST['nome'];
-  $descricao = $_POST['descricao'];
-  $endereco = $_POST['endereco'];
-  $cep = $_POST['cep'];
-  $cnpj = $_POST['cnpj'];
-  $statusEst = 'Pendente';
-  $request_url = "http://maps.googleapis.com/maps/api/geocode/xml?address=".$cep;
-  $xml = simplexml_load_file($request_url) or die("url not loading");
-  $status = $xml->status;
-  if ($status=="OK") {
-    $lat = $xml->result->geometry->location->lat;
-    $lng = $xml->result->geometry->location->lng;
-  }else{
-    $lat = 0;
-    $lng = 0;
+
+if ($passou){
+  $idEstabelecimento = $obDAO->obterIdEstabelcimento($_POST['cnpj']);
+  $cardapioDAO = new CardapioDAO();
+
+  if (isset($_POST['cardapio_dom'])){
+    $cardapioDAO->salvar(1 ,$_POST['cardapio_dom'], $idEstabelecimento);
   }
 
-  $objt = new Estabelecimento($nome, $descricao, $endereco, $cep, $lat, $lng, $cnpj, $idDono, $statusEst);
-
-  $obDAO  = new EstabelecimentoDAO();
-
-  if($con->prepare($obDAO->salvar($objt))){
-    $passou = true;
-  } else {
-    $success = "Opa! Houve uma falha e não conseguimos realizar o seu cadastro! Tente novamente mais tarde.";
-    $passou = false;
+  if (isset($_POST['cardapio_seg'])){
+    $cardapioDAO->salvar(2, $_POST['cardapio_seg'], $idEstabelecimento);
   }
 
-
-  if ($passou){
-    $idEstabelecimento = $obDAO->obterIdEstabelcimento($_POST['cnpj']);
-    $cardapioDAO = new CardapioDAO();
-    $cardapio_dom = $_POST['cardapio_dom'];
-    $cardapio_seg = $_POST['cardapio_seg'];
-    $cardapio_ter = $_POST['cardapio_ter'];
-    $cardapio_qua = $_POST['cardapio_qua'];
-    $cardapio_qui = $_POST['cardapio_qui'];
-    $cardapio_sex = $_POST['cardapio_sex'];
-    $cardapio_sab = $_POST['cardapio_sab'];
-    if ($cardapio_dom != "" || $cardapio_dom != NULL){
-      $cardapioDAO->salvar(1 ,$_POST['cardapio_dom'], $idEstabelecimento);
-    }
-    if ($cardapio_seg != "" || $cardapio_seg != NULL){
-      $cardapioDAO->salvar(2, $_POST['cardapio_seg'], $idEstabelecimento);
-    }
-    if ($cardapio_ter != "" || $cardapio_ter != NULL){
-      $cardapioDAO->salvar(3, $_POST['cardapio_ter'], $idEstabelecimento);
-    }
-    if ($cardapio_qua != "" || $cardapio_qua != NULL){
-      $cardapioDAO->salvar(4, $_POST['cardapio_qua'], $idEstabelecimento);
-    }
-    if ($cardapio_qui != "" || $cardapio_qui != NULL){
-      $cardapioDAO->salvar(5, $_POST['cardapio_qui'], $idEstabelecimento);
-    }
-    if ($cardapio_sex != "" || $cardapio_sex != NULL){
-      $cardapioDAO->salvar(6, $_POST['cardapio_sex'], $idEstabelecimento);
-    }
-    if ($cardapio_sab != "" || $cardapio_sab != NULL){
-      $cardapioDAO->salvar(7, $_POST['cardapio_seg'], $idEstabelecimento);
-    }
-    $success = "Cadastro realizado com sucesso!";
+  if (isset($_POST['cardapio_ter'])){
+    $cardapioDAO->salvar(3, $_POST['cardapio_ter'], $idEstabelecimento);
   }
+
+  if (isset($_POST['cardapio_qua'])){
+    $cardapioDAO->salvar(4, $_POST['cardapio_qua'], $idEstabelecimento);
+  }
+
+  if (isset($_POST['cardapio_qui'])){
+    $cardapioDAO->salvar(5, $_POST['cardapio_qui'], $idEstabelecimento);
+  }
+
+  if (isset($_POST['cardapio_sex'])){
+    $cardapioDAO->salvar(6, $_POST['cardapio_sex'], $idEstabelecimento);
+  }
+
+  if (isset($_POST['cardapio_sab'])){
+    $cardapioDAO->salvar(7, $_POST['cardapio_seg'], $idEstabelecimento);
+ }
+
+$success = "Cadastro realizado com sucesso!";
+
 }
+
 ?>
+
 
 <!DOCTYPE html>
 <html>
