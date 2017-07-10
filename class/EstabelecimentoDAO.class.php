@@ -9,6 +9,82 @@ class EstabelecimentoDAO{
 		$this->con = Conexao::obterConexao();
 	}
 
+	public function editaDescricao($id_estabelecimento, $descricao){
+			$conn = pg_connect("host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
+			$comando = "UPDATE estabelecimento SET descricao = '$descricao' WHERE id_estabelecimento = '$id_estabelecimento'";
+			$sql = pg_query($conn, $comando);
+			return true;
+	}
+
+	public function editaCardapio($id_estabelecimento, $dia, $cardapio){
+		var_dump($dia);
+		echo "<< dia <BR> ";
+		var_dump($cardapio);
+		echo"<<<cardapio <br><BR>";
+		switch ($dia) {
+			case '1':
+
+				$conn = pg_connect("host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
+				$comando = "UPDATE Cardapio SET descricao = '$cardapio' WHERE id_estabelecimento = '$id_estabelecimento' and dia = '$dia'";
+				$sql = pg_query($conn, $comando);
+				break;
+			case '2':
+				$conn = pg_connect("host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
+				$comando = "UPDATE Cardapio SET descricao = '$cardapio' WHERE id_estabelecimento = '$id_estabelecimento' and dia = '$dia'";
+				$sql = pg_query($conn, $comando);
+				break;
+			case '3':
+				$conn = pg_connect("host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
+				$comando = "UPDATE Cardapio SET descricao = '$cardapio' WHERE id_estabelecimento = '$id_estabelecimento' and dia = '$dia'";
+				$sql = pg_query($conn, $comando);
+				break;
+			case '4':
+				$conn = pg_connect("host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
+				$comando = "UPDATE Cardapio SET descricao = '$cardapio' WHERE id_estabelecimento = '$id_estabelecimento' and dia = '$dia'";
+				$sql = pg_query($conn, $comando);
+				var_dump($sql);
+				echo"<<< <br><BR>";
+				break;
+			case '5':
+				$conn = pg_connect("host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
+				$comando = "UPDATE Cardapio SET descricao = '$cardapio' WHERE id_estabelecimento = '$id_estabelecimento' and dia = '$dia'";
+				$sql = pg_query($conn, $comando);
+				break;
+			case '6':
+				$conn = pg_connect("host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
+				$comando = "UPDATE Cardapio SET descricao = '$cardapio' WHERE id_estabelecimento = '$id_estabelecimento' and dia = '$dia'";
+				$sql = pg_query($conn, $comando);
+				break;
+			case '7':
+				$conn = pg_connect("host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
+				$comando = "UPDATE Cardapio SET descricao = '$cardapio' WHERE id_estabelecimento = '$id_estabelecimento' and dia = '$dia'";
+				$sql = pg_query($conn, $comando);
+				break;
+			default:
+				return false;
+		}
+		return true;
+	}
+	public function obterCardapios($dia,$id_estabelecimento){
+
+		    $colecao = array();
+		    $comando = "SELECT descricao
+		    FROM Cardapio
+		    WHERE id_estabelecimento = $id_estabelecimento and dia='$dia'";
+
+		    $estabelecimentoDAO = new EstabelecimentoDAO();
+
+		    $conn = pg_connect("host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
+		    $sql = pg_query($conn, $comando);
+
+		    if (pg_num_rows($sql) == 1) {
+					$descricao = pg_fetch_assoc($sql);
+					return $descricao['descricao'];
+				} else {
+					return "";
+				}
+	}
+
 	public function obter($id){
 		$establecimento = NULL;
 		$comando = "SELECT  nome, descricao, rua, cep, lat, lng, cnpj, status
@@ -112,7 +188,7 @@ class EstabelecimentoDAO{
 	public function editaSituacao($id, $situacao){
 		if ($situacao == 'Aprovado'){
 			$conn = pg_connect("host=localhost port=5432 dbname=qual-vai-ser user=postgres password=postgres");
-			  $comando = "UPDATE estabelecimento SET status = '$status' WHERE id_estabelecimento = '$id'";
+			  $comando = "UPDATE estabelecimento SET status = 'Aprovado' WHERE id_estabelecimento = '$id'";
 				$sql = pg_query($conn, $comando);
 				return true;
 		}
