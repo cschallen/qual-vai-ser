@@ -138,8 +138,8 @@ $todosEstabelecimentos = $estabelecimentoDAO->obterTodosDistAprovado(); ?>
 				  </div>
 				<input name="id" type="hidden" class="form-control" id="id-curso" value="">
 
-				<button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
-				<button type="submit" class="btn btn-danger">Editar</button>
+				<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+				<button type="submit" class="btn btn-success">Editar</button>
 
 				</form>
 			  </div>

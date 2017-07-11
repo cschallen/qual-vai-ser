@@ -66,7 +66,7 @@ if ($passou){
   }
 
   if (isset($_POST['cardapio_sab'])){
-    $cardapioDAO->salvar(7, $_POST['cardapio_seg'], $idEstabelecimento);
+    $cardapioDAO->salvar(7, $_POST['cardapio_sab'], $idEstabelecimento);
  }
 
  $success = "Cadastro realizado com sucesso!";
@@ -97,11 +97,7 @@ if ($passou){
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link rel="icon" href="favicon-1.ico" type="image/x-icon">
-  <script type="text/javascript" src="js/jquery-1.10.2.min.js"> </script>
-  <script type="text/javascript" src="js/bootstrap.min.js" ></script>
-  <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
-  <script type="text/javascript" src="js/jquery.mixitup.min.js" ></script>
-  <script type="text/javascript" src="js/main.js" ></script>
+
 </head>
 
 <body ng-app="">
@@ -242,7 +238,11 @@ if ($passou){
       </div>
     </div>
   </div>
-
+  <script type="text/javascript" src="js/jquery-1.10.2.min.js"> </script>
+  <script type="text/javascript" src="js/bootstrap.min.js" ></script>
+  <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+  <script type="text/javascript" src="js/jquery.mixitup.min.js" ></script>
+  <script type="text/javascript" src="js/main.js" ></script>
 
 </body>
 

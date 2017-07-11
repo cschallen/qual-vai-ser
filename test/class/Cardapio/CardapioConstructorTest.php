@@ -22,22 +22,6 @@ class CardapioConstructorTest extends PHPUnit{
         new Cardapio("", "uma descricao de local", 1);
     }
 
-    /**
-    * @expectedException Exception
-    * @expectedExceptionMessage O campo DESCRICAO não pode estar vazio
-    */
-    public function testConstrutorDescricao_Null(){
-        new Cardapio(1, null, 1);
-    }
-
-     /**
-    * @expectedException Exception
-    * @expectedExceptionMessage O campo DESCRICAO não pode estar vazio
-    */
-    public function testConstrutorDescricao_Vazio(){
-        new Cardapio(1, "", 1);
-    }
-
      /**
     * @expectedException Exception
     * @expectedExceptionMessage O campo ESTABELECIMENTO não pode estar vazio

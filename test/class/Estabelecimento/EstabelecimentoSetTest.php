@@ -8,7 +8,7 @@ require_once './class/DonoEstabelecimento.class.php';
 class EstabelecimentoSetTest extends PHPUnit{
 
     public function testSetNome_Sucesso(){
-        $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
+        $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1, "Aprovado");
         $estabelecimento->setNome("Novo estabelecimento");
 
         $this->assertEquals("Novo estabelecimento", $estabelecimento->getNome());
@@ -19,7 +19,7 @@ class EstabelecimentoSetTest extends PHPUnit{
     * @expectedExceptionMessage O campo NOME não pode estar vazio
     */
     public function testSetNome_SemValor(){
-        $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
+        $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1, "Aprovado");
         $estabelecimento->setNome("");
     }
 
@@ -28,12 +28,12 @@ class EstabelecimentoSetTest extends PHPUnit{
     * @expectedExceptionMessage O campo NOME não pode estar vazio
     */
     public function testSetNome_Null(){
-        $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
+        $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1, "Aprovado");
         $estabelecimento->setNome(null);
     }
 
     public function testSetDescricao_Sucesso(){
-        $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
+        $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1, "Aprovado");
         $estabelecimento->setDescricao("Nova descricao");
 
         $this->assertEquals("Nova descricao", $estabelecimento->getDescricao());
@@ -44,7 +44,7 @@ class EstabelecimentoSetTest extends PHPUnit{
     * @expectedExceptionMessage O campo DESCRICAO não pode estar vazio
     */
     public function testSetDescricao_SemValor(){
-        $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
+        $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1, "Aprovado");
         $estabelecimento->setDescricao("");
     }
 
@@ -53,12 +53,12 @@ class EstabelecimentoSetTest extends PHPUnit{
     * @expectedExceptionMessage O campo DESCRICAO não pode estar vazio
     */
     public function testSetDescricao_Null(){
-        $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
+        $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1, "Aprovado");
         $estabelecimento->setDescricao(null);
     }
 
     public function testSetRua_Sucesso(){
-        $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
+        $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1, "Aprovado");
         $estabelecimento->setRua("Rua Nova");
 
         $this->assertEquals("Rua Nova", $estabelecimento->getRua());
@@ -69,7 +69,7 @@ class EstabelecimentoSetTest extends PHPUnit{
     * @expectedExceptionMessage O campo RUA não pode estar vazio
     */
     public function testSetRua_SemValor(){
-        $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
+        $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1, "Aprovado");
         $estabelecimento->setRua("");
     }
 
@@ -78,12 +78,12 @@ class EstabelecimentoSetTest extends PHPUnit{
     * @expectedExceptionMessage O campo RUA não pode estar vazio
     */
     public function testSetRua_Null(){
-        $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
+        $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1, "Aprovado");
         $estabelecimento->setRua(null);
     }
 
     public function testSetCEP_Sucesso(){
-        $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
+        $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1, "Aprovado");
         $estabelecimento->setCEP("11111-111");
 
         $this->assertEquals("11111-111", $estabelecimento->getCEP());
@@ -94,7 +94,7 @@ class EstabelecimentoSetTest extends PHPUnit{
     * @expectedExceptionMessage O campo CEP não pode estar vazio
     */
     public function testSetCEP_SemValor(){
-        $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
+        $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1, "Aprovado");
         $estabelecimento->setCEP("");
     }
 
@@ -103,12 +103,12 @@ class EstabelecimentoSetTest extends PHPUnit{
     * @expectedExceptionMessage O campo CEP não pode estar vazio
     */
     public function testSetCEP_Null(){
-        $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
+        $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1, "Aprovado");
         $estabelecimento->setCEP(null);
     }
 
     public function testSetCNPJ_Sucesso(){
-        $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
+        $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1, "Aprovado");
         $estabelecimento->setCNPJ("88.888.888/8888-88");
 
         $this->assertEquals("88.888.888/8888-88", $estabelecimento->getCNPJ());
@@ -119,7 +119,7 @@ class EstabelecimentoSetTest extends PHPUnit{
     * @expectedExceptionMessage O campo CNPJ não pode estar vazio
     */
     public function testSetCNPJ_SemValor(){
-        $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
+        $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1, "Aprovado");
         $estabelecimento->setCNPJ("");
     }
 
@@ -128,12 +128,12 @@ class EstabelecimentoSetTest extends PHPUnit{
     * @expectedExceptionMessage O campo CNPJ não pode estar vazio
     */
     public function testSetCNPJ_Null(){
-        $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
+        $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1, "Aprovado");
         $estabelecimento->setCNPJ(null);
     }
 
     public function testSetDono_Sucesso(){
-        $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1);
+        $estabelecimento = new Estabelecimento("Estabelecimento Teste", "Descricao do estabelecimento", "Rua X", "91450-140", '40.71727401', '-74.00898606', "99.999.999/9999-99", 1, "Aprovado");
         $estabelecimento->setidDonoEstabelecimento(2);
 
         $this->assertEquals(2, $estabelecimento->getidDonoEstabelecimento());
